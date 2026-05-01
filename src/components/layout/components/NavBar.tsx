@@ -4,8 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/short/", label: "کوتاه‌مدت", icon: <span>📝</span> },
-  { href: "/long/", label: "بلندمدت", icon: <span>⏱</span> },
+  { href: "/day/", label: "روزانه" },
+  { href: "/month/", label: "ماهانه" },
+  { href: "/yers/", label: "سالانه" },
 ];
 
 export function Navbar() {
@@ -38,7 +39,7 @@ export function Navbar() {
                 <span
                   className={cls(
                     "text-[16px] tracking-wider",
-                    isActive ? "font-[600] text-[18px]" : "",
+                    isActive ? "font-semibold text-[18px]" : "",
                   )}
                 >
                   {link.label}
