@@ -9,11 +9,7 @@ const yekanBakh = localFont({
     {
       path: "../assets/fonts/Yekan-Bakh-Regular.ttf",
       weight: "400",
-    },
-    {
-      path: "../assets/fonts/Yekan-Bakh-Bold.ttf",
-      weight: "700",
-    },
+    }
   ],
   variable: "--font-yekanBakh",
 });
@@ -39,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={yekanBakh.variable}>
+    <html lang="en" dir="rtl" className={yekanBakh.variable}>
       <head>
         <link rel="apple-touch-icon" href="/icons/192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
