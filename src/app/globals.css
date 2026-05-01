@@ -21,6 +21,7 @@ body {
   color: var(--foreground);
   background-color: var(--background);
   box-sizing: border-box;
+  direction: rtl;
 }
 
 /* ...Hidden Scroll */
