@@ -51,7 +51,7 @@ export default function GlassTable<T>({
               <tr>
                 <td
                   colSpan={columns.length}
-                  className="text-center py-6 text-gray-300"
+                  className="text-center py-6 text-gray-300 font-bold text-lg"
                 >
                   {emptyText}
                 </td>

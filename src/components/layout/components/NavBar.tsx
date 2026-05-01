@@ -20,7 +20,7 @@ export function Navbar() {
         "z-49 overflow-hidden",
       )}
     >
-      <ul className="flex justify-around items-center h-16 px-2">
+      <ul className="flex justify-around items-center h-16">
         {navLinks.map(link => {
           const isActive = pathname === link.href;
 
