@@ -14,7 +14,8 @@ export const Modal = ({ isOpen, header, children }: ModalProps) => {
       <div
         className="
           w-80 rounded-2xl p-4
-          backdrop-blur-sm
+          bg-black/30
+          backdrop-blur-xl
           border border-white/20
           shadow-[0_8px_32px_rgba(0,0,0,0.25)]
         "
