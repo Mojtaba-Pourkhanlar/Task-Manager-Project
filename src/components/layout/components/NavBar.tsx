@@ -17,7 +17,7 @@ export function Navbar() {
         "fixed bottom-3 left-4 right-4 mx-auto max-w-lg rounded-3xl",
         "bg-black/20 backdrop-blur-xl backdrop-saturate-150",
         "border border-white/20 shadow-2xl",
-        "z-50 overflow-hidden",
+        "z-49 overflow-hidden",
       )}
     >
       <ul className="flex justify-around items-center h-16 px-2">
