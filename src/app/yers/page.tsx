@@ -1,6 +1,6 @@
 "use client";
 
-import AddTaskModal from "@/components/app/long/AddTaskModal";
+import AddTaskModal from "@/components/app/AllPage/AddTaskModal";
 import { Button } from "@/components/core/Button";
 import GlassCheckbox from "@/components/core/Checkbox";
 import GlassTable from "@/components/core/Table";
@@ -14,11 +14,8 @@ const priorityWeight: Record<Task["priority"], number> = {
   low: 1,
 };
 
-export default function ShortTasks() {
-  const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>(
-    "short-tasks",
-    [],
-  );
+export default function YersTasks() {
+  const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>("yers-tasks", []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleAddTask = (task: Task) => {
     setTasks(prev => [...prev, task]);
@@ -113,7 +110,7 @@ export default function ShortTasks() {
     return (
       <div className="p-6 max-w-3xl mx-auto">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold">لیست تسک های روزانه</h1>
+          <h1 className="text-xl font-bold">لیست تسک های سالانه</h1>
 
           <Button
             className="bg-blue-950 border border-white/20"
@@ -134,7 +131,7 @@ export default function ShortTasks() {
   return (
     <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold">لیست تسک های روزانه </h1>
+        <h1 className="text-xl font-bold">لیست تسک های سالانه </h1>
 
         <Button
           className="bg-blue-950 border border-white/20"

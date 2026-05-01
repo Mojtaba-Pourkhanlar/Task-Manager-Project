@@ -4,8 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/short/", label: "کوتاه‌مدت", icon: <span>📝</span> },
-  { href: "/long/", label: "بلندمدت", icon: <span>⏱</span> },
+  { href: "/day/", label: "روزانه" },
+  { href: "/month/", label: "ماهانه" },
+  { href: "/yers/", label: "سالانه" },
 ];
 
 export function Navbar() {
