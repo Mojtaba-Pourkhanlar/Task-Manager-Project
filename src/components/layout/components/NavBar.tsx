@@ -38,7 +38,7 @@ export function Navbar() {
                 <span
                   className={cls(
                     "text-[16px] tracking-wider",
-                    isActive ? "font-[600] text-[18px]" : "",
+                    isActive ? "font-semibold text-[18px]" : "",
                   )}
                 >
                   {link.label}
