@@ -1,27 +1,36 @@
 import { useEffect, useState } from "react";
 
-export function useLocalStorage<T>(key: string, initialValue: T) {
-  const [value, setValue] = useState<T>(initialValue);
+type Updater<T> = T | ((prev: T) => T);
 
+export function useLocalStorage<T>(key: string, initialValue: T) {
+  // Lazy init: فقط یکبار در mount می‌خواند، بدون setState داخل effect
+  const [value, setValue] = useState<T>(() => {
+    try {
+      const stored =
+        typeof window !== "undefined" ? localStorage.getItem(key) : null;
+      return stored ? (JSON.parse(stored) as T) : initialValue;
+    } catch {
+      return initialValue;
+    }
+  });
+
+  // هر بار key یا value عوض شد، localStorage را sync کن
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(key);
-      if (stored) {
-        setValue(JSON.parse(stored));
-      }
-    } catch (error) {
-      console.error("Error reading localStorage", error);
-    }
-  }, [key]);
-
-  const saveValue = (newValue: T) => {
-    try {
-      setValue(newValue);
-      localStorage.setItem(key, JSON.stringify(newValue));
+      localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
       console.error("Error saving to localStorage", error);
     }
+  }, [key, value]);
+
+  // یک setter که هم مقدار مستقیم هم تابع را می‌پذیرد
+  const setStoredValue = (update: Updater<T>) => {
+    setValue(prev => {
+      const next =
+        typeof update === "function" ? (update as (p: T) => T)(prev) : update;
+      return next;
+    });
   };
 
-  return [value, saveValue] as const;
+  return [value, setStoredValue] as const;
 }

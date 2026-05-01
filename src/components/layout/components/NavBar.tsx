@@ -15,7 +15,7 @@ export function Navbar() {
     <nav
       className={cls(
         "fixed bottom-3 left-4 right-4 mx-auto max-w-lg rounded-3xl",
-        "bg-black/20 backdrop-blur-xl backdrop-saturate-150",
+        "bg-black/10 backdrop-blur-sm backdrop-saturate-150",
         "border border-white/20 shadow-2xl",
         "z-49 overflow-hidden",
       )}
