@@ -25,22 +25,6 @@ module.exports = {
           950: "var(--color-navy-950)",
         },
       },
-      boxShadow: {
-        soft: "0 8px 30px rgba(0,0,0,0.06)",
-        "soft-dark": "0 8px 30px rgba(0,0,0,0.3)",
-      },
-      borderRadius: {
-        "2xl": "1rem",
-      },
-      keyframes: {
-        blink: {
-          "0%, 50%, 100%": { opacity: "1", transform: "scale(1)" },
-          "25%, 75%": { opacity: "0.3", transform: "scale(0.8)" },
-        },
-      },
-      animation: {
-        blink: "blink 0.8s ease-in-out infinite",
-      },
     },
   },
   plugins: [typography],
