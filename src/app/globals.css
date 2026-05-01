@@ -1,26 +1,8 @@
 @import "tailwindcss";
-/* ...Fonts  */
-@font-face {
-  font-family: "Yekan-Bakh-Regular";
-  src:
-    local("Yekan-Bakh-Regular"),
-    url("../assets/fonts/Yekan-Bakh-Regular.ttf") format("woff");
-  font-style: normal;
-}
-@font-face {
-  font-family: "Yekan-Bold";
-  src:
-    local("Yekan-Bakh-Bold"),
-    url("../assets/fonts/Yekan-Bakh-Bold.ttf") format("woff");
-  font-style: normal;
-}
 
 :root {
-  --font-family-main: "Yekan-Bakh-Regular", sans-serif;
-  --font-family-secondary: "Yekan-Bold", sans-serif;
-
-  --background: #1b3257;
-  --foreground: #e6eef7;
+  --background: #ffffff;
+  --foreground: #1b3257;
 
   --color-navy-50: #f2f6fb;
   --color-navy-100: #e6eef7;
@@ -36,7 +18,7 @@
 }
 
 body {
-  font-family: var(--font-family-main);
+  font-family: var(--font-yekanBakh), system-ui, sans-serif;
   color: var(--foreground);
   background-color: var(--background);
   box-sizing: border-box;

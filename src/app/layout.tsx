@@ -2,6 +2,7 @@ import Script from "next/script";
 import { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import CustomLayout from "@/components/layout";
 
 const yekanBakh = localFont({
   src: [
@@ -45,6 +46,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="msapplication-TileImage" content="/icons/192.png" />
         <meta name="msapplication-TileColor" content="#292B2E" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <Script
           id="person-jsonld"
           type="application/ld+json"
@@ -65,7 +68,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <CustomLayout>{children}</CustomLayout>
+      </body>
     </html>
   );
 }
