@@ -30,7 +30,7 @@ export default function AddTaskModal({
   if (!isOpen) return null;
 
   const isDisabled = taskName.trim().length === 0;
-
+  
   const handleAdd = () => {
     if (isDisabled) return;
 
