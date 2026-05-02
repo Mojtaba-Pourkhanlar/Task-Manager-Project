@@ -6,6 +6,7 @@ import GlassSelect from "@/components/core/Select";
 import { TextInput } from "@/components/core/TextInput";
 import { Task } from "@/types";
 import { useEffect, useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 interface AddTaskModalProps {
   isOpen: boolean;
@@ -29,12 +30,12 @@ export default function AddTaskModal({
   if (!isOpen) return null;
 
   const isDisabled = taskName.trim().length === 0;
-
+  
   const handleAdd = () => {
     if (isDisabled) return;
 
     const newTask: Task = {
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       title: taskName,
       priority,
       done: false,
@@ -51,7 +52,7 @@ export default function AddTaskModal({
     <Modal isOpen={isOpen} header="ایجاد تسک جدید">
       <div className="space-y-4">
         <TextInput
-          placeholder="نام تسک رو وارد کنید"
+          placeholder="نام تسک را وارد کنید"
           value={taskName}
           onChange={e => setTaskName(e.target.value)}
           onKeyDown={e => e.key === "Enter" && handleAdd()}

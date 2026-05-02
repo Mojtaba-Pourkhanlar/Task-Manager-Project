@@ -9,12 +9,13 @@ const yekanBakh = localFont({
     {
       path: "../assets/fonts/Yekan-Bakh-Regular.ttf",
       weight: "400",
-    }
+    },
   ],
   variable: "--font-yekanBakh",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://task.mojtabapourkhanlar.ir/"),
   title: "Task Manager",
   description:
     "A personal task manager built by Mojtaba Pourkhanlar to organize daily tasks, track progress, and stay productive.",
@@ -42,8 +43,6 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="msapplication-TileImage" content="/icons/192.png" />
         <meta name="msapplication-TileColor" content="#292B2E" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
         <Script
           id="person-jsonld"
           type="application/ld+json"
@@ -54,8 +53,9 @@ export default function RootLayout({
               "@type": "Person",
               name: "Mojtaba Pourkhanlar",
               jobTitle: "Frontend Developer",
-              url: "https://mojtabapourkhanlar.ir",
-              image: "https://mojtabapourkhanlar.ir/images/profile.jpg",
+              url: "https://task.mojtabapourkhanlar.ir",
+              image:
+                "https://task.mojtabapourkhanlar.ir/images/mojtaba-pourkhanlar.png",
               sameAs: [
                 "https://github.com/Mojtaba-Pourkhanlar",
                 "https://www.linkedin.com/in/mojtaba-pourkhanlar-778370251/",
