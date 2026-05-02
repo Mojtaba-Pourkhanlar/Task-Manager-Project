@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Column<T> = {
   key: keyof T | string;
@@ -58,22 +59,31 @@ export default function GlassTable<T>({
               </tr>
             )}
 
-            {data.map((row, rowIndex) => (
-              <tr
-                key={rowIndex}
-                className={`border-b border-white/10 transition-colors duration-300 ${
-                  rowClassName ? rowClassName(row) : ""
-                }`}
-              >
-                {columns.map((col, colIndex) => (
-                  <td key={colIndex} className={`px-4 py-3 ${col.width}`}>
-                    {col.render
-                      ? col.render(row, rowIndex)
-                      : (row as any)[col.key]}
-                  </td>
-                ))}
-              </tr>
-            ))}
+            <AnimatePresence mode="popLayout">
+              {data.map((row, rowIndex) => (
+                <motion.tr
+                  key={(row as any).id ?? rowIndex}
+                  layout
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className={`
+                    border-b border-white/10
+                    transition-colors duration-300
+                    ${rowClassName ? rowClassName(row) : ""}
+                  `}
+                >
+                  {columns.map((col, colIndex) => (
+                    <td key={colIndex} className={`px-4 py-3 ${col.width}`}>
+                      {col.render
+                        ? col.render(row, rowIndex)
+                        : (row as any)[col.key]}
+                    </td>
+                  ))}
+                </motion.tr>
+              ))}
+            </AnimatePresence>
           </tbody>
         </table>
       </div>
