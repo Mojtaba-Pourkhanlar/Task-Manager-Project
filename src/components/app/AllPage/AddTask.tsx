@@ -6,6 +6,7 @@ import GlassSelect from "@/components/core/Select";
 import { TextInput } from "@/components/core/TextInput";
 import { Task } from "@/types";
 import { useEffect, useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 interface AddTaskModalProps {
   isOpen: boolean;
@@ -34,7 +35,7 @@ export default function AddTaskModal({
     if (isDisabled) return;
 
     const newTask: Task = {
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       title: taskName,
       priority,
       done: false,

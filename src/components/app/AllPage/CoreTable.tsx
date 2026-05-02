@@ -54,7 +54,7 @@ const CoreTable = ({ tasks, onToggleDone, onDelete }: Props) => {
         };
         return (
           <span
-            className={`px-2 py-1 rounded-md text-xs font-semibold whitespace-nowrap ${colorMap[task.priority]}`}
+            className={`px-2 py-1 rounded-md text-xs font-semibold whitespace-nowrap select-none ${colorMap[task.priority]}`}
           >
             {map[task.priority]}
           </span>
@@ -69,7 +69,7 @@ const CoreTable = ({ tasks, onToggleDone, onDelete }: Props) => {
       render: (task: Task) => (
         <button
           onClick={() => onDelete(task.id)}
-          className="text-red-400 hover:text-red-300 font-medium"
+          className="text-red-400 hover:text-red-300 font-medium cursor-pointer"
         >
           حذف
         </button>
