@@ -1,8 +1,8 @@
-import { ButtonHTMLAttributes ,  } from "react";
+import { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   lable: string | number;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
 }
 

@@ -15,10 +15,7 @@ const priorityWeight: Record<Task["priority"], number> = {
 };
 
 export default function DayTasks() {
-  const [tasks, setTasks] = useLocalStorage<Task[]>(
-    "day-tasks",
-    [],
-  );
+  const [tasks, setTasks] = useLocalStorage<Task[]>("day-tasks", []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleAddTask = (task: Task) => {
     setTasks(prev => [...prev, task]);
@@ -108,8 +105,6 @@ export default function DayTasks() {
   ];
 
   const isDone = viewTasks?.filter((item: Task) => item.done);
-
-
 
   return (
     <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">

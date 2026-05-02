@@ -15,10 +15,7 @@ const priorityWeight: Record<Task["priority"], number> = {
 };
 
 export default function MonthTasks() {
-  const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>(
-    "month-tasks",
-    [],
-  );
+  const [tasks, setTasks] = useLocalStorage<Task[]>("month-tasks", []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleAddTask = (task: Task) => {
     setTasks(prev => [...prev, task]);
@@ -108,28 +105,6 @@ export default function MonthTasks() {
   ];
 
   const isDone = viewTasks?.filter((item: Task) => item.done);
-
-  if (!isLoaded) {
-    return (
-      <div className="p-6 max-w-3xl mx-auto">
-        <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold">لیست تسک های ماهانه</h1>
-
-          <Button
-            className="bg-blue-950 border border-white/20"
-            onClick={() => setIsModalOpen(true)}
-            lable={"تسک جدید"}
-          />
-        </div>
-
-        <hr className="bg-none my-3 border-b-2 border-white/20" />
-
-        <div className="rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-lg p-6 text-center text-gray-300 font-bold">
-          در حال بارگذاری تسک‌ها...
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
