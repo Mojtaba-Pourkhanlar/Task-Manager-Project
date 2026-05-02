@@ -51,7 +51,7 @@ export default function AddTaskModal({
     <Modal isOpen={isOpen} header="ایجاد تسک جدید">
       <div className="space-y-4">
         <TextInput
-          placeholder="نام تسک رو وارد کنید"
+          placeholder="نام تسک را وارد کنید"
           value={taskName}
           onChange={e => setTaskName(e.target.value)}
           onKeyDown={e => e.key === "Enter" && handleAdd()}

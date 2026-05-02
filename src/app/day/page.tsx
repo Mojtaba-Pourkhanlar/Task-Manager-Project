@@ -10,13 +10,13 @@ import { useState } from "react";
 export default function DayTasks() {
   const [tasks, setTasks] = useLocalStorage<Task[]>("day-tasks", []);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleAddTask = (task: Task) => {
     setTasks(prev => [...prev, task]);
   };
   const toggleDoneById = (id: string, value: boolean) => {
     setTasks(prev => prev.map(t => (t.id === id ? { ...t, done: value } : t)));
   };
-
   const deleteById = (id: string) => {
     setTasks(prev => prev.filter(t => t.id !== id));
   };

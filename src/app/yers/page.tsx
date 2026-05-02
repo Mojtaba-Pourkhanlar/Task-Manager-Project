@@ -32,7 +32,6 @@ export default function YersTasks() {
         onToggleDone={toggleDoneById}
         onDelete={deleteById}
       />
-
       {isModalOpen && (
         <AddTask
           isOpen={isModalOpen}
