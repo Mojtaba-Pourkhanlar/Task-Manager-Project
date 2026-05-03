@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        yekan: ["var(--font-yekanBakh)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
