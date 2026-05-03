@@ -1,9 +1,9 @@
 "use client";
 
-import AddTask from "@/components/app/AllPage/AddTask";
-import CoreTable from "@/components/app/AllPage/CoreTable";
-import Headers from "@/components/app/AllPage/Headers";
-import ImportExportActions from "@/components/app/AllPage/ImportExportActions";
+import AddTask from "@/components/app/AddTask";
+import CoreTable from "@/components/app/CoreTable";
+import Headers from "@/components/app/Headers";
+import ImportExportActions from "@/components/app/ImportExportActions";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
 import { useState } from "react";
