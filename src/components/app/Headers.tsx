@@ -10,7 +10,7 @@ interface Props {
 const Headers = ({ onClick, name, actions }: Props) => {
   return (
     <>
-      <div className="flex items-center justify-between gap-3 flex-wrap">
+      <header className="flex items-center justify-between gap-3 flex-wrap">
         <h1 className="text-[18px] md:text-xl font-bold">{name}</h1>
         <div className="flex items-center gap-2 flex-wrap">
           {actions}
@@ -22,7 +22,7 @@ const Headers = ({ onClick, name, actions }: Props) => {
             aria-label="ایجاد تسک جدید"
           />
         </div>
-      </div>
+      </header>
 
       <hr className="bg-none my-3 border-b-2 border-white/20" />
     </>
