@@ -16,6 +16,7 @@ const priorityWeight: Record<Task["priority"], number> = {
 };
 
 const CoreTable = ({ tasks, onToggleDone, onDelete }: Props) => {
+  
   const columns: TaskColumn[] = [
     {
       key: "done",

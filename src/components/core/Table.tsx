@@ -25,7 +25,7 @@ export default function GlassTable<T>({
   rowClassName,
   maxHeight,
 }: Props<T>) {
-  const containerMaxHeight = maxHeight ?? "calc(100vh - 220px)";
+  const containerMaxHeight = maxHeight ?? "calc(100vh - 300px)";
 
   return (
     <div

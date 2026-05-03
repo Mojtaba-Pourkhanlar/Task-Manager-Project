@@ -3,6 +3,7 @@
 import AddTask from "@/components/app/AllPage/AddTask";
 import CoreTable from "@/components/app/AllPage/CoreTable";
 import Headers from "@/components/app/AllPage/Headers";
+import ImportExportActions from "@/components/app/AllPage/ImportExportActions";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
 import { useState } from "react";
@@ -20,12 +21,22 @@ export default function MonthTasks() {
   const deleteById = (id: string) => {
     setTasks(prev => prev.filter(t => t.id !== id));
   };
-
+  const handleImportTasks = (importedTasks: Task[]) => {
+    setTasks(prev => [...prev, ...importedTasks]);
+  };
+  
   return (
     <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
       <Headers
         name="لیست تسک های ماهانه"
         onClick={() => setIsModalOpen(true)}
+        actions={
+          <ImportExportActions
+            section="month"
+            tasks={tasks}
+            onImportConfirm={handleImportTasks}
+          />
+        }
       />
       <CoreTable
         tasks={tasks}
