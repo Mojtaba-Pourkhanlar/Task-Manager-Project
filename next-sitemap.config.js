@@ -8,6 +8,6 @@ module.exports = {
     "https://task.mojtabapourkhanlar.ir/sitemap.xml",
     "https://task.mojtabapourkhanlar.ir/day",
     "https://task.mojtabapourkhanlar.ir/month",
-    "https://task.mojtabapourkhanlar.ir/yers",
+    "https://task.mojtabapourkhanlar.ir/year",
   ],
 };

@@ -1,14 +1,15 @@
 "use client";
 
-import AddTask from "@/components/app/AllPage/AddTask";
-import CoreTable from "@/components/app/AllPage/CoreTable";
-import Headers from "@/components/app/AllPage/Headers";
+import AddTask from "@/components/app/AddTask";
+import CoreTable from "@/components/app/CoreTable";
+import Headers from "@/components/app/Headers";
+import ImportExportActions from "@/components/app/ImportExportActions";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
 import { useState } from "react";
 
-export default function YersTasks() {
-  const [tasks, setTasks] = useLocalStorage<Task[]>("yers-tasks", []);
+const DayTasksClient = () => {
+  const [tasks, setTasks] = useLocalStorage<Task[]>("day-tasks", []);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddTask = (task: Task) => {
@@ -20,12 +21,22 @@ export default function YersTasks() {
   const deleteById = (id: string) => {
     setTasks(prev => prev.filter(t => t.id !== id));
   };
+  const handleImportTasks = (importedTasks: Task[]) => {
+    setTasks(prev => [...prev, ...importedTasks]);
+  };
 
   return (
     <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
       <Headers
-        name="لیست تسک های سالانه"
+        name="لیست تسک های روزانه"
         onClick={() => setIsModalOpen(true)}
+        actions={
+          <ImportExportActions
+            section="day"
+            tasks={tasks}
+            onImportConfirm={handleImportTasks}
+          />
+        }
       />
       <CoreTable
         tasks={tasks}
@@ -41,4 +52,6 @@ export default function YersTasks() {
       )}
     </div>
   );
-}
+};
+
+export default DayTasksClient;

@@ -1,4 +1,3 @@
-// next.config.mjs
 import { default as withPWAInit } from "@ducanh2912/next-pwa";
 
 const withPWA = withPWAInit({
@@ -6,12 +5,13 @@ const withPWA = withPWAInit({
   register: true,
   skipWaiting: true,
   disable: false,
+  disable: process.env.NODE_ENV === "development",
 });
 
 const nextConfig = {
-  output: "export", // چون static deploy داری
+  output: "export",
 
-  turbopack: {}, // اختیاری
+  turbopack: {},
   typedRoutes: true,
   trailingSlash: true,
 
@@ -28,8 +28,8 @@ const nextConfig = {
   },
 
   experimental: {
-    webpackBuildWorker: true, // فعال کردن اجرای webpack plugin‌ها
-    turbo: false, // برای اطمینان از عدم غیرفعال شدن پلاگین PWA
+    webpackBuildWorker: true,
+    turbo: false,
   },
 };
 

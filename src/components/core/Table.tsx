@@ -2,6 +2,7 @@
 "use client";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Inbox } from "lucide-react";
 
 type Column<T> = {
   key: keyof T | string;
@@ -25,7 +26,7 @@ export default function GlassTable<T>({
   rowClassName,
   maxHeight,
 }: Props<T>) {
-  const containerMaxHeight = maxHeight ?? "calc(100vh - 220px)";
+  const containerMaxHeight = maxHeight ?? "calc(100vh - 320px)";
 
   return (
     <div
@@ -50,11 +51,30 @@ export default function GlassTable<T>({
           <tbody>
             {data.length === 0 && (
               <tr>
-                <td
-                  colSpan={columns.length}
-                  className="text-center py-6 text-gray-300 font-bold text-lg"
-                >
-                  {emptyText}
+                <td colSpan={columns.length}>
+                  <div className="flex items-center justify-center py-16">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="
+                        flex flex-col items-center gap-4
+                        px-8 py-6 rounded-2xl
+                        bg-white/5 backdrop-blur-lg
+                        border border-white/20
+                        text-center
+                        shadow-lg
+                      "
+                    >
+                      <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 border border-white/20">
+                        <Inbox className="text-white/70" size={28} />
+                      </div>
+
+                      <p className="text-white/80 font-semibold text-base">
+                        {emptyText}
+                      </p>
+                    </motion.div>
+                  </div>
                 </td>
               </tr>
             )}

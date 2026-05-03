@@ -1,51 +1,62 @@
-import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+"use client";
+
+import { useEffect, useMemo, useRef } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+type ToastType = "info" | "success" | "warning" | "error";
+
 type ResolvableProps = {
   message: string;
-  type: "info" | "success" | "warning" | "error";
+  type: ToastType;
   theme?: "light" | "dark" | "system";
   open: boolean;
   duration?: number;
+  onClose: () => void;
 };
 
 export default function Toastify({
   message,
   type,
-  theme = "light",
+  theme = "dark",
   open,
   duration = 2000,
+  onClose,
 }: ResolvableProps) {
-  const pathname = usePathname();
-  const isFa = pathname.startsWith("/fa");
+  const toastId = useMemo(() => `toast-${type}`, [type]);
+  const hasShownRef = useRef(false);
+  const toastIdRef = useRef<string | number | null>(null);
 
   useEffect(() => {
-    if (open) {
-      toast[type](
-        <CustomToastContent title={type} message={message} isFa={isFa} />,
-        {
-          theme: theme,
-          className: `toast-${type}`,
-          autoClose: duration,
-          position: isFa ? "top-right" : "top-left",
-          rtl: isFa ? true : false,
-          hideProgressBar: true,
-        },
-      );
+    if (!open) {
+      hasShownRef.current = false;
+      return;
     }
-  }, [open, message, type, theme, duration, isFa]);
+    if (hasShownRef.current) return;
+    hasShownRef.current = true;
+    if (toastIdRef.current && toast.isActive(toastIdRef.current)) return;
 
-  const containerStyle: React.CSSProperties = {
-    padding: "8px 16px",
-    display: "block",
-    width: "fit-content",
-  };
+    toast[type](message, {
+      toastId,
+      autoClose: duration,
+      theme,
+      position: "bottom-center",
+      rtl: true,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      className: `toast--glass toast--${type}`,
+
+      onClose: () => {
+        toastIdRef.current = null;
+        onClose();
+      },
+    });
+  }, [open, message, type, theme, duration, toastId, onClose]);
 
   return (
     <ToastContainer
-      position={isFa ? "top-right" : "top-left"}
+      position="bottom-center"
       autoClose={duration}
       newestOnTop={false}
       closeOnClick
@@ -56,33 +67,8 @@ export default function Toastify({
       hideProgressBar
       theme={theme}
       closeButton={false}
-      style={containerStyle}
+      style={{ padding: 18, zIndex: 9999 }}
+      limit={1}
     />
   );
 }
-
-// Custom component for toast content with title
-const CustomToastContent: React.FC<{
-  title: string;
-  message: string;
-  isFa: boolean;
-}> = ({ title, message, isFa }) => {
-  let newTitle;
-  if (title === "success") {
-    newTitle = isFa ? "موفق" : "success";
-  } else if (title === "error") {
-    newTitle = isFa ? "خطا" : "error";
-  }
-  if (title === "info") {
-    newTitle = isFa ? "اطلاعات" : "info";
-  }
-  if (title === "warning") {
-    newTitle = isFa ? "هشدار" : "warning";
-  }
-  return (
-    <div className="pr-2">
-      <p className="text-sm font-medium mb-1">{newTitle}</p>
-      <p className="text-sm">{message}</p>
-    </div>
-  );
-};

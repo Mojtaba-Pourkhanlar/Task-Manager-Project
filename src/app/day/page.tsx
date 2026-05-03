@@ -1,44 +1,16 @@
-"use client";
+import DayTasksClient from "@/components/app/day/DayTasksClient";
+import { createSeo } from "@/lib/seo";
 
-import AddTask from "@/components/app/AllPage/AddTask";
-import CoreTable from "@/components/app/AllPage/CoreTable";
-import Headers from "@/components/app/AllPage/Headers";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { Task } from "@/types";
-import { useState } from "react";
+export function generateMetadata() {
+  return createSeo({
+    data: {
+      title: "Day | Task Manager",
+      description: "This app created by Mojtaba Pourkhanlar",
+      path: "/day",
+    },
+  });
+}
 
 export default function DayTasks() {
-  const [tasks, setTasks] = useLocalStorage<Task[]>("day-tasks", []);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleAddTask = (task: Task) => {
-    setTasks(prev => [...prev, task]);
-  };
-  const toggleDoneById = (id: string, value: boolean) => {
-    setTasks(prev => prev.map(t => (t.id === id ? { ...t, done: value } : t)));
-  };
-  const deleteById = (id: string) => {
-    setTasks(prev => prev.filter(t => t.id !== id));
-  };
-
-  return (
-    <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
-      <Headers
-        name="لیست تسک های روزانه"
-        onClick={() => setIsModalOpen(true)}
-      />
-      <CoreTable
-        tasks={tasks}
-        onToggleDone={toggleDoneById}
-        onDelete={deleteById}
-      />
-      {isModalOpen && (
-        <AddTask
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onAdd={handleAddTask}
-        />
-      )}
-    </div>
-  );
+  return <DayTasksClient />;
 }

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { href: "/day/", label: "روزانه" },
   { href: "/month/", label: "ماهانه" },
-  { href: "/yers/", label: "سالانه" },
+  { href: "/year/", label: "سالانه" },
 ];
 
 export function Navbar() {

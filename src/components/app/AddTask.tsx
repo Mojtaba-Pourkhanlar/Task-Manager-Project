@@ -30,7 +30,7 @@ export default function AddTaskModal({
   if (!isOpen) return null;
 
   const isDisabled = taskName.trim().length === 0;
-  
+
   const handleAdd = () => {
     if (isDisabled) return;
 
@@ -49,7 +49,7 @@ export default function AddTaskModal({
   };
 
   return (
-    <Modal isOpen={isOpen} header="ایجاد تسک جدید">
+    <Modal isOpen={isOpen} onClose={onClose} header="ایجاد تسک جدید">
       <div className="space-y-4">
         <TextInput
           placeholder="نام تسک را وارد کنید"
@@ -71,12 +71,26 @@ export default function AddTaskModal({
       </div>
 
       <div className="flex justify-between gap-3 mt-4">
-        <Button className="bg-gray-600" onClick={onClose} lable={"انصراف"} />
         <Button
-          className={isDisabled ? "bg-blue-900" : "bg-blue-600"}
+          className="bg-gray-600"
+          onClick={onClose}
+          label={"انصراف"}
+          title="انصراف و بستن فرم"
+          aria-label="انصراف از ایجاد تسک جدید و بستن مودال"
+        />
+        <Button
+          className={isDisabled ? "bg-gray-600" : "bg-blue-600"}
           onClick={handleAdd}
-          lable={"ایجاد"}
+          label={"ایجاد"}
           disabled={isDisabled}
+          title={
+            isDisabled ? "لطفاً ابتدا نام تسک را وارد کنید" : "ایجاد تسک جدید"
+          }
+          aria-label={
+            isDisabled
+              ? "دکمه ایجاد تسک غیرفعال است چون نام تسک وارد نشده"
+              : "تایید و ایجاد تسک جدید"
+          }
         />
       </div>
     </Modal>

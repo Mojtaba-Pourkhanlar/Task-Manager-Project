@@ -19,7 +19,15 @@ export const metadata: Metadata = {
   title: "Task Manager",
   description:
     "A personal task manager built by Mojtaba Pourkhanlar to organize daily tasks, track progress, and stay productive.",
-  keywords: ["productivity", "utilities", "task-management"],
+  keywords: [
+    "productivity",
+    "utilities",
+    "task-management",
+    "Next.js",
+    "React",
+    "Frontend Developer",
+    "Mojtaba Pourkhanlar",
+  ],
   openGraph: {
     siteName: "Task Manager",
     type: "website",
