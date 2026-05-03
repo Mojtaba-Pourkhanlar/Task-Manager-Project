@@ -88,6 +88,7 @@ export default function ImportExportActions({
           className="hidden"
           onChange={handleFileChange}
           aria-hidden="true"
+          id="file-upload"
         />
 
         {/* Upload */}

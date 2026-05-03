@@ -49,7 +49,6 @@ export function downloadTasksAsJson(section: TaskSection, tasks: Task[]) {
 
 export async function parseTaskImportFile(file: File): Promise<TaskExportFile> {
   const text = await file.text();
-
   let parsed: unknown;
   try {
     parsed = JSON.parse(text);

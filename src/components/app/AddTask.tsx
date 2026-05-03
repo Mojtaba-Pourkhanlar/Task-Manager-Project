@@ -52,11 +52,16 @@ export default function AddTaskModal({
     <Modal isOpen={isOpen} onClose={onClose} header="ایجاد تسک جدید">
       <div className="space-y-4">
         <TextInput
+          id="task-title"
           placeholder="نام تسک را وارد کنید"
           value={taskName}
           onChange={e => setTaskName(e.target.value)}
           onKeyDown={e => e.key === "Enter" && handleAdd()}
           ref={inputRef}
+          aria-required="true"
+          aria-label="نام تسک"
+          aria-describedby="task-title-desc"
+          autoComplete="off"
         />
 
         <GlassSelect
