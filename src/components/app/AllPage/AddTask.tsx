@@ -49,7 +49,7 @@ export default function AddTaskModal({
   };
 
   return (
-    <Modal isOpen={isOpen} header="ایجاد تسک جدید">
+    <Modal isOpen={isOpen} onClose={onClose} header="ایجاد تسک جدید">
       <div className="space-y-4">
         <TextInput
           placeholder="نام تسک را وارد کنید"

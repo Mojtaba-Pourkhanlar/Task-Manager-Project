@@ -1,17 +1,52 @@
-import { ReactNode } from "react";
+"use client";
+
+import { ReactNode, useEffect, useRef } from "react";
 
 interface ModalProps {
   isOpen: boolean;
   header: string;
   children: ReactNode;
+  onClose: () => void;
 }
 
-export const Modal = ({ isOpen, header, children }: ModalProps) => {
+export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleEsc);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+    <div
+      onClick={handleBackdropClick}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm"
+    >
       <div
+        ref={modalRef}
         className="
           w-80 rounded-2xl p-4
           bg-black/30

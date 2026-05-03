@@ -111,7 +111,11 @@ export default function ImportExportActions({
       </div>
 
       {preview && (
-        <Modal isOpen={true} header="تأیید آپلود تسک‌ها">
+        <Modal
+          isOpen={true}
+          onClose={() => setPreview(null)}
+          header="تأیید آپلود تسک‌ها"
+        >
           <div className="space-y-4">
             <p className="text-sm text-white/80">
               <strong>{normalizedTasks.length} تسک </strong> از فایل انتخاب شده
