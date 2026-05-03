@@ -28,3 +28,49 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+/* ...Toastify.tsx */
+
+.toast--glass.Toastify__toast {
+  background: rgba(20, 20, 20, 0.05); /* dark glass */
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  font-family: var(--font-yekanBakh), system-ui, sans-serif;
+
+  border-radius: 10px;
+  padding: 10px 12px !important; /* ارتفاع کمتر */
+  min-height: unset !important;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+}
+
+/* متن toast */
+.toast--glass .Toastify__toast-body {
+  padding: 0 !important;
+  margin: 0 !important;
+
+  line-height: 1.2 !important;
+  font-size: 13px !important; /* ارتفاع کمتر */
+}
+
+/* عنوان/آیکن نداریم، فقط متن message */
+.toast--glass .Toastify__close-button {
+  opacity: 0.6;
+}
+
+/* تفاوت رنگ برای نوع toast (اختیاری ولی قشنگه) */
+.toast--success {
+  border-color: rgba(46, 204, 113, 0.75) !important;
+}
+.toast--error {
+  border-color: rgba(231, 76, 60, 0.75) !important;
+}
+.toast--info {
+  border-color: rgba(52, 152, 219, 0.75) !important;
+}
+.toast--warning {
+  border-color: rgba(241, 196, 15, 0.75) !important;
+}

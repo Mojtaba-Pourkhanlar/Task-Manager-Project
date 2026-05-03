@@ -7,7 +7,6 @@ type ToastType = "info" | "success" | "warning" | "error";
 
 interface ToastContextType {
   showToast: (type: ToastType, message: string, duration?: number) => void;
-  hideToast: () => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -32,33 +31,33 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
     duration: number;
   }>({
     open: false,
-    type: "info",
+    type: "warning",
     message: "",
-    duration: 4000,
+    duration: 2000,
   });
 
-  const showToast = (type: ToastType, message: string, duration = 4000) => {
+  const showToast = (type: ToastType, message: string) => {
     setToastConfig({
       open: true,
       type,
       message,
-      duration,
+      duration: 2000,
     });
   };
-
-  const hideToast = () => {
+  const handleToastClose = () => {
     setToastConfig(prev => ({ ...prev, open: false }));
   };
 
   return (
-    <ToastContext.Provider value={{ showToast, hideToast }}>
+    <ToastContext.Provider value={{ showToast }}>
       {children}
       <Toastify
         open={toastConfig.open}
         type={toastConfig.type}
         message={toastConfig.message}
         duration={toastConfig.duration}
-        theme="light"
+        theme="dark"
+        onClose={handleToastClose}
       />
     </ToastContext.Provider>
   );
