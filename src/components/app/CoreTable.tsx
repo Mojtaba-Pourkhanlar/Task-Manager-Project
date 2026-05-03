@@ -125,7 +125,6 @@ const CoreTable = ({ tasks, onToggleDone, onDelete }: Props) => {
           task.done ? "bg-green-500/20" : "hover:bg-white/5"
         }
         emptyText=" یه تسک اضافه کن تا زندگی معنی‌دار بشه 😌"
-        // emptyText="یه فکری به حال خودت بکن😒 اینجا هیچی نیست."
       />
 
       {viewTasks.length > 0 && (
@@ -165,7 +164,7 @@ const CoreTable = ({ tasks, onToggleDone, onDelete }: Props) => {
                 className={`
             h-full rounded-full 
             transition-all duration-500 ease-out
-            bg-gradient-to-r ${progressColor}
+            bg-linear-to-r ${progressColor}
             ${progress === 100 ? "shadow-[0_0_15px_rgba(163,255,119,0.5)]" : ""}
           `}
                 style={{ width: `${progress}%` }}

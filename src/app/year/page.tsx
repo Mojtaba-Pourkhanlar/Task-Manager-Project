@@ -5,10 +5,21 @@ import CoreTable from "@/components/app/CoreTable";
 import Headers from "@/components/app/Headers";
 import ImportExportActions from "@/components/app/ImportExportActions";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { createSeo } from "@/lib/seo";
 import { Task } from "@/types";
 import { useState } from "react";
 
-export default function YersTasks() {
+export async function generateMetadata() {
+  return createSeo({
+    data: {
+      title: "Year | Task Manager",
+      description: "This app created by Mojtaba Pourkhanlar",
+      path: "/year",
+    },
+  });
+}
+
+export default function YearTasks() {
   const [tasks, setTasks] = useLocalStorage<Task[]>("yers-tasks", []);
   const [isModalOpen, setIsModalOpen] = useState(false);
 

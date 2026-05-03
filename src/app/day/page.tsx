@@ -5,8 +5,19 @@ import CoreTable from "@/components/app/CoreTable";
 import Headers from "@/components/app/Headers";
 import ImportExportActions from "@/components/app/ImportExportActions";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { createSeo } from "@/lib/seo";
 import { Task } from "@/types";
 import { useState } from "react";
+
+export async function generateMetadata() {
+  return createSeo({
+    data: {
+      title: "Day | Task Manager",
+      description: "This app created by Mojtaba Pourkhanlar",
+      path: "/day",
+    },
+  });
+}
 
 export default function DayTasks() {
   const [tasks, setTasks] = useLocalStorage<Task[]>("day-tasks", []);

@@ -5,8 +5,19 @@ import CoreTable from "@/components/app/CoreTable";
 import Headers from "@/components/app/Headers";
 import ImportExportActions from "@/components/app/ImportExportActions";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { createSeo } from "@/lib/seo";
 import { Task } from "@/types";
 import { useState } from "react";
+
+export async function generateMetadata() {
+  return createSeo({
+    data: {
+      title: "Month | Task Manager",
+      description: "This app created by Mojtaba Pourkhanlar",
+      path: "/month",
+    },
+  });
+}
 
 export default function MonthTasks() {
   const [tasks, setTasks] = useLocalStorage<Task[]>("month-tasks", []);
@@ -24,7 +35,7 @@ export default function MonthTasks() {
   const handleImportTasks = (importedTasks: Task[]) => {
     setTasks(prev => [...prev, ...importedTasks]);
   };
-  
+
   return (
     <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
       <Headers
