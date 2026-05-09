@@ -24,16 +24,12 @@ const DayTasksClient = () => {
   const deleteById = (id: string) => {
     const deletedTask = tasks.find(t => t.id === id);
     if (!deletedTask) return;
-
     setTasks(prev => prev.filter(t => t.id !== id));
-
     pendingDeleteRef.current = deletedTask;
-
     showUndoToast("تسک با موفقیت حذف شد", undoDelete);
-
     setTimeout(() => {
       pendingDeleteRef.current = null;
-    }, 2300);
+    }, 1300);
   };
 
   const undoDelete = () => {
