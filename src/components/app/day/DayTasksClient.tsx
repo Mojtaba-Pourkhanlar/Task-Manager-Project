@@ -42,6 +42,7 @@ const DayTasksClient = () => {
         tasks={tasks}
         onToggleDone={toggleDoneById}
         onDelete={deleteById}
+        onClick={() => setIsModalOpen(true)}
       />
       {isModalOpen && (
         <AddTask

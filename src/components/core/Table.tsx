@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Inbox } from "lucide-react";
+import { Button } from "./Button";
 
 type Column<T> = {
   key: keyof T | string;
@@ -17,6 +18,7 @@ type Props<T> = {
   emptyText?: string;
   rowClassName?: (item: T) => string;
   maxHeight?: string | number;
+  onClick: () => void;
 };
 
 export default function GlassTable<T>({
@@ -25,6 +27,7 @@ export default function GlassTable<T>({
   emptyText = "داده‌ای وجود ندارد",
   rowClassName,
   maxHeight,
+  onClick,
 }: Props<T>) {
   const containerMaxHeight = maxHeight ?? "calc(100vh - 320px)";
 
@@ -73,6 +76,14 @@ export default function GlassTable<T>({
                       <p className="text-white/80 font-semibold text-base">
                         {emptyText}
                       </p>
+
+                      <Button
+                        className="bg-white/20 hover:bg-white/10 border border-white/20 font-semibold"
+                        onClick={onClick}
+                        label={"تسک جدید"}
+                        title="تسک جدید"
+                        aria-label="ایجاد تسک جدید"
+                      />
                     </motion.div>
                   </div>
                 </td>

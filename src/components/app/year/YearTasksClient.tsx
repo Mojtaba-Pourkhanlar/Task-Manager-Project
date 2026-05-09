@@ -46,6 +46,7 @@ export default function YearTasksClient() {
         tasks={tasks}
         onToggleDone={toggleDoneById}
         onDelete={deleteById}
+        onClick={() => setIsModalOpen(true)}
       />
 
       {isModalOpen && (
