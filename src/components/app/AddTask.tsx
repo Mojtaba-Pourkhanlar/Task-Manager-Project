@@ -21,26 +21,13 @@ export default function AddTaskModal({
 }: AddTaskModalProps) {
   const [taskName, setTaskName] = useState("");
   const [priority, setPriority] = useState<"low" | "medium" | "high">("medium");
-  const [keyboardOffset, setKeyboardOffset] = useState(0);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
-
-    const viewport = window.visualViewport;
-
-    if (!viewport) return;
-
-    const handleResize = () => {
-      const offset = window.innerHeight - viewport.height;
-      setKeyboardOffset(offset);
-    };
-
-    viewport.addEventListener("resize", handleResize);
-
-    return () => viewport.removeEventListener("resize", handleResize);
   }, []);
+
   if (!isOpen) return null;
 
   const isDisabled = taskName.trim().length === 0;
@@ -63,61 +50,55 @@ export default function AddTaskModal({
   };
 
   return (
-    <div
-      style={{
-        transform: `translateY(-${keyboardOffset / 2}px)`,
-      }}
-    >
-      <Modal isOpen={isOpen} onClose={onClose} header="ایجاد تسک جدید">
-        <div className="space-y-4">
-          <TextInput
-            id="task-title"
-            placeholder="نام تسک را وارد کنید"
-            value={taskName}
-            onChange={e => setTaskName(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && handleAdd()}
-            ref={inputRef}
-            aria-required="true"
-            aria-label="نام تسک"
-            aria-describedby="task-title-desc"
-            autoComplete="off"
-          />
+    <Modal isOpen={isOpen} onClose={onClose} header="ایجاد تسک جدید">
+      <div className="space-y-4">
+        <TextInput
+          id="task-title"
+          placeholder="نام تسک را وارد کنید"
+          value={taskName}
+          onChange={e => setTaskName(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && handleAdd()}
+          ref={inputRef}
+          aria-required="true"
+          aria-label="نام تسک"
+          aria-describedby="task-title-desc"
+          autoComplete="off"
+        />
 
-          <GlassSelect
-            value={priority}
-            onChange={setPriority}
-            options={[
-              { label: "کم", value: "low" },
-              { label: "مهم", value: "medium" },
-              { label: "خیلی مهم", value: "high" },
-            ]}
-          />
-        </div>
+        <GlassSelect
+          value={priority}
+          onChange={setPriority}
+          options={[
+            { label: "کم", value: "low" },
+            { label: "مهم", value: "medium" },
+            { label: "خیلی مهم", value: "high" },
+          ]}
+        />
+      </div>
 
-        <div className="flex justify-between gap-3 mt-4">
-          <Button
-            className="bg-gray-600"
-            onClick={onClose}
-            label={"انصراف"}
-            title="انصراف و بستن فرم"
-            aria-label="انصراف از ایجاد تسک جدید و بستن مودال"
-          />
-          <Button
-            className={isDisabled ? "bg-gray-600" : "bg-blue-600"}
-            onClick={handleAdd}
-            label={"ایجاد"}
-            disabled={isDisabled}
-            title={
-              isDisabled ? "لطفاً ابتدا نام تسک را وارد کنید" : "ایجاد تسک جدید"
-            }
-            aria-label={
-              isDisabled
-                ? "دکمه ایجاد تسک غیرفعال است چون نام تسک وارد نشده"
-                : "تایید و ایجاد تسک جدید"
-            }
-          />
-        </div>
-      </Modal>
-    </div>
+      <div className="flex justify-between gap-3 mt-4">
+        <Button
+          className="bg-gray-600"
+          onClick={onClose}
+          label={"انصراف"}
+          title="انصراف و بستن فرم"
+          aria-label="انصراف از ایجاد تسک جدید و بستن مودال"
+        />
+        <Button
+          className={isDisabled ? "bg-gray-600" : "bg-blue-600"}
+          onClick={handleAdd}
+          label={"ایجاد"}
+          disabled={isDisabled}
+          title={
+            isDisabled ? "لطفاً ابتدا نام تسک را وارد کنید" : "ایجاد تسک جدید"
+          }
+          aria-label={
+            isDisabled
+              ? "دکمه ایجاد تسک غیرفعال است چون نام تسک وارد نشده"
+              : "تایید و ایجاد تسک جدید"
+          }
+        />
+      </div>
+    </Modal>
   );
 }
