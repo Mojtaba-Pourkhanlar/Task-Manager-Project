@@ -35,17 +35,23 @@ export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
 
   useEffect(() => {
     const viewport = window.visualViewport;
-
     if (!viewport) return;
 
     const handleResize = () => {
       const offset = window.innerHeight - viewport.height;
-      setKeyboardOffset(offset);
+
+      if (offset > 0) {
+        setKeyboardOffset(offset);
+      } else {
+        setKeyboardOffset(0);
+      }
     };
 
     viewport.addEventListener("resize", handleResize);
 
-    return () => viewport.removeEventListener("resize", handleResize);
+    return () => {
+      viewport.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   if (!isOpen) return null;
@@ -59,7 +65,7 @@ export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
   return (
     <div
       onClick={handleBackdropClick}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm transition-transform duration-300 ease-out"
       style={{
         transform: `translateY(-${keyboardOffset / 2}px)`,
       }}
