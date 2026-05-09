@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -11,6 +11,7 @@ interface ModalProps {
 
 export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -32,6 +33,27 @@ export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
     };
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+
+    const handleResize = () => {
+      const offset = window.innerHeight - viewport.height;
+
+      if (offset > 0) {
+        setKeyboardOffset(offset);
+      } else {
+        setKeyboardOffset(0);
+      }
+    };
+
+    viewport.addEventListener("resize", handleResize);
+
+    return () => {
+      viewport.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   if (!isOpen) return null;
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -43,7 +65,10 @@ export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
   return (
     <div
       onClick={handleBackdropClick}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm transition-transform duration-300 ease-out"
+      style={{
+        transform: `translateY(-${keyboardOffset / 2}px)`,
+      }}
     >
       <div
         ref={modalRef}

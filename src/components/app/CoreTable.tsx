@@ -8,6 +8,7 @@ interface Props {
   tasks: Task[];
   onToggleDone: (id: string, value: boolean) => void;
   onDelete: (id: string) => void;
+  onClick: () => void;
 }
 
 const priorityWeight: Record<Task["priority"], number> = {
@@ -16,7 +17,7 @@ const priorityWeight: Record<Task["priority"], number> = {
   low: 1,
 };
 
-const CoreTable = ({ tasks, onToggleDone, onDelete }: Props) => {
+const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
   const columns: TaskColumn[] = [
     {
       key: "done",
@@ -125,6 +126,7 @@ const CoreTable = ({ tasks, onToggleDone, onDelete }: Props) => {
           task.done ? "bg-green-500/20" : "hover:bg-white/5"
         }
         emptyText=" یه تسک اضافه کن تا زندگی معنی‌دار بشه 😌"
+        onClick={onClick}
       />
 
       {viewTasks.length > 0 && (

@@ -27,6 +27,7 @@ export default function AddTaskModal({
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
   if (!isOpen) return null;
 
   const isDisabled = taskName.trim().length === 0;

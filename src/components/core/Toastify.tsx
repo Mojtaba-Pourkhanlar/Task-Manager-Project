@@ -20,7 +20,7 @@ export default function Toastify({
   type,
   theme = "dark",
   open,
-  duration = 2000,
+  duration = 1000,
   onClose,
 }: ResolvableProps) {
   const toastId = useMemo(() => `toast-${type}`, [type]);
@@ -44,7 +44,7 @@ export default function Toastify({
       rtl: true,
       hideProgressBar: true,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       className: `toast--glass toast--${type}`,
 
       onClose: () => {

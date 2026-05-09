@@ -4,11 +4,14 @@ import AddTask from "@/components/app/AddTask";
 import CoreTable from "@/components/app/CoreTable";
 import Headers from "@/components/app/Headers";
 import ImportExportActions from "@/components/app/ImportExportActions";
+import { useToast } from "@/context/ToastContext";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const MonthTasksClient = () => {
+  const { showUndoToast } = useToast();
+  const pendingDeleteRef = useRef<Task | null>(null);
   const [tasks, setTasks] = useLocalStorage<Task[]>("month-tasks", []);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -19,8 +22,23 @@ const MonthTasksClient = () => {
     setTasks(prev => prev.map(t => (t.id === id ? { ...t, done: value } : t)));
   };
   const deleteById = (id: string) => {
+    const deletedTask = tasks.find(t => t.id === id);
+    if (!deletedTask) return;
     setTasks(prev => prev.filter(t => t.id !== id));
+    pendingDeleteRef.current = deletedTask;
+    showUndoToast("تسک با موفقیت حذف شد", undoDelete);
+    setTimeout(() => {
+      pendingDeleteRef.current = null;
+    }, 1300);
   };
+
+  const undoDelete = () => {
+    const task = pendingDeleteRef.current;
+    if (!task) return;
+    setTasks(prev => [...prev, task]);
+    pendingDeleteRef.current = null;
+  };
+
   const handleImportTasks = (importedTasks: Task[]) => {
     setTasks(prev => [...prev, ...importedTasks]);
   };
@@ -42,6 +60,7 @@ const MonthTasksClient = () => {
         tasks={tasks}
         onToggleDone={toggleDoneById}
         onDelete={deleteById}
+        onClick={() => setIsModalOpen(true)}
       />
       {isModalOpen && (
         <AddTask

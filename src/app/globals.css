@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 :root {
   --background: #0f0f0f;
   --foreground: #fff;
@@ -68,4 +69,19 @@ body {
 }
 .toast--warning {
   border-color: rgba(241, 196, 15, 0.75) !important;
+}
+
+@keyframes toast-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.animate-toast-progress {
+  animation-name: toast-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
