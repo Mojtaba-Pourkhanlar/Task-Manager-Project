@@ -78,7 +78,17 @@ export default function GlassTable<T>({
                       </p>
 
                       <Button
-                        className="bg-white/20 hover:bg-white/10 border border-white/20 font-semibold"
+                        className="
+                          bg-emerald-500/40
+                          hover:bg-emerald-500/30
+                          text-emerald-200
+                          border border-emerald-400/20
+                          backdrop-blur-md
+                          shadow-[0_0_12px_rgba(16,185,129,0.25)]
+                          hover:shadow-[0_0_18px_rgba(16,185,129,0.35)]
+                          transition-all duration-200
+                          font-semibold
+                        "
                         onClick={onClick}
                         label={"تسک جدید"}
                         title="تسک جدید"
@@ -95,10 +105,14 @@ export default function GlassTable<T>({
                 <motion.tr
                   key={(row as any).id ?? rowIndex}
                   layout
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.96 }}
+                  transition={{
+                    duration: 0.35,
+                    ease: [0.22, 1, 0.36, 1],
+                    layout: { duration: 0.35 },
+                  }}
                   className={`
                     border-b border-white/10
                     transition-colors duration-300
