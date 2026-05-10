@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Button } from "@/components/core/Button";
+import LanguageSwitcher from "@/utils/LanguageSwitcher";
 
 interface Props {
   onClick: () => void;
@@ -21,6 +22,7 @@ const Headers = ({ onClick, name, actions }: Props) => {
             title="تسک جدید"
             aria-label="ایجاد تسک جدید"
           />
+          <LanguageSwitcher />
         </div>
       </header>
 

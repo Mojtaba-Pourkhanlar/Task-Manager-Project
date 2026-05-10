@@ -8,8 +8,10 @@ import { useToast } from "@/context/ToastContext";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
 import { useState, useRef } from "react";
+import { useTranslations } from "next-intl";
 
 const DayTasksClient = () => {
+  const t = useTranslations("task");
   const { showUndoToast } = useToast();
   const pendingDeleteRef = useRef<Task | null>(null);
   const [tasks, setTasks] = useLocalStorage<Task[]>("day-tasks", []);
@@ -56,6 +58,7 @@ const DayTasksClient = () => {
           />
         }
       />
+      <button>{t("add")}</button>
       <CoreTable
         tasks={tasks}
         onToggleDone={toggleDoneById}

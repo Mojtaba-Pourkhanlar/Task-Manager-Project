@@ -1,0 +1,9 @@
+{
+  "navbar": {
+    "tasks": "Tasks",
+    "profile": "Profile"
+  },
+  "task": {
+    "add": "Add Task"
+  }
+}
