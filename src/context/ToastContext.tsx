@@ -38,7 +38,6 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   const t = useTranslations("public");
   const undoToastIdRef = useRef<string | number | null>(null);
   const { locale } = useLocaleStore();
-  const { resolvedTheme } = useTheme();
 
   const [toastConfig, setToastConfig] = useState<{
     open: boolean;
