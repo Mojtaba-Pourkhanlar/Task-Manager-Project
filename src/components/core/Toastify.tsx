@@ -1,5 +1,7 @@
 "use client";
 
+import { useLocaleStore } from "@/store/locale";
+import { useTheme } from "next-themes";
 import { useEffect, useMemo, useRef } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,6 +28,8 @@ export default function Toastify({
   const toastId = useMemo(() => `toast-${type}`, [type]);
   const hasShownRef = useRef(false);
   const toastIdRef = useRef<string | number | null>(null);
+  const { locale } = useLocaleStore();
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     if (!open) {
@@ -41,18 +45,28 @@ export default function Toastify({
       autoClose: duration,
       theme,
       position: "bottom-center",
-      rtl: true,
+      rtl: locale === "fa",
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: false,
-      className: `toast--glass toast--${type}`,
+      className: `${resolvedTheme === "dark" ? "toast--glass" : "toast--glass-light"} toast--${type}`,
 
       onClose: () => {
         toastIdRef.current = null;
         onClose();
       },
     });
-  }, [open, message, type, theme, duration, toastId, onClose]);
+  }, [
+    open,
+    message,
+    type,
+    theme,
+    duration,
+    toastId,
+    onClose,
+    locale,
+    resolvedTheme,
+  ]);
 
   return (
     <ToastContainer
@@ -60,7 +74,7 @@ export default function Toastify({
       autoClose={duration}
       newestOnTop={false}
       closeOnClick
-      rtl={true}
+      rtl={locale === "fa"}
       pauseOnFocusLoss
       draggable
       pauseOnHover
