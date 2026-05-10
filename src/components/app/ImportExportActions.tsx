@@ -13,6 +13,7 @@ import {
 import { useRef, useState } from "react";
 import { useToast } from "@/context/ToastContext";
 import { useTranslations } from "next-intl";
+import { coreStyles as s } from "./core.styles";
 
 interface Props {
   section: TaskSection;
@@ -96,7 +97,7 @@ export default function ImportExportActions({
         {/* Upload */}
         <button
           type="button"
-          className="p-2 rounded-xl bg-white/20 hover:bg-white/10 cursor-pointer border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
+          className={s.button}
           title={t("ariaUpload")}
           aria-label={t("ariaLableUpload")}
           aria-controls="file-upload"
@@ -108,7 +109,7 @@ export default function ImportExportActions({
         {/* Download */}
         <button
           type="button"
-          className="p-2 rounded-xl bg-white/20 hover:bg-white/10 cursor-pointer border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
+          className={s.button}
           title={t("ariaDownload")}
           aria-label={t("ariaLableDownload")}
           onClick={handleDownload}
@@ -124,11 +125,11 @@ export default function ImportExportActions({
           header={t("modaleConfirmTask")}
         >
           <div className="space-y-4">
-            <p className="text-sm text-white/80">
+            <p className="text-sm ">
               {normalizedTasks.length} {t("modaleConfirmTaskHeader")}
             </p>
 
-            <div className="text-sm space-y-1 text-white/70">
+            <div className="text-sm space-y-1 ">
               <p>
                 {t("modaleConfirmTaskPart")}: {preview.section}
               </p>
@@ -141,7 +142,7 @@ export default function ImportExportActions({
               </p>
             </div>
 
-            <div className="max-h-48 overflow-y-auto rounded-lg border border-white/10 p-3 bg-white/5">
+            <div className={s.previewBox}>
               <ul className="space-y-2 text-sm">
                 {normalizedTasks.slice(0, 5).map(task => (
                   <li
@@ -149,7 +150,7 @@ export default function ImportExportActions({
                     className="flex items-center justify-between gap-2"
                   >
                     <span className="truncate">{task.title}</span>
-                    <span className="text-white/60 text-xs whitespace-nowrap">
+                    <span className={s.mutedText}>
                       {task.priority === "high"
                         ? t("high")
                         : task.priority === "medium"
@@ -161,27 +162,25 @@ export default function ImportExportActions({
               </ul>
 
               {normalizedTasks.length > 5 && (
-                <p className="text-xs text-white/50 mt-3">
+                <p className={s.mutedForeground}>
                   {normalizedTasks.length - 5} {t("modaleConfirmTaskMore")}
                 </p>
               )}
             </div>
 
-            <p className="text-xs text-yellow-300">
-              {t("modaleConfirmTaskWarning")}
-            </p>
+            <p className={s.warning}>{t("modaleConfirmTaskWarning")}</p>
           </div>
 
           <div className="flex justify-between gap-3 mt-4">
             <Button
-              className="bg-gray-800 border border-white/20"
+              className={s.buttonCancel}
               onClick={handleCloseModal}
               label={t("modaleConfirmTaskCancelBTN")}
               title={t("modaleConfirmTaskCancelBTN")}
               aria-label={t("modaleConfirmTaskCancelBTNAria")}
             />
             <Button
-              className="bg-green-900 border border-white/20"
+              className={s.buttonSuccess}
               onClick={handleConfirmImport}
               label={t("modaleConfirmTaskConfirmBTN")}
               title={t("modaleConfirmTaskConfirmBTN")}

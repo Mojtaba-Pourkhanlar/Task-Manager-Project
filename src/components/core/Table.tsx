@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Inbox } from "lucide-react";
 import { Button } from "./Button";
 import { useTranslations } from "next-intl";
+import { componentsStyles as s } from "./components.styles";
 
 type Column<T> = {
   key: keyof T | string;
@@ -35,19 +36,13 @@ export default function GlassTable<T>({
   const containerMaxHeight = maxHeight ?? "calc(100vh - 320px)";
 
   return (
-    <div
-      className="rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-lg overflow-hidden"
-      style={{ height: containerMaxHeight }}
-    >
+    <div className={s.tableWrapper} style={{ height: containerMaxHeight }}>
       <div className="h-full overflow-auto">
-        <table className="w-full text-sm text-white border-collapse">
-          <thead className="bg-black/90 sticky top-0 z-10 backdrop-blur-xl">
+        <table className={s.table}>
+          <thead className={s.thead}>
             <tr>
               {columns.map((col, i) => (
-                <th
-                  key={i}
-                  className={`px-4 py-3 text-right font-semibold border-b border-white/20 ${col.width || ""}`}
-                >
+                <th key={i} className={`${s.th} ${col.width || ""}`}>
                   {col.header}
                 </th>
               ))}
@@ -63,35 +58,14 @@ export default function GlassTable<T>({
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="
-                        flex flex-col items-center gap-4
-                        px-8 py-6 rounded-2xl
-                        bg-white/5 backdrop-blur-lg
-                        border border-white/20
-                        text-center
-                        shadow-lg
-                      "
+                      className={s.emptyWrapper}
                     >
-                      <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 border border-white/20">
-                        <Inbox className="text-white/70" size={28} />
+                      <div className={s.emptyIconWrapper}>
+                        <Inbox className="text-(--muted)" size={28} />
                       </div>
-
-                      <p className="text-white/80 font-semibold text-base">
-                        {emptyText}
-                      </p>
-
+                      <p className={s.emptyText}>{emptyText}</p>
                       <Button
-                        className="
-                          bg-emerald-500/40
-                          hover:bg-emerald-500/30
-                          text-emerald-200
-                          border border-emerald-400/20
-                          backdrop-blur-md
-                          shadow-[0_0_12px_rgba(16,185,129,0.25)]
-                          hover:shadow-[0_0_18px_rgba(16,185,129,0.35)]
-                          transition-all duration-200
-                          font-semibold
-                        "
+                        className={s.primaryButton}
                         onClick={onClick}
                         label={t("newTask")}
                         title={t("newTask")}
@@ -117,10 +91,9 @@ export default function GlassTable<T>({
                     layout: { duration: 0.35 },
                   }}
                   className={`
-                    border-b border-white/10
-                    transition-colors duration-300
-                    ${rowClassName ? rowClassName(row) : ""}
-                  `}
+                  ${s.row}
+                  ${rowClassName ? rowClassName(row) : ""}
+                `}
                 >
                   {columns.map((col, colIndex) => (
                     <td key={colIndex} className={`px-4 py-3 ${col.width}`}>

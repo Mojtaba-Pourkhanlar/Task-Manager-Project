@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect, useRef, useState } from "react";
-
+import { componentsStyles as s } from "./components.styles";
 interface ModalProps {
   isOpen: boolean;
   header: string;
@@ -65,26 +65,15 @@ export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
   return (
     <div
       onClick={handleBackdropClick}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm transition-transform duration-300 ease-out"
+      className={s.backdrop}
       style={{
         transform: `translateY(-${keyboardOffset / 2}px)`,
       }}
     >
-      <div
-        ref={modalRef}
-        className="
-          w-80 rounded-2xl p-4
-          bg-black/30
-          backdrop-blur-xl
-          border border-white/20
-          shadow-[0_8px_32px_rgba(0,0,0,0.25)]
-        "
-      >
-        <h2 className="mb-4 text-lg font-semibold text-white drop-shadow">
-          {header}
-        </h2>
+      <div ref={modalRef} className={s.container}>
+        <h2 className={s.header}>{header}</h2>
 
-        <div className="text-white/90">{children}</div>
+        <div className={s.content}>{children}</div>
       </div>
     </div>
   );

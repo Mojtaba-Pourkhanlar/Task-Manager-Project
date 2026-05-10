@@ -4,6 +4,7 @@ import { Task, TaskColumn } from "@/types";
 import { Trash2, ListTodo, CheckCircle2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useMemo } from "react";
+import { coreStyles as s } from "./core.styles";
 
 interface Props {
   tasks: Task[];
@@ -46,18 +47,19 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
       header: t("tableColumnsPriority"),
       render: (task: Task) => {
         const map = {
-          low: "کم",
-          medium: "مهم",
-          high: "خیلی مهم",
+          low: t("low"),
+          medium: t("medium"),
+          high: t("high"),
         } as const;
         const colorMap: Record<Task["priority"], string> = {
-          high: "bg-red-500/20 text-red-300",
-          medium: "bg-yellow-500/20 text-yellow-300",
-          low: "bg-green-500/20 text-green-300",
+          high: s.priorityHigh,
+          medium: s.priorityMedium,
+          low: s.priorityLow,
         };
+
         return (
           <span
-            className={`px-2 py-1 rounded-md text-xs font-semibold whitespace-nowrap select-none ${colorMap[task.priority]}`}
+            className={`${colorMap[task.priority]} whitespace-nowrap select-none`}
           >
             {map[task.priority]}
           </span>
@@ -72,21 +74,13 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
       render: (task: Task) => (
         <button
           onClick={() => onDelete(task.id)}
-          className="
-            flex items-center justify-center 
-            p-1.5 rounded-lg 
-            bg-white/15 hover:bg-white/25
-            border border-white/20
-            cursor-pointer
-            transition-colors duration-200 ease-out
-            focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-transparent
-          "
+          className={s.tableDeleteButton}
           title={t("tableColumnsDelete")}
           aria-label={`${t("tableColumnsDeleteDetail")} : ${task.title}`}
         >
           <Trash2
             size={16}
-            className="text-red-500 group-hover:text-red-300 transition-colors duration-200"
+            className={s.tableDeleteIcon}
             strokeWidth={2.5}
             aria-hidden="true"
           />
@@ -133,24 +127,24 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
       />
 
       {viewTasks.length > 0 && (
-        <div className="mt-4 px-4 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 space-y-3">
+        <div className={s.progressCard}>
           {/* info row */}
           <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-2 text-blue-300">
+            <div className="flex items-start gap-2 text-blue-600 dark:text-blue-300 font-bold">
               <ListTodo size={16} />
               <span>
                 {t("allTasks")}
-                <span className="mr-2 font-semibold text-blue-400">
+                <span className="mr-2 text-blue-600 dark:text-blue-400 font-bold">
                   {" " + total}
                 </span>
               </span>
             </div>
 
-            <div className="flex items-center gap-2 text-green-300">
+            <div className="flex items-start gap-2 text-green-600 dark:text-green-300 font-bold">
               <CheckCircle2 size={16} />
               <span>
-                {t("isDones")} 
-                <span className="mr-2 font-semibold text-green-400">
+                {t("isDones")}
+                <span className="mr-2 text-green-600 dark:text-green-400 font-bold">
                   {" " + doneCount}
                 </span>
               </span>
@@ -159,12 +153,12 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
 
           {/* progress bar */}
           <div className="space-y-1">
-            <div className="flex justify-between text-xs text-white/60">
+            <div className={s.progressLabel}>
               <span>{t("Progress")}</span>
               <span>{progress}%</span>
             </div>
 
-            <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden">
+            <div className={s.progressBarBg}>
               <div
                 className={`
             h-full rounded-full 

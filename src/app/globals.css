@@ -1,20 +1,162 @@
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #0f0f0f;
-  --foreground: #fff;
+  --background: #ffffff;
+  --foreground: #1b3257;
 
-  --color-navy-50: #f2f6fb;
-  --color-navy-100: #e6eef7;
-  --color-navy-200: #c6d8ec;
-  --color-navy-300: #99b8dd;
-  --color-navy-400: #628fc8;
-  --color-navy-500: #3b6fb7;
-  --color-navy-600: #2b579b;
-  --color-navy-700: #24467d;
-  --color-navy-800: #1f3a67;
-  --color-navy-900: #1b3257;
-  --color-navy-950: #0e1b32;
+  --navy-50: #f2f6fb;
+  --navy-100: #e6eef7;
+  --navy-200: #c6d8ec;
+  --navy-300: #99b8dd;
+  --navy-400: #628fc8;
+  --navy-500: #3b6fb7;
+  --navy-600: #2b579b;
+  --navy-700: #24467d;
+  --navy-800: #1f3a67;
+  --navy-900: #1b3257;
+  --navy-950: #0e1b32;
+
+  --surface: #f2f8fd;
+  --surface-hover: #e6f1fd;
+  --border: #e2e8f0;
+
+  --muted: #64748b;
+  --muted-foreground: #475569;
+
+  --warning: #ca8a04;
+
+  --success: #16a34a;
+  --success-hover: #15803d;
+
+  --overlay: rgba(0, 0, 0, 0.2);
+  --modal-bg: rgba(255, 255, 255, 0.6);
+  --modal-border: rgba(0, 0, 0, 0.08);
+  --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  /* // CoreTable.tsx */
+  --danger: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.12);
+
+  --priority-high-bg: rgba(239, 68, 68, 0.12);
+  --priority-high-text: #dc2626;
+
+  --priority-medium-bg: rgba(234, 179, 8, 0.15);
+  --priority-medium-text: #ca8a04;
+
+  --priority-low-bg: rgba(34, 197, 94, 0.15);
+  --priority-low-text: #16a34a;
+
+  --progress-bg: rgba(0, 0, 0, 0.06);
+
+  --card-bg: rgba(236, 236, 236, 0.5);
+  --card-border: rgba(0, 0, 0, 0.08);
+
+  /* Table.tsx */
+  --table-bg: rgba(236, 236, 236, 0.5);
+  --table-border: rgba(0, 0, 0, 0.08);
+
+  --table-head-bg: rgba(212, 224, 230, 0.9);
+
+  --table-row-border: rgba(0, 0, 0, 0.06);
+
+  --empty-bg: rgba(255, 255, 255, 0.4);
+  --empty-icon-bg: rgba(0, 0, 0, 0.05);
+
+  --accent: #10b981;
+  --accent-soft: rgba(16, 185, 129, 0.2);
+}
+
+/* ...Change Theme */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html {
+  --vt-x: 50vw;
+  --vt-y: 50vh;
+  --vt-r: 120vmax;
+}
+
+@keyframes vt-reveal {
+  from {
+    clip-path: circle(0px at var(--vt-x) var(--vt-y));
+  }
+  to {
+    clip-path: circle(var(--vt-r) at var(--vt-x) var(--vt-y));
+  }
+}
+
+html.vt-switch::view-transition-new(root) {
+  animation: vt-reveal 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+/* ---------- Default Styles ---------- */
+html.dark {
+  --background: #0f0f0f;
+  --foreground: #f5f5f5;
+
+  --navy-50: #0e1b32;
+  --navy-100: #1b3257;
+  --navy-200: #1f3a67;
+  --navy-300: #24467d;
+  --navy-400: #2b579b;
+  --navy-500: #3b6fb7;
+  --navy-600: #628fc8;
+  --navy-700: #99b8dd;
+  --navy-800: #c6d8ec;
+  --navy-900: #e6eef7;
+  --navy-950: #f2f6fb;
+
+  --surface: #1f1f1f;
+  --surface-hover: #2b2b2b;
+  --border: #2f2f2f;
+
+  --muted: #a3a3a3;
+  --muted-foreground: #d4d4d4;
+
+  --warning: #fde047;
+
+  --success: #0b4221;
+  --success-hover: #166534;
+
+  --overlay: rgba(0, 0, 0, 0.4);
+  --modal-bg: rgba(0, 0, 0, 0.4);
+  --modal-border: rgba(255, 255, 255, 0.15);
+  --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+
+  /* // CoreTable.tsx */
+  --danger: #f87171;
+  --danger-soft: rgba(248, 113, 113, 0.15);
+
+  --priority-high-bg: rgba(248, 113, 113, 0.18);
+  --priority-high-text: #f87171;
+
+  --priority-medium-bg: rgba(253, 224, 71, 0.18);
+  --priority-medium-text: #fde047;
+
+  --priority-low-bg: rgba(74, 222, 128, 0.18);
+  --priority-low-text: #4ade80;
+
+  --progress-bg: rgba(255, 255, 255, 0.08);
+
+  --card-bg: rgba(0, 0, 0, 0.35);
+  --card-border: rgba(255, 255, 255, 0.1);
+
+  /* Table.tsx */
+  --table-bg: rgba(58, 58, 58, 0.35);
+  --table-border: rgba(255, 255, 255, 0.15);
+
+  --table-head-bg: rgba(12, 12, 12, 0.85);
+
+  --table-row-border: rgba(255, 255, 255, 0.08);
+
+  --empty-bg: rgba(255, 255, 255, 0.05);
+  --empty-icon-bg: rgba(255, 255, 255, 0.1);
+
+  --accent: #34d399;
+  --accent-soft: rgba(16, 185, 129, 0.25);
 }
 
 body {
@@ -23,7 +165,13 @@ body {
   background-color: var(--background);
   box-sizing: border-box;
 }
-
+/* ---------- RTL / LTR Support ---------- */
+[dir="rtl"] .rtl-hidden {
+  display: none;
+}
+[dir="ltr"] .ltr-hidden {
+  display: none;
+}
 /* ...Hidden Scroll */
 ::-webkit-scrollbar {
   display: none;
@@ -66,7 +214,6 @@ body {
 .toast--warning {
   border-color: rgba(241, 196, 15, 0.75) !important;
 }
-
 /* ... Custome Toastify */
 .undo-toast.Toastify__toast {
   display: flex !important;
