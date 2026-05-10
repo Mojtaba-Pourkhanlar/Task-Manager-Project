@@ -6,9 +6,9 @@
     "uploadErrRead": "An error occurred while reading the file.",
     "deleteTask": "Task successfully deleted",
 
-    "high": "high",
-    "medium": "medium",
-    "low": "low",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
 
     "ariaUpload": "Upload file",
     "ariaLableUpload": "Upload JSON file from device",

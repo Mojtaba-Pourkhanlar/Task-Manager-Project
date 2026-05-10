@@ -10,6 +10,8 @@ import React, {
 import Toastify from "@/components/core/Toastify";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
+import { useLocaleStore } from "@/store/locale";
+import { useTheme } from "next-themes";
 
 type ToastType = "info" | "success" | "warning" | "error";
 
@@ -35,6 +37,7 @@ interface ToastProviderProps {
 export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   const t = useTranslations("public");
   const undoToastIdRef = useRef<string | number | null>(null);
+  const { locale } = useLocaleStore();
 
   const [toastConfig, setToastConfig] = useState<{
     open: boolean;
@@ -64,7 +67,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
     const duration = 2000;
 
     const content = ({ closeToast }: { closeToast?: () => void }) => (
-      <div className="relative flex items-center justify-between w-full text-white px-4 py-2 shadow-lg backdrop-blur-sm animate-fade-in-down text-sm set-border">
+      <div className="relative flex items-center justify-between w-full text-white px-4 py-2 shadow-lg backdrop-blur-sm animate-fade-in-down text-sm set-border-light dark:set-border">
         <span>{message}</span>
         <button
           onClick={() => {
@@ -103,10 +106,13 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
       position: "bottom-center",
       closeOnClick: false,
       hideProgressBar: true,
+      rtl: locale === "fa",
       onClose: () => (undoToastIdRef.current = null),
       className: "undo-toast",
     });
   };
+
+  // className: resolvedTheme === "dark" ? "undo-toast" : "undo-toast-light",
 
   return (
     <ToastContext.Provider value={{ showToast, showUndoToast }}>

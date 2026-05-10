@@ -1,8 +1,7 @@
 "use client";
 
 import { useLocaleStore } from "@/store/locale";
-import UKFlag from "/public/svg/ukFlag.svg";
-import IranFlag from "/public/svg/iranFlag.svg";
+import Image from "next/image";
 
 const LanguageSwitcher = () => {
   const { locale, setLocale } = useLocaleStore();
@@ -14,11 +13,24 @@ const LanguageSwitcher = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center justify-center cursor-pointer select-none p-2 rounded-lg hover:bg-[#494949] transition-colors duration-200"
+      className={`
+        p-1.25 rounded-xl cursor-pointer 
+        bg-(--surface)
+        hover:bg-(--surface-hover)
+        border border-(--border)
+        focus:outline-none
+        focus:ring-2
+        focus:ring-(--navy-400)
+        transition-colors
+      `}
       aria-label="Toggle language"
       title={locale === "fa" ? "Switch to English" : "تغییر به فارسی"}
     >
-      {locale === "fa" ? <IranFlag /> : <UKFlag />}
+      {locale === "fa" ? (
+        <Image src="/svg/iranFlag.svg" width={24} height={24} alt="Persian" />
+      ) : (
+        <Image src="/svg/ukFlag.svg" width={24} height={24} alt="English" />
+      )}
     </button>
   );
 };
