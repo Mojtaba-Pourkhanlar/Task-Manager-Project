@@ -1,16 +1,18 @@
 import { cls } from "@/utils";
 import { Route } from "next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navLinks = [
-  { href: "/day/", label: "روزانه" },
-  { href: "/month/", label: "ماهانه" },
-  { href: "/year/", label: "سالانه" },
-];
-
 export function Navbar() {
+  const t = useTranslations("public");
   const pathname = usePathname();
+
+  const navLinks = [
+    { href: "/day/", label: t("day") },
+    { href: "/month/", label: t("month") },
+    { href: "/year/", label: t("year") },
+  ];
 
   return (
     <nav

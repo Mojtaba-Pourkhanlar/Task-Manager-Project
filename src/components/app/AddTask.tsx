@@ -5,6 +5,7 @@ import { Modal } from "@/components/core/Modal";
 import GlassSelect from "@/components/core/Select";
 import { TextInput } from "@/components/core/TextInput";
 import { Task } from "@/types";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -19,6 +20,8 @@ export default function AddTaskModal({
   onClose,
   onAdd,
 }: AddTaskModalProps) {
+  const t = useTranslations("public");
+
   const [taskName, setTaskName] = useState("");
   const [priority, setPriority] = useState<"low" | "medium" | "high">("medium");
 
@@ -50,17 +53,17 @@ export default function AddTaskModal({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} header="ایجاد تسک جدید">
+    <Modal isOpen={isOpen} onClose={onClose} header={t("creatNewTask")}>
       <div className="space-y-4">
         <TextInput
           id="task-title"
-          placeholder="نام تسک را وارد کنید"
+          placeholder={t("taskName")}
           value={taskName}
           onChange={e => setTaskName(e.target.value)}
           onKeyDown={e => e.key === "Enter" && handleAdd()}
           ref={inputRef}
           aria-required="true"
-          aria-label="نام تسک"
+          aria-label={t("taskNameAria")}
           aria-describedby="task-title-desc"
           autoComplete="off"
         />
@@ -69,9 +72,9 @@ export default function AddTaskModal({
           value={priority}
           onChange={setPriority}
           options={[
-            { label: "کم", value: "low" },
-            { label: "مهم", value: "medium" },
-            { label: "خیلی مهم", value: "high" },
+            { label: t("low"), value: "low" },
+            { label: t("medium"), value: "medium" },
+            { label: t("high"), value: "high" },
           ]}
         />
       </div>
@@ -80,22 +83,18 @@ export default function AddTaskModal({
         <Button
           className="bg-gray-600"
           onClick={onClose}
-          label={"انصراف"}
-          title="انصراف و بستن فرم"
-          aria-label="انصراف از ایجاد تسک جدید و بستن مودال"
+          label={t("formBTN")}
+          title={t("formBTNTitle")}
+          aria-label={t("formBTNAria")}
         />
         <Button
           className={isDisabled ? "bg-gray-600" : "bg-blue-600"}
           onClick={handleAdd}
-          label={"ایجاد"}
+          label={t("formBTNCreat")}
           disabled={isDisabled}
-          title={
-            isDisabled ? "لطفاً ابتدا نام تسک را وارد کنید" : "ایجاد تسک جدید"
-          }
+          title={isDisabled ? t("formBTNCreatTitle") : t("creatNewTask")}
           aria-label={
-            isDisabled
-              ? "دکمه ایجاد تسک غیرفعال است چون نام تسک وارد نشده"
-              : "تایید و ایجاد تسک جدید"
+            isDisabled ? t("formBTNCreatAria") : t("formBTNCreatAriaConfirm")
           }
         />
       </div>

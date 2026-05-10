@@ -1,9 +1,70 @@
 {
-  "navbar": {
-    "tasks": "تسک‌ها",
-    "profile": "پروفایل"
+  "public": {
+    "add": "تسک جدید",
+    "downloadTask": "عملیات با موفقیت انجام شد.",
+    "uploadErr": "این فایل مربوط به این بخش نیست.",
+    "uploadErrRead": "خطا در خواندن فایل رخ داد.",
+    "deleteTask": "تسک با موفقیت حذف شد",
+
+    "high": "خیلی مهم",
+    "medium": "مهم",
+    "low": "کم",
+
+    "ariaUpload": "بارگذاری فایل",
+    "ariaLableUpload": "آپلود فایل JSON از دستگاه",
+
+    "ariaDownload": "دانلود فایل",
+    "ariaLableDownload": "دانلود فایل JSON تسک‌ها",
+
+    "modaleConfirmTask": "تأیید آپلود تسک‌ها",
+    "modaleConfirmTaskHeader": "تسک از فایل انتخاب شده آماده اضافه شدن به این بخش هستند.",
+    "modaleConfirmTaskPart": "بخش فایل",
+    "modaleConfirmTaskLength": "تعداد تسک‌ها",
+    "modaleConfirmTaskTime": "زمان خروجی",
+    "modaleConfirmTaskMore": "تسک دیگر",
+    "modaleConfirmTaskWarning": "با تأیید، این تسک‌ها به لیست فعلی اضافه می‌شوند و جایگزین کامل انجام نمی‌شود.",
+    "modaleConfirmTaskCancelBTN": "انصراف",
+    "modaleConfirmTaskCancelBTNAria": "انصراف از اعمال تسک ها و بستن مودال",
+    "modaleConfirmTaskConfirmBTN": "تأیید و افزودن",
+    "modaleConfirmTaskConfirmBTNAria": "تأیید و افزودن تسک ها به لیست و جدول",
+
+    "newTask": "تسک جدید",
+    "creatNewTask": "ایجاد تسک جدید",
+
+    "tableColumnsTitle": "عنوان",
+    "tableColumnsPriority": "اولویت",
+    "tableColumnsActions": "عملیات",
+    "tableColumnsDelete": "حذف تسک",
+    "tableColumnsDeleteDetail": "پاک کردن تسک",
+
+    "tableEmpty": "یه تسک اضافه کن تا زندگی معنی‌دار بشه 😌",
+    "allTasks": "تمامی تسک‌ها",
+    "isDones": "انجام شده",
+    "Progress": "پیشرفت",
+
+    "taskName": "نام تسک را وارد کنید",
+    "taskNameAria": "نام تسک",
+    "formBTN": "انصراف",
+    "formBTNTitle": "انصراف و بستن فرم",
+    "formBTNAria": "انصراف از ایجاد تسک جدید و بستن مودال",
+    "formBTNCreat": "ایجاد",
+    "formBTNCreatTitle": "لطفاً ابتدا نام تسک را وارد کنید",
+    "formBTNCreatAria": "دکمه ایجاد تسک غیرفعال است چون نام تسک وارد نشده",
+    "formBTNCreatAriaConfirm": "تایید و ایجاد تسک جدید",
+
+    "day": "روزانه",
+    "month": "ماهانه",
+    "year": "سالانه",
+
+    "return": "بازگردانی"
   },
-  "task": {
-    "add": "افزودن تسک"
+  "day": {
+    "header": "لیست تسک های روزانه"
+  },
+  "month": {
+    "header": "لیست تسک های ماهانه"
+  },
+  "year": {
+    "header": "لیست تسک های سالانه"
   }
 }

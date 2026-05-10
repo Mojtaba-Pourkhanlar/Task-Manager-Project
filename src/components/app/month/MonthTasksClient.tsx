@@ -7,9 +7,12 @@ import ImportExportActions from "@/components/app/ImportExportActions";
 import { useToast } from "@/context/ToastContext";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
+import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 
 const MonthTasksClient = () => {
+  const t = useTranslations("public");
+  const td = useTranslations("month");
   const { showUndoToast } = useToast();
   const pendingDeleteRef = useRef<Task | null>(null);
   const [tasks, setTasks] = useLocalStorage<Task[]>("month-tasks", []);
@@ -26,7 +29,7 @@ const MonthTasksClient = () => {
     if (!deletedTask) return;
     setTasks(prev => prev.filter(t => t.id !== id));
     pendingDeleteRef.current = deletedTask;
-    showUndoToast("تسک با موفقیت حذف شد", undoDelete);
+    showUndoToast(t("deleteTask"), undoDelete);
     setTimeout(() => {
       pendingDeleteRef.current = null;
     }, 1300);
@@ -46,7 +49,7 @@ const MonthTasksClient = () => {
   return (
     <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
       <Headers
-        name="لیست تسک های ماهانه"
+        name={td("header")}
         onClick={() => setIsModalOpen(true)}
         actions={
           <ImportExportActions

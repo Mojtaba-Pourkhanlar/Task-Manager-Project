@@ -11,7 +11,8 @@ import { useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 
 const DayTasksClient = () => {
-  const t = useTranslations("task");
+  const t = useTranslations("public");
+  const td = useTranslations("day");
   const { showUndoToast } = useToast();
   const pendingDeleteRef = useRef<Task | null>(null);
   const [tasks, setTasks] = useLocalStorage<Task[]>("day-tasks", []);
@@ -28,7 +29,7 @@ const DayTasksClient = () => {
     if (!deletedTask) return;
     setTasks(prev => prev.filter(t => t.id !== id));
     pendingDeleteRef.current = deletedTask;
-    showUndoToast("تسک با موفقیت حذف شد", undoDelete);
+    showUndoToast(t("deleteTask"), undoDelete);
     setTimeout(() => {
       pendingDeleteRef.current = null;
     }, 2300);
@@ -48,7 +49,7 @@ const DayTasksClient = () => {
   return (
     <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
       <Headers
-        name="لیست تسک های روزانه"
+        name={td("header")}
         onClick={() => setIsModalOpen(true)}
         actions={
           <ImportExportActions
@@ -58,7 +59,6 @@ const DayTasksClient = () => {
           />
         }
       />
-      <button>{t("add")}</button>
       <CoreTable
         tasks={tasks}
         onToggleDone={toggleDoneById}

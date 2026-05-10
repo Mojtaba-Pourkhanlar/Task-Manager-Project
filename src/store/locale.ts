@@ -9,13 +9,10 @@ interface LocaleState {
 
 export const useLocaleStore = create<LocaleState>(set => ({
   locale: "fa",
-
   setLocale: locale => {
-    localStorage.setItem("locale", locale);
-
-    document.documentElement.lang = locale;
-    document.documentElement.dir = locale === "fa" ? "rtl" : "ltr";
-
+    if (typeof window !== "undefined") {
+      localStorage.setItem("locale", locale);
+    }
     set({ locale });
   },
 }));

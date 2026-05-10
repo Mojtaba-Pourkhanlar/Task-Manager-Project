@@ -50,13 +50,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className={yekanBakh.variable}>
+    <html
+      lang="fa"
+      dir="rtl"
+      suppressHydrationWarning
+      className={yekanBakh.variable}
+    >
       <head>
         <link rel="apple-touch-icon" href="/icons/192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="msapplication-TileImage" content="/icons/192.png" />
         <meta name="msapplication-TileColor" content="#292B2E" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function () {
+              try {
+                var locale = localStorage.getItem("locale") || "fa";
+                var dir = locale === "fa" ? "rtl" : "ltr";
+                document.documentElement.lang = locale;
+                document.documentElement.dir = dir;
+              } catch (e) {}
+            })();
+            `,
+          }}
+        />
         <script
           id="person-jsonld"
           type="application/ld+json"

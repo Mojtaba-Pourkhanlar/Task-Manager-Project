@@ -20,16 +20,19 @@ export default function IntlProvider({
 }) {
   const { locale, setLocale } = useLocaleStore();
 
+  // load locale from localStorage once
   useEffect(() => {
-    const savedLocale = (localStorage.getItem("locale") as "fa" | "en") || "fa";
-
-    if (savedLocale !== locale) {
+    const savedLocale = localStorage.getItem("locale") as "fa" | "en" | null;
+    if (savedLocale && savedLocale !== locale) {
       setLocale(savedLocale);
     }
+  }, []);
 
-    document.documentElement.lang = savedLocale;
-    document.documentElement.dir = savedLocale === "fa" ? "rtl" : "ltr";
-  }, [locale, setLocale]);
+  // sync html attributes when locale changes
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    document.documentElement.dir = locale === "fa" ? "rtl" : "ltr";
+  }, [locale]);
 
   const currentMessages = useMemo(() => {
     return messages[locale];

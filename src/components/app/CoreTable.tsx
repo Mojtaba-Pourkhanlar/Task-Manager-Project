@@ -2,6 +2,7 @@ import GlassCheckbox from "@/components/core/Checkbox";
 import GlassTable from "@/components/core/Table";
 import { Task, TaskColumn } from "@/types";
 import { Trash2, ListTodo, CheckCircle2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 
 interface Props {
@@ -18,6 +19,8 @@ const priorityWeight: Record<Task["priority"], number> = {
 };
 
 const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
+  const t = useTranslations("public");
+
   const columns: TaskColumn[] = [
     {
       key: "done",
@@ -35,12 +38,12 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
     },
     {
       key: "task",
-      header: "عنوان",
+      header: t("tableColumnsTitle"),
       render: (task: Task) => <span className="font-medium">{task.title}</span>,
     },
     {
       key: "priority",
-      header: "اولویت",
+      header: t("tableColumnsPriority"),
       render: (task: Task) => {
         const map = {
           low: "کم",
@@ -64,7 +67,7 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
     },
     {
       key: "actions",
-      header: "عملیات",
+      header: t("tableColumnsActions"),
       width: "w-[70px]",
       render: (task: Task) => (
         <button
@@ -78,8 +81,8 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
             transition-colors duration-200 ease-out
             focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-transparent
           "
-          title="حذف تسک"
-          aria-label={`پاک کردن تسک: ${task.title}`}
+          title={t("tableColumnsDelete")}
+          aria-label={`${t("tableColumnsDeleteDetail")} : ${task.title}`}
         >
           <Trash2
             size={16}
@@ -125,7 +128,7 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
         rowClassName={(task: Task) =>
           task.done ? "bg-green-500/20" : "hover:bg-white/5"
         }
-        emptyText=" یه تسک اضافه کن تا زندگی معنی‌دار بشه 😌"
+        emptyText={t("tableEmpty")}
         onClick={onClick}
       />
 
@@ -136,9 +139,9 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
             <div className="flex items-center gap-2 text-blue-300">
               <ListTodo size={16} />
               <span>
-                تمامی تسک‌ها
+                {t("allTasks")}
                 <span className="mr-2 font-semibold text-blue-400">
-                  {total}
+                  {" " + total}
                 </span>
               </span>
             </div>
@@ -146,9 +149,9 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
             <div className="flex items-center gap-2 text-green-300">
               <CheckCircle2 size={16} />
               <span>
-                انجام شده
+                {t("isDones")} 
                 <span className="mr-2 font-semibold text-green-400">
-                  {doneCount}
+                  {" " + doneCount}
                 </span>
               </span>
             </div>
@@ -157,7 +160,7 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
           {/* progress bar */}
           <div className="space-y-1">
             <div className="flex justify-between text-xs text-white/60">
-              <span>پیشرفت</span>
+              <span>{t("Progress")}</span>
               <span>{progress}%</span>
             </div>
 
