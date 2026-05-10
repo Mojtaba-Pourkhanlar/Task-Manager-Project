@@ -7,9 +7,12 @@ import ImportExportActions from "@/components/app/ImportExportActions";
 import { useToast } from "@/context/ToastContext";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
+import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 
 export default function YearTasksClient() {
+  const t = useTranslations("public");
+  const td = useTranslations("year");
   const { showUndoToast } = useToast();
   const pendingDeleteRef = useRef<Task | null>(null);
   const [tasks, setTasks] = useLocalStorage<Task[]>("yers-tasks", []);
@@ -28,7 +31,7 @@ export default function YearTasksClient() {
     if (!deletedTask) return;
     setTasks(prev => prev.filter(t => t.id !== id));
     pendingDeleteRef.current = deletedTask;
-    showUndoToast("تسک با موفقیت حذف شد", undoDelete);
+    showUndoToast(t("deleteTask"), undoDelete);
     setTimeout(() => {
       pendingDeleteRef.current = null;
     }, 1300);
@@ -48,7 +51,7 @@ export default function YearTasksClient() {
   return (
     <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
       <Headers
-        name="لیست تسک های سالانه"
+        name={td("header")}
         onClick={() => setIsModalOpen(true)}
         actions={
           <ImportExportActions

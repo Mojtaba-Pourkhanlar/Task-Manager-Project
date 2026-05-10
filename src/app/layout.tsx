@@ -1,8 +1,8 @@
-import Script from "next/script";
+import CustomLayout from "@/components/layout";
+import IntlProvider from "@/context/IntlProvider";
 import { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import CustomLayout from "@/components/layout";
 
 const yekanBakh = localFont({
   src: [
@@ -36,6 +36,12 @@ export const metadata: Metadata = {
     icon: [{ url: "/icons/favicon.png" }],
   },
   manifest: "/manifest.json",
+  alternates: {
+    languages: {
+      en: "/",
+      fa: "/",
+    },
+  },
 };
 
 export default function RootLayout({
@@ -44,17 +50,35 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="rtl" className={yekanBakh.variable}>
+    <html
+      lang="fa"
+      dir="rtl"
+      suppressHydrationWarning
+      className={yekanBakh.variable}
+    >
       <head>
         <link rel="apple-touch-icon" href="/icons/192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="msapplication-TileImage" content="/icons/192.png" />
         <meta name="msapplication-TileColor" content="#292B2E" />
-        <Script
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function () {
+              try {
+                var locale = localStorage.getItem("locale") || "fa";
+                var dir = locale === "fa" ? "rtl" : "ltr";
+                document.documentElement.lang = locale;
+                document.documentElement.dir = dir;
+              } catch (e) {}
+            })();
+            `,
+          }}
+        />
+        <script
           id="person-jsonld"
           type="application/ld+json"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -73,7 +97,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <CustomLayout>{children}</CustomLayout>
+        <IntlProvider>
+          <CustomLayout>{children}</CustomLayout>
+        </IntlProvider>
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Inbox } from "lucide-react";
 import { Button } from "./Button";
+import { useTranslations } from "next-intl";
 
 type Column<T> = {
   key: keyof T | string;
@@ -24,11 +25,13 @@ type Props<T> = {
 export default function GlassTable<T>({
   data,
   columns,
-  emptyText = "داده‌ای وجود ندارد",
+  emptyText = "....",
   rowClassName,
   maxHeight,
   onClick,
 }: Props<T>) {
+  const t = useTranslations("public");
+
   const containerMaxHeight = maxHeight ?? "calc(100vh - 320px)";
 
   return (
@@ -90,9 +93,9 @@ export default function GlassTable<T>({
                           font-semibold
                         "
                         onClick={onClick}
-                        label={"تسک جدید"}
-                        title="تسک جدید"
-                        aria-label="ایجاد تسک جدید"
+                        label={t("newTask")}
+                        title={t("newTask")}
+                        aria-label={t("creatNewTask")}
                       />
                     </motion.div>
                   </div>

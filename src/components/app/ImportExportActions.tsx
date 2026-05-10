@@ -12,6 +12,7 @@ import {
 } from "@/utils/taskTransfer";
 import { useRef, useState } from "react";
 import { useToast } from "@/context/ToastContext";
+import { useTranslations } from "next-intl";
 
 interface Props {
   section: TaskSection;
@@ -24,6 +25,7 @@ export default function ImportExportActions({
   tasks,
   onImportConfirm,
 }: Props) {
+  const t = useTranslations("public");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { showToast } = useToast();
 
@@ -32,7 +34,7 @@ export default function ImportExportActions({
 
   const handleDownload = () => {
     downloadTasksAsJson(section, tasks);
-    showToast("success", "عملیات با موفقیت انجام شد.");
+    showToast("success", t("downloadTask"));
   };
 
   const handleOpenFilePicker = () => {
@@ -49,7 +51,7 @@ export default function ImportExportActions({
       const parsed = await parseTaskImportFile(file);
 
       if (parsed.section !== section) {
-        showToast("error", "این فایل مربوط به این بخش نیست.");
+        showToast("error", t("uploadErr"));
         throw new Error("");
       }
 
@@ -60,14 +62,14 @@ export default function ImportExportActions({
     } catch (err) {
       setPreview(null);
       setNormalizedTasks([]);
-      showToast("error", "خطا در خواندن فایل رخ داد.");
+      showToast("error", t("uploadErrRead"));
       console.error(err);
       throw new Error("");
     }
   };
 
   const handleConfirmImport = () => {
-    showToast("success", "عملیات با موفقیت انجام شد.");
+    showToast("success", t("downloadTask"));
     onImportConfirm(normalizedTasks);
     setPreview(null);
     setNormalizedTasks([]);
@@ -95,8 +97,8 @@ export default function ImportExportActions({
         <button
           type="button"
           className="p-2 rounded-xl bg-white/20 hover:bg-white/10 cursor-pointer border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
-          title="آپلود فایل"
-          aria-label="آپلود فایل JSON از دستگاه"
+          title={t("ariaUpload")}
+          aria-label={t("ariaLableUpload")}
           aria-controls="file-upload"
           onClick={handleOpenFilePicker}
         >
@@ -107,8 +109,8 @@ export default function ImportExportActions({
         <button
           type="button"
           className="p-2 rounded-xl bg-white/20 hover:bg-white/10 cursor-pointer border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
-          title="دانلود فایل"
-          aria-label="دانلود فایل JSON تسک‌ها"
+          title={t("ariaDownload")}
+          aria-label={t("ariaLableDownload")}
           onClick={handleDownload}
         >
           <Download size={18} aria-hidden="true" />
@@ -119,19 +121,22 @@ export default function ImportExportActions({
         <Modal
           isOpen={true}
           onClose={() => setPreview(null)}
-          header="تأیید آپلود تسک‌ها"
+          header={t("modaleConfirmTask")}
         >
           <div className="space-y-4">
             <p className="text-sm text-white/80">
-              <strong>{normalizedTasks.length} تسک </strong> از فایل انتخاب شده
-              آماده اضافه شدن به این بخش هستند.
+              {normalizedTasks.length} {t("modaleConfirmTaskHeader")}
             </p>
 
             <div className="text-sm space-y-1 text-white/70">
-              <p>بخش فایل: {preview.section}</p>
-              <p>تعداد تسک‌ها: {preview.tasks.length}</p>
               <p>
-                زمان خروجی:{" "}
+                {t("modaleConfirmTaskPart")}: {preview.section}
+              </p>
+              <p>
+                {t("modaleConfirmTaskLength")}: {preview.tasks.length}
+              </p>
+              <p>
+                {t("modaleConfirmTaskTime")}:{" "}
                 {new Date(preview.exportedAt).toLocaleString("fa-IR")}
               </p>
             </div>
@@ -146,10 +151,10 @@ export default function ImportExportActions({
                     <span className="truncate">{task.title}</span>
                     <span className="text-white/60 text-xs whitespace-nowrap">
                       {task.priority === "high"
-                        ? "خیلی مهم"
+                        ? t("high")
                         : task.priority === "medium"
-                          ? "مهم"
-                          : "کم"}
+                          ? t("medium")
+                          : t("low")}
                     </span>
                   </li>
                 ))}
@@ -157,14 +162,13 @@ export default function ImportExportActions({
 
               {normalizedTasks.length > 5 && (
                 <p className="text-xs text-white/50 mt-3">
-                  و {normalizedTasks.length - 5} تسک دیگر...
+                  {normalizedTasks.length - 5} {t("modaleConfirmTaskMore")}
                 </p>
               )}
             </div>
 
             <p className="text-xs text-yellow-300">
-              با تأیید، این تسک‌ها به لیست فعلی اضافه می‌شوند و جایگزین کامل
-              انجام نمی‌شود.
+              {t("modaleConfirmTaskWarning")}
             </p>
           </div>
 
@@ -172,16 +176,16 @@ export default function ImportExportActions({
             <Button
               className="bg-gray-800 border border-white/20"
               onClick={handleCloseModal}
-              label={"انصراف"}
-              title={"انصراف"}
-              aria-label="انصراف از اعمال تسک ها و بستن مودال"
+              label={t("modaleConfirmTaskCancelBTN")}
+              title={t("modaleConfirmTaskCancelBTN")}
+              aria-label={t("modaleConfirmTaskCancelBTNAria")}
             />
             <Button
               className="bg-green-900 border border-white/20"
               onClick={handleConfirmImport}
-              label={"تأیید و افزودن"}
-              title={"تأیید و افزودن"}
-              aria-label={"تأیید و افزودن تسک ها به لیست و جدول"}
+              label={t("modaleConfirmTaskConfirmBTN")}
+              title={t("modaleConfirmTaskConfirmBTN")}
+              aria-label={t("modaleConfirmTaskConfirmBTNAria")}
             />
           </div>
         </Modal>

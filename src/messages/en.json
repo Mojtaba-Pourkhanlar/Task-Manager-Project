@@ -1,0 +1,70 @@
+{
+  "public": {
+    "add": "Add Task",
+    "downloadTask": "The operation was successful.",
+    "uploadErr": "This file does not belong to this section.",
+    "uploadErrRead": "An error occurred while reading the file.",
+    "deleteTask": "Task successfully deleted",
+
+    "high": "high",
+    "medium": "medium",
+    "low": "low",
+
+    "ariaUpload": "Upload file",
+    "ariaLableUpload": "Upload JSON file from device",
+
+    "ariaDownload": "Download file",
+    "ariaLableDownload": "Download Tasks JSON File",
+
+    "modaleConfirmTask": "Confirm task upload",
+    "modaleConfirmTaskHeader": "Tasks from the selected file are ready to be added to this section.",
+    "modaleConfirmTaskPart": "File section",
+    "modaleConfirmTaskLength": "Number of tasks",
+    "modaleConfirmTaskTime": "Output time",
+    "modaleConfirmTaskMore": "Another task",
+    "modaleConfirmTaskWarning": "Upon confirmation, these tasks will be added to the current list and will not be completely replaced.",
+    "modaleConfirmTaskCancelBTN": "Cancel",
+    "modaleConfirmTaskCancelBTNAria": "Canceling tasks and closing the modal",
+    "modaleConfirmTaskConfirmBTN": "Confirm and add",
+    "modaleConfirmTaskConfirmBTNAria": "Confirm and add tasks to lists and tables",
+
+    "newTask": "New task",
+    "creatNewTask": "Create a new task",
+
+    "tableColumnsTitle": "Title",
+    "tableColumnsPriority": "Priority",
+    "tableColumnsActions": "Operation",
+    "tableColumnsDelete": "Delete Task",
+    "tableColumnsDeleteDetail": "Delete Task",
+
+    "tableEmpty": "Add a task to make life meaningful 😌",
+    "allTasks": "All Tasks",
+    "isDones": "Done",
+    "Progress": "Progress",
+
+    "taskName": "Enter the task name.",
+    "taskNameAria": "Task name",
+    "formBTN": "Cancel",
+    "formBTNTitle": "Cancel and close the form",
+    "formBTNAria": "Cancel creating a new task and closing the modal",
+    "formBTNCreat": "Creat",
+    "formBTNCreatTitle": "Please enter the task name first.",
+    "formBTNCreatAria": "The Create Task button is disabled because the task name has not been entered.",
+    "formBTNCreatAriaConfirm": "Confirm and create a new task",
+
+    "day": "Day",
+    "month": "Month",
+    "year": "Year",
+
+    "return": "Return"
+  },
+  "day": {
+    "header": "Daily task list"
+  },
+  "month": {
+    "header": "Monthly task list"
+  },
+  "year": {
+    "header": "Annual task list"
+  }
+}

@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import Toastify from "@/components/core/Toastify";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 type ToastType = "info" | "success" | "warning" | "error";
 
@@ -32,6 +33,7 @@ interface ToastProviderProps {
 }
 
 export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
+  const t = useTranslations("public");
   const undoToastIdRef = useRef<string | number | null>(null);
 
   const [toastConfig, setToastConfig] = useState<{
@@ -72,7 +74,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
           }}
           className="text-[#1E88E5] font-bold hover:text-[#42A5F5] transition-colors cursor-pointer"
         >
-          بازگردانی
+          {t("return")}
         </button>
         <div
           className="absolute bottom-0 left-0 h-[2px] w-full bg-[#1E88E5] animate-toast-progress"

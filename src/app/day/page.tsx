@@ -11,6 +11,6 @@ export function generateMetadata() {
   });
 }
 
-export default function DayTasks() {
+export default async function DayTasks() {
   return <DayTasksClient />;
 }
