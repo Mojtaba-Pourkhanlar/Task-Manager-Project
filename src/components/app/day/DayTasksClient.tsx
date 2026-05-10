@@ -29,7 +29,7 @@ const DayTasksClient = () => {
     showUndoToast("تسک با موفقیت حذف شد", undoDelete);
     setTimeout(() => {
       pendingDeleteRef.current = null;
-    }, 1300);
+    }, 2300);
   };
 
   const undoDelete = () => {

@@ -59,41 +59,25 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   };
 
   const showUndoToast = (message: string, onUndo: () => void) => {
-    const duration = 1500;
+    const duration = 2000;
 
     const content = ({ closeToast }: { closeToast?: () => void }) => (
-      <div className="relative flex flex-col gap-2 w-full">
-        <div className="flex items-center justify-between gap-4">
-          <span>{message}</span>
-
-          <button
-            onClick={() => {
-              onUndo();
-              closeToast?.();
-              undoToastIdRef.current = null;
-            }}
-            className="
-              px-4 py-1.5 
-              text-xs font-semibold
-              rounded-xl 
-              bg-blue-500/20
-              text-blue-300
-              border border-blue-400/30
-              backdrop-blur-md
-              hover:bg-blue-500/30 
-              transition-all duration-200 cursor-pointer
-            "
-          >
-            بازگردانی
-          </button>
-        </div>
-
-        <div className="h-[3px] w-full bg-white/10 overflow-hidden rounded-full">
-          <div
-            className="h-full bg-linear-to-r from-red-400 to-orange-400 animate-toast-progress"
-            style={{ animationDuration: `${duration}ms` }}
-          />
-        </div>
+      <div className="relative flex items-center justify-between w-full text-white px-4 py-2 shadow-lg backdrop-blur-sm animate-fade-in-down text-sm set-border">
+        <span>{message}</span>
+        <button
+          onClick={() => {
+            onUndo();
+            closeToast?.();
+            undoToastIdRef.current = null;
+          }}
+          className="text-[#1E88E5] font-bold hover:text-[#42A5F5] transition-colors cursor-pointer"
+        >
+          بازگردانی
+        </button>
+        <div
+          className="absolute bottom-0 left-0 h-[2px] w-full bg-[#1E88E5] animate-toast-progress"
+          style={{ animationDuration: `${duration}ms` }}
+        />
       </div>
     );
 
@@ -103,11 +87,11 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
     ) {
       toast.update(undoToastIdRef.current, {
         render: content,
-        autoClose: 1000,
+        autoClose: duration,
         closeOnClick: false,
         hideProgressBar: true,
         pauseOnHover: false,
-        className: "toast--glass toast--error",
+        className: "undo-toast",
       });
       return;
     }
@@ -117,10 +101,8 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
       position: "bottom-center",
       closeOnClick: false,
       hideProgressBar: true,
-      className: "toast--glass toast--success",
-      onClose: () => {
-        undoToastIdRef.current = null;
-      },
+      onClose: () => (undoToastIdRef.current = null),
+      className: "undo-toast",
     });
   };
 

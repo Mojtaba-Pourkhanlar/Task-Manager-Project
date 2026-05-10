@@ -31,16 +31,13 @@ body {
 }
 /* ...Toastify.tsx */
 .toast--glass.Toastify__toast {
-  background: rgba(20, 20, 20, 0.75);
+  background: #1f1f1f;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   font-family: var(--font-yekanBakh), system-ui, sans-serif;
-
   border-radius: 10px;
-  padding: 10px 12px !important;
+  padding: 8px 12px !important;
   min-height: unset !important;
-
+  
   box-shadow:
     0 8px 30px rgba(0, 0, 0, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -71,6 +68,24 @@ body {
   border-color: rgba(241, 196, 15, 0.75) !important;
 }
 
+/* ... Custome Toastify */
+.undo-toast.Toastify__toast {
+  display: flex !important;
+  padding: 25px 18px !important;
+  margin: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  min-height: auto !important;
+  font-family: var(--font-yekanBakh), system-ui, sans-serif;
+}
+
+.undo-toast .Toastify__toast-body {
+  all: unset;
+  display: flex !important;
+  width: 100%;
+}
+
 @keyframes toast-progress {
   from {
     width: 100%;
@@ -84,4 +99,10 @@ body {
   animation-name: toast-progress;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
+}
+
+.set-border {
+  background: #1f1f1f;
+  border-radius: 10px 10px 4px 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
