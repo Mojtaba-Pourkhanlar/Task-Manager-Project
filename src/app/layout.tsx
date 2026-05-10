@@ -60,7 +60,6 @@ export default function RootLayout({
     >
       <head>
         <link rel="apple-touch-icon" href="/icons/192.png" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="msapplication-TileImage" content="/icons/192.png" />
         <meta name="msapplication-TileColor" content="#292B2E" />

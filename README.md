@@ -16,3 +16,28 @@
 ## Focus Mode (Pomodoro)
 
 کاربر یه تسک انتخاب کنه → وارد مود تمرکز بشه → تایمر مشخص → موسیقی یا افکت کوچک.
+
+<!--
+
+RewriteEngine On
+
+# Allow Next.js static files
+RewriteCond %{REQUEST_URI} ^/_next/ [OR]
+RewriteCond %{REQUEST_URI} ^/favicon.ico$
+RewriteCond %{REQUEST_URI} ^/robots.txt$
+RewriteRule ^ - [L]
+
+# Allow existing files & folders
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Everything else → Next.js Node server
+RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]
+
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+-->

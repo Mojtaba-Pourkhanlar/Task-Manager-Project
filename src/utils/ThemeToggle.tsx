@@ -58,14 +58,24 @@ export const ThemeToggle: FC = () => {
   return (
     <div
       onClick={onToggle}
-      className="w-10 h-10 flex items-center justify-center pt-2 cursor-pointer select-none hover:bg-(--color-navy-50) rounded-lg"
+      className={`
+        flex items-start justify-center h-9 w-9
+        p-1.25 rounded-xl cursor-pointer 
+        bg-(--surface)
+        hover:bg-(--surface-hover)
+        border border-(--border)
+        focus:outline-none
+        focus:ring-2
+        focus:ring-(--navy-400)
+        transition-colors
+      `}
       aria-label="Toggle theme"
       role="button"
     >
       {current === "dark" ? (
-        <span className="text-lg">🌙</span>
+        <span className="pt-0.75">🌙</span>
       ) : (
-        <span className="text-lg">☀️</span>
+        <span className="pt-0.75">☀️</span>
       )}
     </div>
   );
