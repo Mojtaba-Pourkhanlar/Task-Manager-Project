@@ -79,16 +79,16 @@ export default function AddTaskModal({
         />
       </div>
 
-      <div className="flex justify-between gap-3 mt-4">
+      <div className="flex justify-between gap-3 mt-5">
         <Button
-          className="bg-gray-600"
+          className="bg-gray-400 dark:bg-gray-600"
           onClick={onClose}
           label={t("formBTN")}
           title={t("formBTNTitle")}
           aria-label={t("formBTNAria")}
         />
         <Button
-          className={isDisabled ? "bg-gray-600" : "bg-blue-600"}
+          className={isDisabled ? "bg-gray-400 dark:bg-gray-600" : "bg-blue-600"}
           onClick={handleAdd}
           label={t("formBTNCreat")}
           disabled={isDisabled}

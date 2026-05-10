@@ -42,18 +42,34 @@ const GlassCheckbox: React.FC<GlassCheckboxProps> = ({
       {/* Glassy circle */}
       <div
         className={`
-          w-6 h-6 rounded-full border-2 
-          backdrop-blur-md transition-all duration-300 ease-out 
-          flex items-center justify-center 
-          ${checked ? colorClass : "bg-white/10 border-white/20 group-hover:border-white/40"}
-          peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-white/40
-        `}
+    w-5 h-5 rounded-full border-2
+    backdrop-blur-md
+    transition-all duration-300 ease-out
+    flex items-center justify-center
+
+    ${
+      checked
+        ? colorClass
+        : `
+      bg-gray-100 dark:bg-white/10
+      border-gray-300 dark:border-white/20
+      group-hover:border-gray-400 dark:group-hover:border-white/40
+    `
+    }
+
+    peer-focus-visible:ring-2
+    peer-focus-visible:ring-offset-2
+    peer-focus-visible:ring-gray-400
+    dark:peer-focus-visible:ring-white/40
+  `}
       >
         <Check
           size={14}
-          className={`text-white transition-all duration-300 ${
-            checked ? "opacity-100 scale-100" : "opacity-0 scale-0"
-          }`}
+          className={`
+      text-gray-800 dark:text-white
+      transition-all duration-300
+      ${checked ? "opacity-100 scale-100" : "opacity-0 scale-0"}
+    `}
           strokeWidth={3}
           aria-hidden="true"
         />

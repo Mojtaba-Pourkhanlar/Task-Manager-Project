@@ -2,6 +2,13 @@ import { ReactNode } from "react";
 import { Button } from "@/components/core/Button";
 import LanguageSwitcher from "@/utils/LanguageSwitcher";
 import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
+import { coreStyles as s } from "./core.styles";
+
+const ThemeToggle = dynamic(
+  () => import("@/utils/ThemeToggle").then(mod => mod.ThemeToggle),
+  { ssr: false },
+);
 
 interface Props {
   onClick: () => void;
@@ -19,17 +26,18 @@ const Headers = ({ onClick, name, actions }: Props) => {
         <div className="flex items-center gap-2 flex-wrap">
           {actions}
           <Button
-            className="bg-white/20 hover:bg-white/10 border border-white/20 px-2! md:px-4!"
+            className={s.headerBTN}
             onClick={onClick}
             label={t("newTask")}
             title={t("newTask")}
             aria-label={t("creatNewTask")}
           />
           <LanguageSwitcher />
+          <ThemeToggle />
         </div>
       </header>
 
-      <hr className="bg-none my-3 border-b-2 border-white/20" />
+      <hr className="bg-none my-3 border-b-2 border-(--navy-200) dark:border-white/20" />
     </>
   );
 };

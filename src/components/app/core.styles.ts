@@ -1,0 +1,109 @@
+export const coreStyles = {
+  // Headers.tsx
+  headerBTN: `
+    bg-(--surface)
+    hover:bg-(--surface-hover)
+    border border-(--border)
+    px-2! md:px-4!
+    text-blue-950!
+    dark:text-white!
+    font-medium
+`,
+  // ImportExportActions.tsx
+  button: `
+    p-2 rounded-xl cursor-pointer border
+    bg-[var(--surface)]
+    hover:bg-[var(--surface-hover)]
+    border-[var(--border)]
+    focus:outline-none
+    focus:ring-2
+    focus:ring-[var(--navy-400)]
+    transition-colors
+  `,
+
+  previewBox: `
+    max-h-48 overflow-y-auto rounded-lg border p-3
+    border-[var(--border)]
+    bg-[var(--surface)]
+  `,
+
+  mutedText: `text-[var(--muted)] text-xs whitespace-nowrap`,
+  mutedForeground: `text-[var(--muted-foreground)] text-xs mt-3`,
+
+  warning: `text-[var(--warning)] text-xs `,
+
+  buttonSuccess: `
+    bg-[var(--success)]
+    hover:bg-[var(--success-hover)]
+    border-[var(--border)]
+    focus:outline-none
+    focus:ring-2
+    focus:ring-[var(--navy-400)]
+    transition-colors
+  `,
+  buttonCancel: `
+    bg-[var(--muted)]
+    hover:bg-[var(--muted-foreground)]
+    border-[var(--border)]
+    focus:outline-none
+    focus:ring-2
+    focus:ring-[var(--navy-400)]
+    transition-colors
+  `,
+  // CoreTable.tsx
+
+  tableDeleteButton: `
+    flex items-center justify-center
+    p-1.5 rounded-lg
+    bg-[var(--surface)]
+    hover:bg-[var(--surface-hover)]
+    border border-[var(--border)]
+    cursor-pointer
+    transition-colors duration-200
+    focus:outline-none
+    focus:ring-2
+    focus:ring-[var(--danger)]
+    `,
+
+  tableDeleteIcon: `
+    text-[var(--danger)]
+    transition-colors
+    `,
+
+  priorityHigh: `
+    px-2 py-1 rounded-md text-xs font-semibold
+    bg-[var(--priority-high-bg)]
+    text-[var(--priority-high-text)]
+    `,
+
+  priorityMedium: `
+    px-2 py-1 rounded-md text-xs font-semibold
+    bg-[var(--priority-medium-bg)]
+    text-[var(--priority-medium-text)]
+    `,
+
+  priorityLow: `
+    px-2 py-1 rounded-md text-xs font-semibold
+    bg-[var(--priority-low-bg)]
+    text-[var(--priority-low-text)]
+    `,
+
+  progressCard: `
+    mt-4 px-4 py-3 rounded-xl
+    bg-[var(--card-bg)]
+    backdrop-blur-md
+    border border-[var(--card-border)]
+    space-y-3
+    `,
+
+  progressLabel: `
+    flex justify-between text-xs
+    text-[var(--muted)] font-bold
+    `,
+
+  progressBarBg: `
+    h-2 w-full rounded-full
+    bg-[var(--progress-bg)]
+    overflow-hidden
+    `,
+};
