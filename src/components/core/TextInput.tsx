@@ -17,7 +17,7 @@ export const TextInput = forwardRef<HTMLInputElement, InputProps>(
           bg-white dark:bg-neutral-900
           text-gray-800 dark:text-gray-100
           placeholder:text-gray-400 dark:placeholder:text-gray-500
-          focus:ring-2 focus:ring-blue-500
+          focus:ring-2 focus:ring-(--navy-400)
           transition-all duration-200 font-semibold
           ${className}
         `}

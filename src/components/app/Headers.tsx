@@ -26,18 +26,21 @@ const Headers = ({ onClick, name, actions }: Props) => {
         <div className="flex items-center gap-2 flex-wrap">
           <ThemeToggle />
           <LanguageSwitcher />
-          {actions}
-          <Button
-            className={s.headerBTN}
-            onClick={onClick}
-            label={t("newTask")}
-            title={t("newTask")}
-            aria-label={t("creatNewTask")}
-          />
         </div>
       </header>
 
-      <hr className="bg-none my-3 border-b-2 border-(--navy-200) dark:border-white/20" />
+      <hr className="bg-none my-2 border-b-2 border-(--navy-200) dark:border-white/20" />
+      
+      <div className="flex items-center justify-between gap-3 flex-wrap mb-2">
+        {actions}
+        <Button
+          className={s.headerBTN}
+          onClick={onClick}
+          label={t("newTask")}
+          title={t("newTask")}
+          aria-label={t("creatNewTask")}
+        />
+      </div>
     </>
   );
 };

@@ -34,7 +34,6 @@ export default function ImportExportActions({
   const [normalizedTasks, setNormalizedTasks] = useState<Task[]>([]);
 
   const handleDownload = () => {
-    console.log("tasks", tasks);
     if (tasks.length > 0) {
       downloadTasksAsJson(section, tasks);
       showToast("success", t("downloadTask"));
@@ -99,6 +98,16 @@ export default function ImportExportActions({
           id="file-upload"
         />
 
+        {/* Download */}
+        <button
+          type="button"
+          className={s.button}
+          title={t("ariaDownload")}
+          aria-label={t("ariaLableDownload")}
+          onClick={handleDownload}
+        >
+          <Download size={18} aria-hidden="true" />
+        </button>
         {/* Upload */}
         <button
           type="button"
@@ -109,17 +118,6 @@ export default function ImportExportActions({
           onClick={handleOpenFilePicker}
         >
           <Upload size={18} aria-hidden="true" />
-        </button>
-
-        {/* Download */}
-        <button
-          type="button"
-          className={s.button}
-          title={t("ariaDownload")}
-          aria-label={t("ariaLableDownload")}
-          onClick={handleDownload}
-        >
-          <Download size={18} aria-hidden="true" />
         </button>
       </div>
 

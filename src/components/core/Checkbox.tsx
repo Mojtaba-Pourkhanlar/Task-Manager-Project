@@ -28,6 +28,7 @@ const GlassCheckbox: React.FC<GlassCheckboxProps> = ({
         onChange={e => onChange(e.target.checked)}
         className="peer absolute w-6 h-6 opacity-0 cursor-pointer z-10"
         aria-label={label || "انتخاب آیتم"}
+        title="انتخاب"
       />
 
       {/* Glassy circle */}

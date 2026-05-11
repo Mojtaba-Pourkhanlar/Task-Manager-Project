@@ -47,7 +47,7 @@ export default function UndoTimerButton({ duration = 4000, onUndo }: Props) {
       w-9 h-9
       text-amber-500 
       hover:text-amber-500
-      transition-colors
+      transition-colors cursor-pointer
       "
     >
       <svg width="36" height="36" className="absolute -rotate-90">
