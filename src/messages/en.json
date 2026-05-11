@@ -53,9 +53,9 @@
     "formBTNCreatAria": "The Create Task button is disabled because the task name has not been entered.",
     "formBTNCreatAriaConfirm": "Confirm and create a new task",
 
-    "day": "Day",
-    "month": "Month",
-    "year": "Year",
+    "day": "Daily",
+    "month": "Monthly",
+    "year": "Annual",
 
     "return": "Return"
   },
@@ -67,5 +67,19 @@
   },
   "year": {
     "header": "Annual task list"
+  },
+  "seo": {
+    "day": {
+      "title": "Daily | Task Manager",
+      "description": "This app created by Mojtaba Pourkhanlar"
+    },
+    "month": {
+      "title": "Monthly | Task Manager",
+      "description": "This app created by Mojtaba Pourkhanlar"
+    },
+    "year": {
+      "title": "Annual | Task Manager",
+      "description": "This app created by Mojtaba Pourkhanlar"
+    }
   }
 }

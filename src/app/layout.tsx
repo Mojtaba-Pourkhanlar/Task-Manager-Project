@@ -1,9 +1,6 @@
 import CustomLayout from "@/components/layout";
-import IntlProvider from "@/context/IntlProvider";
 import { Metadata } from "next";
 import localFont from "next/font/local";
-import { ThemeProvider } from "next-themes";
-
 import "./globals.css";
 
 const yekanBakh = localFont({
@@ -98,16 +95,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <IntlProvider>
-            <CustomLayout>{children}</CustomLayout>
-          </IntlProvider>
-        </ThemeProvider>
+        <CustomLayout>{children}</CustomLayout>
       </body>
     </html>
   );

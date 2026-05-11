@@ -1,5 +1,6 @@
 "use client";
 
+import { TIMER } from "@/constants";
 import { Undo2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -8,7 +9,7 @@ interface Props {
   onUndo: () => void;
 }
 
-export default function UndoTimerButton({ duration = 4000, onUndo }: Props) {
+export default function UndoTimerButton({ duration = TIMER, onUndo }: Props) {
   const [progress, setProgress] = useState(1);
 
   useEffect(() => {

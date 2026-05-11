@@ -1,35 +1,51 @@
 import { Metadata } from "next";
 
-type SeoInput = {
-  data: {
-    title: string;
-    description: string;
-    path: string;
-  };
-};
+import enMessages from "@/messages/en.json";
+import faMessages from "@/messages/fa.json";
+
+type PageKey = keyof typeof enMessages.seo;
 
 const baseUrl = "https://stak.mojtabapourkhanlar.ir";
 
-export function createSeo({ data }: SeoInput): Metadata {
-  const url = `${baseUrl}/${data.path}`;
+// function getLocale(): "fa" | "en" {
+//   if (typeof window !== "undefined") {
+//     return (localStorage.getItem("locale") as "fa" | "en") || "fa";
+//   }
+//   return "fa";
+// }
+
+function getMessages(locale: "fa" | "en") {
+  return locale === "fa" ? faMessages : enMessages;
+}
+
+export function createSeo(page: PageKey, path?: string): Metadata {
+  const locale = "en";
+  // const locale = getLocale();
+  const messages = getMessages(locale);
+
+  const seo = messages.seo[page];
+  const pagePath = path ?? page;
+
+  const url = `${baseUrl}/${pagePath}`;
+
   return {
-    title: data.title,
-    description: data.description,
+    title: seo.title,
+    description: seo.description,
 
     alternates: {
       canonical: url,
       languages: {
-        fa: `${baseUrl}/${data.path}`,
-        en: `${baseUrl}/${data.path}`,
+        fa: `${baseUrl}/${pagePath}`,
+        en: `${baseUrl}/${pagePath}`,
       },
     },
 
     openGraph: {
-      title: data.title,
-      description: data.description,
+      title: seo.title,
+      description: seo.description,
       url,
       siteName: "Mojtaba Pourkhanlar",
-      locale: "fa_IR",
+      locale: locale === "en" ? "en_US" : "fa_IR",
       type: "website",
     },
   };
