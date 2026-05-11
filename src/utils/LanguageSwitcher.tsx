@@ -1,13 +1,17 @@
 "use client";
 
 import { useLocaleStore } from "@/store/locale";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const LanguageSwitcher = () => {
   const { locale, setLocale } = useLocaleStore();
+  const router = useRouter();
 
   const toggleLanguage = () => {
-    setLocale(locale === "fa" ? "en" : "fa");
+    const newLocale = locale === "fa" ? "en" : "fa";
+    setLocale(newLocale);
+    router.refresh();
   };
 
   return (

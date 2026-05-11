@@ -7,19 +7,20 @@ type PageKey = keyof typeof enMessages.seo;
 
 const baseUrl = "https://stak.mojtabapourkhanlar.ir";
 
-function getLocale(): "fa" | "en" {
-  if (typeof window !== "undefined") {
-    return (localStorage.getItem("locale") as "fa" | "en") || "fa";
-  }
-  return "fa";
-}
+// function getLocale(): "fa" | "en" {
+//   if (typeof window !== "undefined") {
+//     return (localStorage.getItem("locale") as "fa" | "en") || "fa";
+//   }
+//   return "fa";
+// }
 
 function getMessages(locale: "fa" | "en") {
   return locale === "fa" ? faMessages : enMessages;
 }
 
 export function createSeo(page: PageKey, path?: string): Metadata {
-  const locale = getLocale();
+  const locale = "en";
+  // const locale = getLocale();
   const messages = getMessages(locale);
 
   const seo = messages.seo[page];
@@ -44,7 +45,7 @@ export function createSeo(page: PageKey, path?: string): Metadata {
       description: seo.description,
       url,
       siteName: "Mojtaba Pourkhanlar",
-      locale: locale === "fa" ? "fa_IR" : "en_US",
+      locale: locale === "en" ? "en_US" : "fa_IR",
       type: "website",
     },
   };

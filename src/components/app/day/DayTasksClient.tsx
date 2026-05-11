@@ -4,6 +4,7 @@ import AddTask from "@/components/app/AddTask";
 import CoreTable from "@/components/app/CoreTable";
 import Headers from "@/components/app/Headers";
 import ImportExportActions from "@/components/app/ImportExportActions";
+import { TIMER } from "@/constants";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
 import { useTranslations } from "next-intl";
@@ -29,7 +30,7 @@ const DayTasksClient = () => {
     deleteTimers.current[id] = setTimeout(() => {
       setTasks(prev => prev.filter(t => t.id !== id));
       delete deleteTimers.current[id];
-    }, 4000);
+    }, TIMER);
   };
 
   const undoDelete = (id: string) => {
