@@ -23,8 +23,8 @@ const LanguageSwitcher = () => {
         focus:ring-(--navy-400)
         transition-colors
       `}
-      aria-label="Toggle language"
-      title={locale === "fa" ? "Switch to English" : "تغییر به فارسی"}
+      title={locale === "en" ? "Switch language" : "تغییر زبان "}
+      aria-label={locale === "en" ? "Switch language" : "تغییر زبان "}
     >
       {locale === "fa" ? (
         <Image src="/svg/iranFlag.svg" width={24} height={24} alt="Persian" />

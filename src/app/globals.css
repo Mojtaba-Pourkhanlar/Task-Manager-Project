@@ -65,6 +65,13 @@
 
   --accent: #10b981;
   --accent-soft: rgba(16, 185, 129, 0.2);
+
+  /* Loading */
+  --skeleton-bg: rgba(0, 0, 0, 0.08);
+  --skeleton-bg-strong: rgba(0, 0, 0, 0.12);
+  --skeleton-glass: rgba(255, 255, 255, 0.55);
+  --skeleton-border: rgba(0, 0, 0, 0.12);
+  --skeleton-border-soft: rgba(0, 0, 0, 0.08);
 }
 
 /* ...Change Theme */
@@ -157,6 +164,12 @@ html.dark {
 
   --accent: #34d399;
   --accent-soft: rgba(16, 185, 129, 0.25);
+  /* Loading */
+  --skeleton-bg: rgba(255, 255, 255, 0.15);
+  --skeleton-bg-strong: rgba(255, 255, 255, 0.2);
+  --skeleton-glass: rgba(255, 255, 255, 0.1);
+  --skeleton-border: rgba(255, 255, 255, 0.2);
+  --skeleton-border-soft: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -172,11 +185,11 @@ body {
 [dir="ltr"] .ltr-hidden {
   display: none;
 }
-/* ...Hidden Scroll */
+/* ---------- Hidden Scroll ---------- */
 ::-webkit-scrollbar {
   display: none;
 }
-/* ...Toastify.tsx */
+/* ---------- Toastify.tsx ---------- */
 .toast--glass.Toastify__toast {
   background-color: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -230,4 +243,25 @@ body {
 .toast--glass-light.Toastify__toast.toast--warning {
   border-color: rgba(241, 196, 15, 0.75) !important;
   background-color: rgba(241, 196, 15, 0.1) !important;
+}
+/* ---------- Loading ---------- */
+.skeleton-bg {
+  background: var(--skeleton-bg);
+}
+
+.skeleton-bg-strong {
+  background: var(--skeleton-bg-strong);
+}
+
+.skeleton-glass {
+  background: var(--skeleton-glass);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+
+.skeleton-border {
+  border: 1px solid var(--skeleton-border);
+}
+
+.skeleton-border-soft {
+  border-color: var(--skeleton-border-soft);
 }

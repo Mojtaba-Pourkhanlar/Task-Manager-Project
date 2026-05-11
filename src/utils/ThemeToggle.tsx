@@ -2,6 +2,7 @@
 
 import { FC, useState } from "react";
 import { useTheme } from "next-themes";
+import { useLocaleStore } from "@/store/locale";
 
 function getMaxRadius(x: number, y: number) {
   const w = window.innerWidth;
@@ -12,13 +13,14 @@ function getMaxRadius(x: number, y: number) {
 }
 
 export const ThemeToggle: FC = () => {
+  const { locale } = useLocaleStore();
   const { setTheme, resolvedTheme } = useTheme();
   const [busy, setBusy] = useState(false);
 
   const current = resolvedTheme ?? "light";
   const next = current === "dark" ? "light" : "dark";
 
-  const onToggle = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (busy) return;
     setBusy(true);
 
@@ -56,7 +58,7 @@ export const ThemeToggle: FC = () => {
   };
 
   return (
-    <div
+    <button
       onClick={onToggle}
       className={`
         flex items-start justify-center h-9 w-9
@@ -69,14 +71,14 @@ export const ThemeToggle: FC = () => {
         focus:ring-(--navy-400)
         transition-colors
       `}
-      aria-label="Toggle theme"
-      role="button"
+      title={locale === "en" ? "Toggle theme" : "تغییر تم"}
+      aria-label={locale === "en" ? "Toggle theme" : "تغییر تم"}
     >
       {current === "dark" ? (
         <span className="pt-0.75">🌙</span>
       ) : (
         <span className="pt-0.75">☀️</span>
       )}
-    </div>
+    </button>
   );
 };

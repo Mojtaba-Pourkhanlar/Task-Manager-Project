@@ -95,7 +95,7 @@ export const componentsStyles = {
     relative w-full
     outline-none
     focus-visible:ring-2
-    focus-visible:ring-blue-500
+    focus-visible:ring-(--navy-400)
     focus-visible:rounded-xl
     `,
 
