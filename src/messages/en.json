@@ -67,5 +67,19 @@
   },
   "year": {
     "header": "Annual task list"
+  },
+  "seo": {
+    "day": {
+      "title": "Day | Task Manager",
+      "description": "This app created by Mojtaba Pourkhanlar"
+    },
+    "month": {
+      "title": "Month | Task Manager",
+      "description": "This app created by Mojtaba Pourkhanlar"
+    },
+    "year": {
+      "title": "Year | Task Manager",
+      "description": "This app created by Mojtaba Pourkhanlar"
+    }
   }
 }
