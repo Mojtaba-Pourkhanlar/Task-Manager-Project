@@ -1,15 +1,6 @@
 import React from "react";
 import { Check } from "lucide-react";
-
-type Priority = "low" | "medium" | "high";
-
-interface GlassCheckboxProps {
-  id: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-  label?: string;
-  priority?: Priority;
-}
+import { GlassCheckboxProps, Priority } from "@/types";
 
 const priorityStyles: Record<Priority, string> = {
   low: "border-green-400 bg-green-400/30 shadow-[0_0_12px_rgba(34,197,94,0.5)]",

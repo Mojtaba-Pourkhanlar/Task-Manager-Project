@@ -75,7 +75,7 @@ export const componentsStyles = {
 
   emptyText: `
     text-[var(--muted-foreground)]
-    font-semibold text-base
+    font-semibold text-base whitespace-nowrap
     `,
 
   primaryButton: `
@@ -93,6 +93,10 @@ export const componentsStyles = {
   // Select.tsx
   selectWrapper: `
     relative w-full
+    outline-none
+    focus-visible:ring-2
+    focus-visible:ring-blue-500
+    focus-visible:rounded-xl
     `,
 
   selectTrigger: `
@@ -103,7 +107,6 @@ export const componentsStyles = {
     border-gray-300 dark:border-white/20
     bg-white dark:bg-neutral-900
     text-gray-800 dark:text-gray-100
-    shadow-lg
     flex justify-between items-center
     transition duration-200
     hover:bg-gray-100 dark:hover:bg-white/10
@@ -137,6 +140,10 @@ export const componentsStyles = {
     `,
 
   optionFocused: `
-    bg-gray-200 dark:bg-white/20
+    bg-black/30 dark:bg-white/20 outline-none
+    `,
+
+  optionSelected: `
+    font-semibold
     `,
 };

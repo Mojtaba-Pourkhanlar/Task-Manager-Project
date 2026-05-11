@@ -1,21 +1,11 @@
 "use client";
 
 import { useLocaleStore } from "@/store/locale";
+import { ResolvableProps } from "@/types";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useRef } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-type ToastType = "info" | "success" | "warning" | "error";
-
-type ResolvableProps = {
-  message: string;
-  type: ToastType;
-  theme?: "light" | "dark" | "system";
-  open: boolean;
-  duration?: number;
-  onClose: () => void;
-};
 
 export default function Toastify({
   message,

@@ -1,27 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { TableProps } from "@/types";
+import { AnimatePresence, motion } from "framer-motion";
 import { Inbox } from "lucide-react";
-import { Button } from "./Button";
 import { useTranslations } from "next-intl";
+import { Button } from "./Button";
 import { componentsStyles as s } from "./components.styles";
-
-type Column<T> = {
-  key: keyof T | string;
-  header: React.ReactNode;
-  render?: (row: T, index: number) => React.ReactNode;
-  width?: string;
-};
-
-type Props<T> = {
-  data: T[];
-  columns: Column<T>[];
-  emptyText?: string;
-  rowClassName?: (item: T) => string;
-  maxHeight?: string | number;
-  onClick: () => void;
-};
 
 export default function GlassTable<T>({
   data,
@@ -30,7 +14,7 @@ export default function GlassTable<T>({
   rowClassName,
   maxHeight,
   onClick,
-}: Props<T>) {
+}: TableProps<T>) {
   const t = useTranslations("public");
 
   const containerMaxHeight = maxHeight ?? "calc(100vh - 320px)";
@@ -53,7 +37,7 @@ export default function GlassTable<T>({
             {data.length === 0 && (
               <tr>
                 <td colSpan={columns.length}>
-                  <div className="flex items-center justify-center py-16">
+                  <div className="flex items-center justify-center py-16 ">
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}

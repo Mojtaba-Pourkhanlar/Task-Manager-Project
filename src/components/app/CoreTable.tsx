@@ -130,23 +130,19 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
         <div className={s.progressCard}>
           {/* info row */}
           <div className="flex items-center justify-between text-sm">
-            <div className="flex items-start gap-2 text-blue-600 dark:text-blue-300 font-bold">
+            <div className="flex items-start gap-1 text-blue-600 dark:text-blue-300 font-bold">
               <ListTodo size={16} />
-              <span>
-                {t("allTasks")}
-                <span className="mr-2 text-blue-600 dark:text-blue-400 font-bold">
-                  {" " + total}
-                </span>
+              {t("allTasks")} :
+              <span className="mx-2 text-blue-600 dark:text-blue-400 font-bold">
+                {" " + total}
               </span>
             </div>
 
-            <div className="flex items-start gap-2 text-green-600 dark:text-green-300 font-bold">
+            <div className="flex items-start gap-1 text-green-600 dark:text-green-300 font-bold">
               <CheckCircle2 size={16} />
-              <span>
-                {t("isDones")}
-                <span className="mr-2 text-green-600 dark:text-green-400 font-bold">
-                  {" " + doneCount}
-                </span>
+              {t("isDones")} :
+              <span className="mx-2 text-green-600 dark:text-green-400 font-bold">
+                {" " + doneCount}
               </span>
             </div>
           </div>

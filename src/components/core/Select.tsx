@@ -1,48 +1,75 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+
+import { GlassSelectProps } from "@/types";
+import { useEffect, useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { componentsStyles as s } from "./components.styles";
-
-interface Option<T extends string> {
-  label: string;
-  value: T;
-}
-
-interface GlassSelectProps<T extends string> {
-  options: Option<T>[];
-  value: T;
-  onChange: (value: T) => void;
-}
 
 export default function GlassSelect<T extends string>({
   options,
   value,
   onChange,
 }: GlassSelectProps<T>) {
+  const listboxId = uuidv4();
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+
   const [open, setOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
-  const listRef = useRef<HTMLUListElement>(null);
 
   const selected = options.find(o => o.value === value);
 
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (!wrapperRef.current?.contains(e.target as Node)) {
+        setOpen(false);
+        setFocusedIndex(-1);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  useEffect(() => {
+    if (!open || focusedIndex < 0) return;
+
+    const list = listRef.current;
+    const item = list?.children[focusedIndex] as HTMLElement;
+
+    item?.scrollIntoView({
+      block: "nearest",
+    });
+  }, [focusedIndex, open]);
+
+  const openSelect = () => {
+    setOpen(true);
+    const index = options.findIndex(o => o.value === value);
+    setFocusedIndex(index >= 0 ? index : 0);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!open) {
-      if (e.key === "Enter" || e.key === " ") {
-        setOpen(true);
-        setFocusedIndex(0);
+      if (["Enter", " ", "ArrowDown"].includes(e.key)) {
+        e.preventDefault();
+        openSelect();
       }
       return;
     }
-    if (["ArrowUp", "ArrowDown"].includes(e.key)) e.preventDefault();
+
     switch (e.key) {
       case "ArrowDown":
-        setFocusedIndex(prev => (prev + 1) % options.length);
+        e.preventDefault();
+        setFocusedIndex(i => (i + 1) % options.length);
         break;
 
       case "ArrowUp":
-        setFocusedIndex(prev => (prev - 1 < 0 ? options.length - 1 : prev - 1));
+        e.preventDefault();
+        setFocusedIndex(i => (i - 1 + options.length) % options.length);
         break;
 
       case "Enter":
+        e.preventDefault();
         if (focusedIndex >= 0) {
           onChange(options[focusedIndex].value);
           setOpen(false);
@@ -59,23 +86,24 @@ export default function GlassSelect<T extends string>({
     }
   };
 
-  useEffect(() => {
-    if (open && listRef.current && focusedIndex >= 0) {
-      const item = listRef.current.children[focusedIndex] as HTMLElement;
-      item?.focus();
-    }
-  }, [focusedIndex, open]);
-
   return (
-    <div className={s.selectWrapper} tabIndex={0} onKeyDown={handleKeyDown}>
+    <div
+      ref={wrapperRef}
+      className={s.selectWrapper}
+      tabIndex={0}
+      role="combobox"
+      aria-controls={listboxId}
+      aria-expanded={open}
+      aria-haspopup="listbox"
+      onKeyDown={handleKeyDown}
+    >
       <div
-        onClick={() => {
-          setOpen(o => !o);
-          setFocusedIndex(0);
-        }}
         className={s.selectTrigger}
+        onClick={() => (open ? setOpen(false) : openSelect())}
       >
-        <span>{selected?.label ?? "انتخاب کنید..."}</span>
+        <span className="font-semibold">
+          {selected?.label ?? "انتخاب کنید..."}
+        </span>
 
         <span className={`${s.selectArrow} ${open ? "rotate-180" : ""}`}>
           ▾
@@ -83,23 +111,32 @@ export default function GlassSelect<T extends string>({
       </div>
 
       {open && (
-        <ul ref={listRef} className={s.dropdown}>
-          {options.map((op, i) => (
-            <li
-              key={op.value}
-              tabIndex={0}
-              onClick={() => {
-                onChange(op.value);
-                setOpen(false);
-              }}
-              onFocus={() => setFocusedIndex(i)}
-              className={`
-            ${s.option}
-          `}
-            >
-              {op.label}
-            </li>
-          ))}
+        <ul ref={listRef} role="listbox" id={listboxId} className={s.dropdown}>
+          {options.map((op, i) => {
+            const isFocused = i === focusedIndex;
+            const isSelected = op.value === value;
+
+            return (
+              <li
+                key={op.value}
+                role="option"
+                aria-selected={isSelected}
+                tabIndex={isFocused ? 0 : -1}
+                className={`
+                  ${s.option}
+                  ${isFocused ? s.optionFocused : ""}
+                  ${isSelected ? s.optionSelected : ""}
+                `}
+                onMouseEnter={() => setFocusedIndex(i)}
+                onClick={() => {
+                  onChange(op.value);
+                  setOpen(false);
+                }}
+              >
+                {op.label}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

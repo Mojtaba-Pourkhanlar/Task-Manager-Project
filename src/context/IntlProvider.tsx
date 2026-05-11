@@ -39,7 +39,11 @@ export default function IntlProvider({
   }, [locale]);
 
   return (
-    <NextIntlClientProvider locale={locale} messages={currentMessages}>
+    <NextIntlClientProvider
+      locale={locale}
+      messages={currentMessages}
+      timeZone="Asia/Tehran"
+    >
       {children}
     </NextIntlClientProvider>
   );

@@ -47,7 +47,7 @@
     "formBTN": "Cancel",
     "formBTNTitle": "Cancel and close the form",
     "formBTNAria": "Cancel creating a new task and closing the modal",
-    "formBTNCreat": "Creat",
+    "formBTNCreat": "Create",
     "formBTNCreatTitle": "Please enter the task name first.",
     "formBTNCreatAria": "The Create Task button is disabled because the task name has not been entered.",
     "formBTNCreatAriaConfirm": "Confirm and create a new task",
