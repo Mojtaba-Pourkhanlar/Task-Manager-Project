@@ -1,5 +1,6 @@
 import GlassCheckbox from "@/components/core/Checkbox";
 import GlassTable from "@/components/core/Table";
+import UndoTimerButton from "@/components/core/UndoTimerButton";
 import { Task, TaskColumn } from "@/types";
 import { Trash2, ListTodo, CheckCircle2 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -11,6 +12,7 @@ interface Props {
   onToggleDone: (id: string, value: boolean) => void;
   onDelete: (id: string) => void;
   onClick: () => void;
+  onUndoDelete: (id: string) => void;
 }
 
 const priorityWeight: Record<Task["priority"], number> = {
@@ -19,7 +21,13 @@ const priorityWeight: Record<Task["priority"], number> = {
   low: 1,
 };
 
-const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
+const CoreTable = ({
+  tasks,
+  onToggleDone,
+  onDelete,
+  onClick,
+  onUndoDelete,
+}: Props) => {
   const t = useTranslations("public");
 
   const columns: TaskColumn[] = [
@@ -71,28 +79,36 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
       key: "actions",
       header: t("tableColumnsActions"),
       width: "w-[70px]",
-      render: (task: Task) => (
-        <button
-          onClick={() => onDelete(task.id)}
-          className={s.tableDeleteButton}
-          title={t("tableColumnsDelete")}
-          aria-label={`${t("tableColumnsDeleteDetail")} : ${task.title}`}
-        >
-          <Trash2
-            size={16}
-            className={s.tableDeleteIcon}
-            strokeWidth={2.5}
-            aria-hidden="true"
-          />
-        </button>
-      ),
+      render: (task: Task) => {
+        if (task.deleting) {
+          return <UndoTimerButton onUndo={() => onUndoDelete(task.id)} />;
+        }
+        return (
+          <button
+            onClick={() => onDelete(task.id)}
+            className={s.tableDeleteButton}
+            title={t("tableColumnsDelete")}
+            aria-label={`${t("tableColumnsDeleteDetail")} : ${task.title}`}
+          >
+            <Trash2
+              size={16}
+              className={s.tableDeleteIcon}
+              strokeWidth={2.5}
+              aria-hidden="true"
+            />
+          </button>
+        );
+      },
     },
   ];
 
   const viewTasks = useMemo(() => {
     if (!tasks) return [];
-    const copy = [...tasks];
-    copy.sort((a, b) => {
+
+    const deleting = tasks.filter(t => t.deleting);
+    const normal = tasks.filter(t => !t.deleting);
+
+    const sorted = [...normal].sort((a, b) => {
       if (a.done !== b.done) {
         return a.done ? 1 : -1;
       }
@@ -100,7 +116,8 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
       if (pw !== 0) return pw;
       return a.title.localeCompare(b.title, "fa");
     });
-    return copy;
+
+    return [...sorted, ...deleting];
   }, [tasks]);
 
   const isDone = viewTasks?.filter((item: Task) => item.done);
@@ -119,9 +136,10 @@ const CoreTable = ({ tasks, onToggleDone, onDelete, onClick }: Props) => {
       <GlassTable
         data={viewTasks}
         columns={columns}
-        rowClassName={(task: Task) =>
-          task.done ? "bg-green-500/20" : "hover:bg-white/5"
-        }
+        rowClassName={(task: Task) => {
+          if (task.deleting) return "opacity-50 bg-red-500/20 animate-pulse";
+          return task.done ? "bg-green-500/20" : "hover:bg-white/5";
+        }}
         emptyText={t("tableEmpty")}
         onClick={onClick}
       />

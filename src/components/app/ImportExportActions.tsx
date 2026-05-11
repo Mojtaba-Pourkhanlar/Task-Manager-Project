@@ -34,8 +34,13 @@ export default function ImportExportActions({
   const [normalizedTasks, setNormalizedTasks] = useState<Task[]>([]);
 
   const handleDownload = () => {
-    downloadTasksAsJson(section, tasks);
-    showToast("success", t("downloadTask"));
+    console.log("tasks", tasks);
+    if (tasks.length > 0) {
+      downloadTasksAsJson(section, tasks);
+      showToast("success", t("downloadTask"));
+    } else {
+      showToast("error", t("downloadErr"));
+    }
   };
 
   const handleOpenFilePicker = () => {

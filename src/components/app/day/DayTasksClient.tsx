@@ -4,17 +4,14 @@ import AddTask from "@/components/app/AddTask";
 import CoreTable from "@/components/app/CoreTable";
 import Headers from "@/components/app/Headers";
 import ImportExportActions from "@/components/app/ImportExportActions";
-import { useToast } from "@/context/ToastContext";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
-import { useState, useRef } from "react";
 import { useTranslations } from "next-intl";
+import { useRef, useState } from "react";
 
 const DayTasksClient = () => {
-  const t = useTranslations("public");
+  const deleteTimers = useRef<Record<string, NodeJS.Timeout>>({});
   const td = useTranslations("day");
-  const { showUndoToast } = useToast();
-  const pendingDeleteRef = useRef<Task | null>(null);
   const [tasks, setTasks] = useLocalStorage<Task[]>("day-tasks", []);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,22 +21,26 @@ const DayTasksClient = () => {
   const toggleDoneById = (id: string, value: boolean) => {
     setTasks(prev => prev.map(t => (t.id === id ? { ...t, done: value } : t)));
   };
+
   const deleteById = (id: string) => {
-    const deletedTask = tasks.find(t => t.id === id);
-    if (!deletedTask) return;
-    setTasks(prev => prev.filter(t => t.id !== id));
-    pendingDeleteRef.current = deletedTask;
-    showUndoToast(t("deleteTask"), undoDelete);
-    setTimeout(() => {
-      pendingDeleteRef.current = null;
-    }, 2300);
+    setTasks(prev =>
+      prev.map(t => (t.id === id ? { ...t, deleting: true } : t)),
+    );
+    deleteTimers.current[id] = setTimeout(() => {
+      setTasks(prev => prev.filter(t => t.id !== id));
+      delete deleteTimers.current[id];
+    }, 4000);
   };
 
-  const undoDelete = () => {
-    const task = pendingDeleteRef.current;
-    if (!task) return;
-    setTasks(prev => [...prev, task]);
-    pendingDeleteRef.current = null;
+  const undoDelete = (id: string) => {
+    const timer = deleteTimers.current[id];
+    if (timer) {
+      clearTimeout(timer);
+      delete deleteTimers.current[id];
+    }
+    setTasks(prev =>
+      prev.map(t => (t.id === id ? { ...t, deleting: false } : t)),
+    );
   };
 
   const handleImportTasks = (importedTasks: Task[]) => {
@@ -63,6 +64,7 @@ const DayTasksClient = () => {
         tasks={tasks}
         onToggleDone={toggleDoneById}
         onDelete={deleteById}
+        onUndoDelete={undoDelete}
         onClick={() => setIsModalOpen(true)}
       />
       {isModalOpen && (
