@@ -12,7 +12,6 @@ export const useLocaleStore = create<LocaleState>(set => ({
   setLocale: locale => {
     if (typeof window !== "undefined") {
       localStorage.setItem("locale", locale);
-      document.cookie = `locale=${locale}; path=/; max-age=31536000`;
     }
     set({ locale });
   },
