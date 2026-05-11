@@ -2,6 +2,7 @@
   "public": {
     "add": "Add Task",
     "downloadTask": "The operation was successful.",
+    "downloadErr": "There is no task available for download.",
     "uploadErr": "This file does not belong to this section.",
     "uploadErrRead": "An error occurred while reading the file.",
     "deleteTask": "Task successfully deleted",

@@ -62,7 +62,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 // Toastify.tsx
-type ToastType = "info" | "success" | "warning" | "error";
+export type ToastType = "info" | "success" | "warning" | "error";
 export type ResolvableProps = {
   message: string;
   type: ToastType;
@@ -71,6 +71,12 @@ export type ResolvableProps = {
   duration?: number;
   onClose: () => void;
 };
+export interface ToastContextType {
+  showToast: (type: ToastType, message: string, duration?: number) => void;
+}
+export interface ToastProviderProps {
+  children: ReactNode;
+}
 
 // --------------------------------------------Task Page
 export interface Task {
@@ -78,6 +84,7 @@ export interface Task {
   title: string;
   priority: "low" | "medium" | "high";
   done: boolean;
+  deleting?: boolean;
 }
 export interface TaskColumn {
   key: keyof Task | string;
