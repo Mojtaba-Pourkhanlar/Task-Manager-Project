@@ -1,13 +1,8 @@
 "use client";
 
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ModalProps } from "@/types";
+import { useEffect, useRef, useState } from "react";
 import { componentsStyles as s } from "./components.styles";
-interface ModalProps {
-  isOpen: boolean;
-  header: string;
-  children: ReactNode;
-  onClose: () => void;
-}
 
 export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -36,19 +31,15 @@ export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
   useEffect(() => {
     const viewport = window.visualViewport;
     if (!viewport) return;
-
     const handleResize = () => {
       const offset = window.innerHeight - viewport.height;
-
       if (offset > 0) {
         setKeyboardOffset(offset);
       } else {
         setKeyboardOffset(0);
       }
     };
-
     viewport.addEventListener("resize", handleResize);
-
     return () => {
       viewport.removeEventListener("resize", handleResize);
     };

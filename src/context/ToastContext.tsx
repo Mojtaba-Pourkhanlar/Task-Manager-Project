@@ -11,7 +11,6 @@ import Toastify from "@/components/core/Toastify";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import { useLocaleStore } from "@/store/locale";
-import { useTheme } from "next-themes";
 
 type ToastType = "info" | "success" | "warning" | "error";
 
