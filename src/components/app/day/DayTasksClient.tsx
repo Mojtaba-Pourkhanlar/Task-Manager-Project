@@ -7,10 +7,13 @@ import ImportExportActions from "@/components/app/ImportExportActions";
 import { TIMER } from "@/constants";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
+import { Route } from "next";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
 const DayTasksClient = () => {
+  const router = useRouter();
   const deleteTimers = useRef<Record<string, NodeJS.Timeout>>({});
   const td = useTranslations("day");
   const [tasks, setTasks] = useLocalStorage<Task[]>("day-tasks", []);
@@ -48,6 +51,10 @@ const DayTasksClient = () => {
     setTasks(prev => [...prev, ...importedTasks]);
   };
 
+  const handleAction = () => {
+    router.push("/auth" as Route);
+  };
+
   return (
     <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
       <Headers
@@ -61,6 +68,7 @@ const DayTasksClient = () => {
           />
         }
       />
+      <button onClick={handleAction}>عملیات نیازمند لاگین</button>
       <CoreTable
         tasks={tasks}
         onToggleDone={toggleDoneById}

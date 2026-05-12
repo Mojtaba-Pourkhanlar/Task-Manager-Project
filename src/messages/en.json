@@ -80,6 +80,10 @@
     "year": {
       "title": "Annual | Task Manager",
       "description": "This app created by Mojtaba Pourkhanlar"
+    },
+    "auth": {
+      "title": "Login | Register",
+      "description": "This app created by Mojtaba Pourkhanlar"
     }
   }
 }
