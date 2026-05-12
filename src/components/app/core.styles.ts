@@ -106,4 +106,53 @@ export const coreStyles = {
     bg-[var(--progress-bg)]
     overflow-hidden
     `,
+  //.............AuthForm.tsx
+  page: `
+    flex items-center justify-center
+    min-h-screen
+    dark:bg-neutral-900
+    px-4
+    `,
+
+  card: `
+    w-full max-w-sm
+    rounded-2xl
+    bg-[var(--modal-bg)]
+    dark:bg-neutral-700/70
+    shadow-xl 
+    p-6
+    animate-fade-in
+    `,
+
+  headerRow: `
+    flex items-end justify-center
+    relative
+    `,
+
+  backBtn: `
+    absolute right-0 cursor-pointer
+    text-lg
+    text-[var(--muted-foreground)]
+    dark:text-[var(--muted-foreground)]
+    hover:text-[var(--foreground)]
+    dark:hover:text-[var(--foreground)]
+    transition
+    `,
+
+  header: `
+    text-[22px] font-semibold
+    text-[var(--foreground)]
+    dark:text-[var(--foreground)]
+    `,
+
+  submitBtn: (disabled: boolean) =>
+    `
+    w-full mt-8
+    transition
+    ${
+      disabled
+        ? "bg-gray-400 dark:bg-gray-600 cursor-not-allowed"
+        : "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+    }
+    `,
 };
