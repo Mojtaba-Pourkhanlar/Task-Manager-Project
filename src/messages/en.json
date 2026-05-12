@@ -68,6 +68,20 @@
   "year": {
     "header": "Annual task list"
   },
+  "auth": {
+    "header": "Sign Up / Log In",
+    "userName": "Enter your username",
+    "userNameAria": "Username",
+    "email": "Enter your email",
+    "emailAria": "Email",
+    "formBTN": "Cancel",
+    "formBTNTitle": "Cancel and close the form",
+    "formBTNAria": "Cancel Sign Up / Log In and closing the modal",
+    "formBTNCreate": "Sign Up / Log In",
+    "formBTNCreateTitle": "Please enter your username and email first",
+    "formBTNCreateAria": "Sign Up / Log In button is disabled because username and email are not entered",
+    "formBTNCreateAriaConfirm": "Confirm and close the Sign Up / Log In form"
+  },
   "seo": {
     "day": {
       "title": "Daily | Task Manager",
