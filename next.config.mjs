@@ -8,7 +8,7 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig = {
-  output: "export",
+  output: "export", 
 
   turbopack: {},
   typedRoutes: true,
@@ -16,11 +16,6 @@ const nextConfig = {
 
   images: {
     unoptimized: true,
-  },
-
-  experimental: {
-    webpackBuildWorker: true,
-    turbo: false,
   },
 
   async headers() {
