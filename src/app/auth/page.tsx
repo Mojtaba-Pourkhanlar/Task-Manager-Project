@@ -1,4 +1,4 @@
-import LoginForm from "@/components/app/auth/LoginForm";
+import AuthForm from "@/components/app/auth/AuthForm";
 import { createSeo } from "@/lib/seo";
 
 export function generateMetadata() {
@@ -6,9 +6,5 @@ export function generateMetadata() {
 }
 
 export default function AuthPage() {
-  return (
-    <div>
-      <LoginForm />
-    </div>
-  );
+  return <AuthForm />;
 }
