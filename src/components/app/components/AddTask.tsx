@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "@/components/core/Button";
-import { Modal } from "@/components/core/Modal";
-import GlassSelect from "@/components/core/Select";
-import { TextInput } from "@/components/core/TextInput";
+import { Button } from "@/components/ui/Button";
+import { Modal } from "@/components/ui/Modal";
+import GlassSelect from "@/components/ui/Select";
+import { TextInput } from "@/components/ui/TextInput";
 import { Task } from "@/types";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";

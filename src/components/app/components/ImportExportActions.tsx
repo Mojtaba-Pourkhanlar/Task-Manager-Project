@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/core/Button";
-import { Upload, Download } from "lucide-react";
-import { Modal } from "@/components/core/Modal";
+import { Button } from "@/components/ui/Button";
+import { Modal } from "@/components/ui/Modal";
+import { useToast } from "@/context/ToastContext";
 import { Task } from "@/types";
 import { TaskExportFile, TaskSection } from "@/types/task-transfer";
 import {
@@ -10,9 +10,9 @@ import {
   normalizeImportedTasks,
   parseTaskImportFile,
 } from "@/utils/taskTransfer";
-import { useRef, useState } from "react";
-import { useToast } from "@/context/ToastContext";
+import { Download, Upload } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useRef, useState } from "react";
 import { coreStyles as s } from "./core.styles";
 
 interface Props {

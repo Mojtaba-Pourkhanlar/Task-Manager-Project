@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/components/core/Button";
-import { TextInput } from "@/components/core/TextInput";
+import { Button } from "@/components/ui/Button";
+import { TextInput } from "@/components/ui/TextInput";
 import { EMAIL_REGEX, USERNAME_REGEX } from "@/constants";
 import { MoveRight } from "lucide-react";
 import { useTranslations } from "next-intl";

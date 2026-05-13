@@ -1,6 +1,6 @@
 "use client";
 
-import Toastify from "@/components/core/Toastify";
+import Toastify from "@/components/ui/Toastify";
 import { ToastContextType, ToastProviderProps, ToastType } from "@/types";
 import React, { createContext, useContext, useState } from "react";
 

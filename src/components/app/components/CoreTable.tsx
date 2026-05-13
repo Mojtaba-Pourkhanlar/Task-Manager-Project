@@ -1,11 +1,12 @@
-import GlassCheckbox from "@/components/core/Checkbox";
-import GlassTable from "@/components/core/Table";
-import UndoTimerButton from "@/components/core/UndoTimerButton";
+import GlassCheckbox from "@/components/ui/Checkbox";
+import GlassTable from "@/components/ui/Table";
+import UndoTimerButton from "@/components/ui/UndoTimerButton";
 import { Task, TaskColumn } from "@/types";
 import { Trash2, ListTodo, CheckCircle2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 import { coreStyles as s } from "./core.styles";
+import Tooltip from "@/components/ui/Tooltip";
 
 interface Props {
   tasks: Task[];
@@ -76,7 +77,7 @@ const CoreTable = ({
     {
       key: "task",
       header: t("tableColumnsTitle"),
-      render: (task: Task) => <span className="font-medium">{task.title}</span>,
+      render: (task: Task) => <Tooltip text={task.title}>{task.title}</Tooltip>,
     },
     {
       key: "priority",
