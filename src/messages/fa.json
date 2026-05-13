@@ -31,10 +31,16 @@
 
     "newTask": "تسک جدید",
     "creatNewTask": "ایجاد تسک جدید",
+    "editTask": "ویرایش تسک",
+    "viewTask": "نمایش جزئیات تسک",
 
     "tableColumnsTitle": "عنوان",
     "tableColumnsPriority": "اولویت",
     "tableColumnsActions": "عملیات",
+    "tableColumnsView": "نمایش تسک",
+    "tableColumnsViewDetail": "نمایش جزئیات تسک",
+    "tableColumnsEdit": "ویرایش تسک",
+    "tableColumnsEditDetail": "ویرایش تسک",
     "tableColumnsDelete": "حذف تسک",
     "tableColumnsDeleteDetail": "پاک کردن تسک",
 
@@ -49,9 +55,14 @@
     "formBTNTitle": "انصراف و بستن فرم",
     "formBTNAria": "انصراف از ایجاد تسک جدید و بستن مودال",
     "formBTNCreat": "ایجاد",
+    "updateTask": "ویرایش",
     "formBTNCreatTitle": "لطفاً ابتدا نام تسک را وارد کنید",
     "formBTNCreatAria": "دکمه ایجاد تسک غیرفعال است چون نام تسک وارد نشده",
     "formBTNCreatAriaConfirm": "تایید و ایجاد تسک جدید",
+
+    "status": "وضعیت",
+    "done": "انجام شده ✅",
+    "inprogress": "در حال انجام... ⏳",
 
     "day": "روزانه",
     "month": "ماهانه",

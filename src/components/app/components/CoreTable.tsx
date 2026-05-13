@@ -1,26 +1,13 @@
 import GlassCheckbox from "@/components/ui/Checkbox";
 import GlassTable from "@/components/ui/Table";
 import UndoTimerButton from "@/components/ui/UndoTimerButton";
-import { Task, TaskColumn } from "@/types";
-import { Trash2, ListTodo, CheckCircle2 } from "lucide-react";
+import { Task, ColumnTable, CoreTableProps } from "@/types";
+import { Trash2, ListTodo, CheckCircle2, Eye, Pencil } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 import { coreStyles as s } from "./core.styles";
 import Tooltip from "@/components/ui/Tooltip";
-
-interface Props {
-  tasks: Task[];
-  onToggleDone: (id: string, value: boolean) => void;
-  onDelete: (id: string) => void;
-  onClick: () => void;
-  onUndoDelete: (id: string) => void;
-}
-
-const priorityWeight: Record<Task["priority"], number> = {
-  high: 3,
-  medium: 2,
-  low: 1,
-};
+import { priorityWeight } from "@/constants";
 
 const CoreTable = ({
   tasks,
@@ -28,7 +15,9 @@ const CoreTable = ({
   onDelete,
   onClick,
   onUndoDelete,
-}: Props) => {
+  onView,
+  onEdit,
+}: CoreTableProps) => {
   const t = useTranslations("public");
   const [now, setNow] = useState(() => Date.now());
 
@@ -59,7 +48,7 @@ const CoreTable = ({
     return [...sorted, ...deleting];
   }, [tasks, now]);
 
-  const columns: TaskColumn[] = [
+  const columns: ColumnTable<Task>[] = [
     {
       key: "done",
       header: "",
@@ -75,7 +64,7 @@ const CoreTable = ({
       width: "w-[10px]",
     },
     {
-      key: "task",
+      key: "title",
       header: t("tableColumnsTitle"),
       render: (task: Task) => <Tooltip text={task.title}>{task.title}</Tooltip>,
     },
@@ -105,7 +94,7 @@ const CoreTable = ({
       width: "w-[10px]",
     },
     {
-      key: "actions",
+      key: "deletingUntil",
       header: t("tableColumnsActions"),
       width: "w-[70px]",
       render: (task: Task) => {
@@ -116,19 +105,49 @@ const CoreTable = ({
           return <UndoTimerButton onUndo={() => onUndoDelete(task.id)} />;
         }
         return (
-          <button
-            onClick={() => onDelete(task.id)}
-            className={s.tableDeleteButton}
-            title={t("tableColumnsDelete")}
-            aria-label={`${t("tableColumnsDeleteDetail")} : ${task.title}`}
-          >
-            <Trash2
-              size={16}
-              className={s.tableDeleteIcon}
-              strokeWidth={2.5}
-              aria-hidden="true"
-            />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => onView(task)}
+              className={s.tableActionButton("info")}
+              title={t("tableColumnsView")}
+              aria-label={`${t("tableColumnsViewDetail")} : ${task.title}`}
+            >
+              <Eye
+                size={16}
+                strokeWidth={2.5}
+                aria-hidden="true"
+                className={s.tableViewIcon}
+              />
+            </button>
+
+            <button
+              onClick={() => onEdit(task)}
+              className={s.tableActionButton("warning")}
+              title={t("tableColumnsEdit")}
+              aria-label={`${t("tableColumnsEditDetail")} : ${task.title}`}
+            >
+              <Pencil
+                size={16}
+                strokeWidth={2.5}
+                aria-hidden="true"
+                className={s.tableEditIcon}
+              />
+            </button>
+
+            <button
+              onClick={() => onDelete(task.id)}
+              className={s.tableActionButton("danger")}
+              title={t("tableColumnsDelete")}
+              aria-label={`${t("tableColumnsDeleteDetail")} : ${task.title}`}
+            >
+              <Trash2
+                size={16}
+                strokeWidth={2.5}
+                aria-hidden="true"
+                className={s.tableDeleteIcon}
+              />
+            </button>
+          </div>
         );
       },
     },

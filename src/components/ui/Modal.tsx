@@ -63,6 +63,7 @@ export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
     >
       <div ref={modalRef} className={s.container}>
         <h2 className={s.header}>{header}</h2>
+        <hr className={s.styleHR}/>
 
         <div className={s.content}>{children}</div>
       </div>

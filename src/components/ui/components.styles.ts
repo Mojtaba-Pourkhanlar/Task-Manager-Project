@@ -16,8 +16,12 @@ export const componentsStyles = {
   `,
 
   header: `
-    mb-4 text-lg font-semibold
+    text-lg font-semibold text-center
     text-[var(--foreground)]
+  `,
+
+  styleHR: `
+  bg-none mt-2 mb-4 border-b-2 border-(--navy-500)/20 dark:border-white/20
   `,
 
   content: `
@@ -46,7 +50,7 @@ export const componentsStyles = {
     `,
 
   th: `
-    px-4 py-3 text-start font-semibold
+    p-2 text-start font-semibold
     border-b border-[var(--table-row-border)]
     `,
 

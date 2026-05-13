@@ -52,21 +52,35 @@ export const coreStyles = {
   `,
   // CoreTable.tsx
 
-  tableDeleteButton: `
-    flex items-center justify-center
-    p-1.5 rounded-lg
-    bg-[var(--surface)]
-    hover:bg-[var(--surface-hover)]
-    border border-[var(--border)]
-    cursor-pointer
-    transition-colors duration-200
-    focus:outline-none
-    focus:ring-2
-    focus:ring-[var(--danger)]
-    `,
+  tableActionButton: (color: "danger" | "info" | "warning") => `
+  flex items-center justify-center
+  p-1.5 rounded-lg
+  bg-[var(--surface)]
+  hover:bg-[var(--surface-hover)]
+  border border-[var(--border)]
+  cursor-pointer
+  transition-colors duration-200
+  focus:outline-none
+  focus:ring-2
+  ${
+    color === "danger"
+      ? "focus:ring-red-500"
+      : color === "info"
+        ? "focus:ring-blue-500"
+        : "focus:ring-yellow-500"
+  }
+`,
 
   tableDeleteIcon: `
     text-[var(--danger)]
+    transition-colors
+    `,
+  tableViewIcon: `
+    text-blue-500
+    transition-colors
+    `,
+  tableEditIcon: `
+    text-yellow-500
     transition-colors
     `,
 

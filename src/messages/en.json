@@ -31,10 +31,16 @@
 
     "newTask": "New task",
     "creatNewTask": "Create a new task",
+    "editTask": "Edit task",
+    "viewTask": "View task Details",
 
     "tableColumnsTitle": "Title",
     "tableColumnsPriority": "Priority",
     "tableColumnsActions": "Operation",
+    "tableColumnsView": "View Task",
+    "tableColumnsViewDetail": "view Deail Task",
+    "tableColumnsEdit": "Edit Task",
+    "tableColumnsEditDetail": "Edit Task",
     "tableColumnsDelete": "Delete Task",
     "tableColumnsDeleteDetail": "Delete Task",
 
@@ -49,9 +55,14 @@
     "formBTNTitle": "Cancel and close the form",
     "formBTNAria": "Cancel creating a new task and closing the modal",
     "formBTNCreat": "Create",
+    "updateTask": "Edit",
     "formBTNCreatTitle": "Please enter the task name first.",
     "formBTNCreatAria": "The Create Task button is disabled because the task name has not been entered.",
     "formBTNCreatAriaConfirm": "Confirm and create a new task",
+
+    "status": "Status",
+    "done": "Done ✅",
+    "inprogress": "Inprogress ⏳",
 
     "day": "Daily",
     "month": "Monthly",

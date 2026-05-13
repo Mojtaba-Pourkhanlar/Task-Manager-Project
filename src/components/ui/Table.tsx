@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { TableProps } from "@/types";
+import { TableProps, Task } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { Inbox } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -64,7 +63,7 @@ export default function GlassTable<T>({
             <AnimatePresence mode="popLayout">
               {data.map((row, rowIndex) => (
                 <motion.tr
-                  key={(row as any).id ?? rowIndex}
+                  key={(row as Task).id ?? rowIndex}
                   layout
                   initial={{ opacity: 0, y: 20, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -80,10 +79,12 @@ export default function GlassTable<T>({
                 `}
                 >
                   {columns.map((col, colIndex) => (
-                    <td key={colIndex} className={`px-4 py-3 ${col.width}`}>
+                    <td key={colIndex} className={`p-2 ${col.width ?? ""}`}>
                       {col.render
                         ? col.render(row, rowIndex)
-                        : (row as any)[col.key]}
+                        : col.key
+                          ? (row[col.key] as React.ReactNode)
+                          : null}
                     </td>
                   ))}
                 </motion.tr>

@@ -1,12 +1,13 @@
 "use client";
 
-import AddTask from "@/components/app/components/AddTask";
+import AddTask from "@/components/app/components/AddEditTaskModal";
 import CoreTable from "@/components/app/components/CoreTable";
 import Headers from "@/components/app/components/Headers";
 import ImportExportActions from "@/components/app/components/ImportExportActions";
 import { TIMER } from "@/constants";
 import { SetTasks, Task } from "@/types";
 import { useEffect, useRef, useState } from "react";
+import TaskViewModal from "./TaskViewModal";
 
 interface Props {
   tasks: Task[];
@@ -19,6 +20,8 @@ const MainPage = ({ header_name, setTasks, tasks }: Props) => {
     {},
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [mode, setMode] = useState<"create" | "edit" | "view">("create");
 
   useEffect(() => {
     tasks.forEach(task => {
@@ -52,7 +55,6 @@ const MainPage = ({ header_name, setTasks, tasks }: Props) => {
       setTasks(prev => prev.filter(t => t.id !== id));
     }, TIMER);
   };
-
   const undoDelete = (id: string) => {
     const timer = deleteTimers.current[id];
     if (timer) {
@@ -64,15 +66,27 @@ const MainPage = ({ header_name, setTasks, tasks }: Props) => {
     );
   };
 
+  const updateTask = (updatedTask: Task) => {
+    setTasks(prev =>
+      prev.map(task => (task.id === updatedTask.id ? updatedTask : task)),
+    );
+  };
+
   const handleImportTasks = (importedTasks: Task[]) => {
     setTasks(prev => [...prev, ...importedTasks]);
   };
 
+  const createTask = () => {
+    setMode("create");
+    setSelectedTask(null);
+    setIsModalOpen(true);
+  };
+
   return (
-    <div className="px-5 md:px-11 py-6 max-w-3xl mx-auto">
+    <div className="px-3 md:px-5 py-6 max-w-3xl mx-auto">
       <Headers
         name={header_name}
-        onClick={() => setIsModalOpen(true)}
+        onClick={createTask}
         actions={
           <ImportExportActions
             section="day"
@@ -86,13 +100,34 @@ const MainPage = ({ header_name, setTasks, tasks }: Props) => {
         onToggleDone={toggleDoneById}
         onDelete={deleteById}
         onUndoDelete={undoDelete}
-        onClick={() => setIsModalOpen(true)}
+        onClick={createTask}
+        onView={task => {
+          setMode("view");
+          setSelectedTask(task);
+          setIsModalOpen(true);
+        }}
+        onEdit={task => {
+          setMode("edit");
+          setSelectedTask(task);
+          setIsModalOpen(true);
+        }}
       />
-      {isModalOpen && (
+      {isModalOpen && mode !== "view" && (
         <AddTask
+          key={selectedTask?.id || "create"}
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           onAdd={handleAddTask}
+          onUpdate={updateTask}
+          mode={mode}
+          task={selectedTask}
+        />
+      )}
+      {mode === "view" && (
+        <TaskViewModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          task={selectedTask}
         />
       )}
     </div>

@@ -1,9 +1,4 @@
-import {
-  ButtonHTMLAttributes,
-  ChangeEvent,
-  InputHTMLAttributes,
-  ReactNode,
-} from "react";
+import { ButtonHTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 
 // --------------------------------------Core Components
 // Button.tsx
@@ -34,32 +29,35 @@ interface Option<T extends string> {
   value: T;
 }
 export interface GlassSelectProps<T extends string> {
+  label?: string;
   options: Option<T>[];
   value: T;
   onChange: (value: T) => void;
 }
 
 // Table.tsx
-type Column<T> = {
-  key: keyof T | string;
+export type ColumnTable<T> = {
+  key?: keyof T;
   header: React.ReactNode;
   render?: (row: T, index: number) => React.ReactNode;
   width?: string;
 };
+
 export type TableProps<T> = {
   data: T[];
-  columns: Column<T>[];
+  columns: ColumnTable<T>[];
   emptyText?: string;
   rowClassName?: (item: T) => string;
   maxHeight?: string | number;
   onClick: () => void;
 };
+
 // TextInput.tsx
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  placeholder: string;
-  value: string | number;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  label?: string;
+  error?: boolean;
+  errorText?: string;
 }
 // Toastify.tsx
 export type ToastType = "info" | "success" | "warning" | "error";
@@ -89,9 +87,14 @@ export interface Task {
 
 export type SetTasks = React.Dispatch<React.SetStateAction<Task[]>>;
 
-export interface TaskColumn {
-  key: keyof Task | string;
-  header: React.ReactNode;
-  render?: (row: Task, index: number) => React.ReactNode;
-  width?: string;
+// -------------------------------------------- CoreTable.tsx
+
+export interface CoreTableProps {
+  tasks: Task[];
+  onToggleDone: (id: string, value: boolean) => void;
+  onDelete: (id: string) => void;
+  onClick: () => void;
+  onUndoDelete: (id: string) => void;
+  onView: (task: Task) => void;
+  onEdit: (task: Task) => void;
 }
