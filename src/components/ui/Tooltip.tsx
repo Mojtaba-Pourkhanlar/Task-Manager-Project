@@ -3,9 +3,9 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import {
   Position,
-  tooltipBaseStyles,
   tooltipPositionStyles,
-} from "./tooltip.style";
+  tooltipBaseStyles,
+} from "./components.styles";
 
 interface TooltipProps {
   text?: string;

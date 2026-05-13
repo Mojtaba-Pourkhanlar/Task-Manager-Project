@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Inbox } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "./Button";
-import { componentsStyles as s } from "./components.styles";
+import { tableStyles as s } from "./components.styles";
 
 export default function GlassTable<T>({
   data,
@@ -19,7 +19,7 @@ export default function GlassTable<T>({
   const containerMaxHeight = maxHeight ?? "calc(100vh - 320px)";
 
   return (
-    <div className={s.tableWrapper} style={{ height: containerMaxHeight }}>
+    <div className={s.wrapper} style={{ height: containerMaxHeight }}>
       <div className="h-full overflow-auto">
         <table className={s.table}>
           <thead className={s.thead}>

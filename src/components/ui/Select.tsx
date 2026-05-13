@@ -3,7 +3,7 @@
 import { GlassSelectProps } from "@/types";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { componentsStyles as s } from "./components.styles";
+import { selectStyles as s } from "./components.styles";
 
 export default function GlassSelect<T extends string>({
   label,
@@ -103,7 +103,7 @@ export default function GlassSelect<T extends string>({
       )}
       <div
         ref={wrapperRef}
-        className={s.selectWrapper}
+        className={s.wrapper}
         tabIndex={0}
         role="combobox"
         aria-controls={listboxId}
@@ -112,16 +112,14 @@ export default function GlassSelect<T extends string>({
         onKeyDown={handleKeyDown}
       >
         <div
-          className={s.selectTrigger}
+          className={s.trigger}
           onClick={() => (open ? setOpen(false) : openSelect())}
         >
           <span className="font-semibold">
             {selected?.label ?? "انتخاب کنید..."}
           </span>
 
-          <span className={`${s.selectArrow} ${open ? "rotate-180" : ""}`}>
-            ▾
-          </span>
+          <span className={`${s.arrow} ${open ? "rotate-180" : ""}`}>▾</span>
         </div>
 
         {open && (

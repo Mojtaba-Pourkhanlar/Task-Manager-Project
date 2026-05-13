@@ -1,5 +1,9 @@
-export const componentsStyles = {
-  // Modal.tsx
+import { Priority } from "@/types";
+import { cls } from "@/utils";
+
+/* ---------------- Modal ---------------- */
+
+export const modalStyles = {
   backdrop: `
     fixed inset-0 z-50 flex items-center justify-center
     transition-transform duration-300 ease-out
@@ -21,44 +25,49 @@ export const componentsStyles = {
   `,
 
   styleHR: `
-  bg-none mt-2 mb-4 border-b-2 border-(--navy-500)/20 dark:border-white/20
+    bg-none mt-2 mb-4
+    border-b-2 border-(--navy-500)/20 dark:border-white/20
   `,
 
   content: `
     text-[var(--muted-foreground)]
   `,
-  // Table.tsx
-  tableWrapper: `
+};
+
+/* ---------------- Table ---------------- */
+
+export const tableStyles = {
+  wrapper: `
     rounded-2xl
     border border-[var(--table-border)]
     bg-[var(--table-bg)]
     backdrop-blur-xl
     shadow-[var(--shadow-soft)]
     overflow-hidden
-    `,
+  `,
 
   table: `
     w-full text-sm
     text-[var(--foreground)]
     border-collapse
-    `,
+  `,
 
   thead: `
     sticky top-0 z-10
     bg-[var(--table-head-bg)]
     backdrop-blur-xl
-    `,
+  `,
 
   th: `
     p-2 text-start font-semibold
     border-b border-[var(--table-row-border)]
-    `,
+  `,
 
   row: `
     border-b border-[var(--table-row-border)]
     transition-colors duration-300
     hover:bg-[var(--row-hover)]
-    `,
+  `,
 
   emptyWrapper: `
     flex flex-col items-center gap-4
@@ -68,19 +77,19 @@ export const componentsStyles = {
     border border-[var(--table-border)]
     text-center
     shadow-[var(--shadow-soft)]
-    `,
+  `,
 
   emptyIconWrapper: `
     w-14 h-14 flex items-center justify-center
     rounded-full
     bg-[var(--empty-icon-bg)]
     border border-[var(--table-border)]
-    `,
+  `,
 
   emptyText: `
     text-[var(--muted-foreground)]
     font-semibold text-base whitespace-nowrap
-    `,
+  `,
 
   primaryButton: `
     bg-emerald-500/40
@@ -93,17 +102,21 @@ export const componentsStyles = {
     hover:shadow-[0_0_18px_rgba(16,185,129,0.35)]
     transition-all duration-200
     font-semibold
-    `,
-  // Select.tsx
-  selectWrapper: `
+  `,
+};
+
+/* ---------------- Select ---------------- */
+
+export const selectStyles = {
+  wrapper: `
     relative w-full
     outline-none
     focus-visible:ring-2
     focus-visible:ring-(--navy-400)
     focus-visible:rounded-xl
-    `,
+  `,
 
-  selectTrigger: `
+  trigger: `
     cursor-pointer
     px-3 py-2
     rounded-xl
@@ -115,12 +128,12 @@ export const componentsStyles = {
     transition duration-200
     hover:bg-gray-100 dark:hover:bg-white/10
     select-none
-    `,
+  `,
 
-  selectArrow: `
+  arrow: `
     text-gray-500 dark:text-white/70
     transition-transform duration-200
-    `,
+  `,
 
   dropdown: `
     absolute left-0 mt-2 w-full
@@ -131,7 +144,7 @@ export const componentsStyles = {
     text-gray-800 dark:text-gray-100
     z-50
     overflow-hidden
-    `,
+  `,
 
   option: `
     px-3 py-2
@@ -141,13 +154,151 @@ export const componentsStyles = {
     font-bold
     outline-none
     hover:bg-gray-100 dark:hover:bg-white/10
-    `,
+  `,
 
   optionFocused: `
-    bg-black/30 dark:bg-white/20 outline-none
-    `,
+    bg-black/30 dark:bg-white/20
+  `,
 
   optionSelected: `
     font-semibold
-    `,
+  `,
 };
+
+/* ---------------- Input ---------------- */
+
+export const inputStyles = {
+  wrapper: "w-full space-y-1",
+
+  label: `
+    text-sm font-semibold
+    text-gray-700 dark:text-gray-200
+    select-none
+  `,
+
+  base: `
+    w-full
+    px-3 pt-1 h-10
+    rounded-xl outline-none
+    border
+    bg-white dark:bg-neutral-900
+    text-gray-800 dark:text-gray-100
+    placeholder:text-gray-400 dark:placeholder:text-gray-500
+    focus:ring-2
+    transition-all duration-200
+    font-semibold
+  `,
+
+  normal: `
+    border-gray-300
+    dark:border-white/20
+    focus:ring-(--navy-400)
+  `,
+
+  error: `
+    border-red-500
+    focus:ring-red-400
+  `,
+
+  errorText: `
+    text-xs
+    text-red-500
+    font-medium
+    mt-1
+  `,
+};
+
+/* ---------------- Checkbox ---------------- */
+
+export const checkboxStyles = {
+  wrapper: "flex items-center gap-3 group",
+
+  input: "peer absolute w-6 h-6 opacity-0 cursor-pointer z-10",
+
+  circle: `
+    w-5 h-5 rounded-full border-2
+    backdrop-blur-md
+    transition-all duration-300 ease-out
+    flex items-center justify-center
+    peer-focus-visible:ring-2
+    peer-focus-visible:ring-offset-2
+    peer-focus-visible:ring-gray-400
+    dark:peer-focus-visible:ring-white/40
+  `,
+
+  unchecked: `
+    bg-gray-100 dark:bg-white/10
+    border-gray-300 dark:border-white/20
+    group-hover:border-gray-400
+    dark:group-hover:border-white/40
+  `,
+
+  icon: `
+    text-gray-800 dark:text-white
+    transition-all duration-300
+  `,
+
+  label: `
+    text-sm font-medium text-white/80
+    cursor-pointer select-none
+    group-hover:text-white
+    transition-colors
+  `,
+};
+
+export const checkboxPriorityStyles: Record<Priority, string> = {
+  low: "border-green-400 bg-green-400/30 shadow-[0_0_12px_rgba(34,197,94,0.5)]",
+  medium:
+    "border-yellow-400 bg-yellow-400/30 shadow-[0_0_12px_rgba(250,204,21,0.5)]",
+  high: "border-red-400 bg-red-400/30 shadow-[0_0_12px_rgba(239,68,68,0.5)]",
+};
+
+/* ---------------- Tooltip ---------------- */
+export type Position = "top" | "bottom" | "left" | "right";
+
+export const tooltipPositionStyles: Record<Position, string> = {
+  top: `
+    bottom-full left-1/2 -translate-x-1/2 mb-2
+    before:absolute before:left-1/2 before:top-full
+    before:-translate-x-1/2
+    before:border-4 before:border-transparent
+    before:border-t-zinc-900
+    dark:before:border-t-zinc-100
+  `,
+
+  bottom: `
+    top-full left-1/2 -translate-x-1/2 mt-2
+    before:absolute before:left-1/2 before:bottom-full
+    before:-translate-x-1/2
+    before:border-4 before:border-transparent
+    before:border-b-zinc-900
+    dark:before:border-b-zinc-100
+  `,
+
+  left: `
+    right-full top-1/2 -translate-y-1/2 mr-3
+    before:absolute before:left-full before:top-1/2
+    before:-translate-y-1/2
+    before:border-4 before:border-transparent
+    before:border-l-zinc-900
+    dark:before:border-l-zinc-100
+  `,
+
+  right: `
+    left-full top-1/2 -translate-y-1/2 ml-3
+    before:absolute before:right-full before:top-1/2
+    before:-translate-y-1/2
+    before:border-4 before:border-transparent
+    before:border-r-zinc-900
+    dark:before:border-r-zinc-100
+  `,
+};
+
+export const tooltipBaseStyles = cls(
+  "absolute z-50 rounded-md px-3 py-1.5 text-sm font-medium",
+  "bg-zinc-900 text-white shadow-lg",
+  "dark:bg-zinc-300 dark:text-zinc-900",
+  "transition-all duration-150",
+  "before:content-[''] before:absolute",
+  "max-w-[260px] whitespace-normal break-words",
+);
