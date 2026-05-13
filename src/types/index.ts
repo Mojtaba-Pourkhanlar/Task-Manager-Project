@@ -84,8 +84,11 @@ export interface Task {
   title: string;
   priority: "low" | "medium" | "high";
   done: boolean;
-  deleting?: boolean;
+  deletingUntil?: number;
 }
+
+export type SetTasks = React.Dispatch<React.SetStateAction<Task[]>>;
+
 export interface TaskColumn {
   key: keyof Task | string;
   header: React.ReactNode;
