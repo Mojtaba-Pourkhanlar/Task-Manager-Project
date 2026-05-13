@@ -6,7 +6,6 @@ export async function copyToClipboard(text: string) {
     await navigator.clipboard.writeText(text);
     return true;
   } catch {
-    // fallback
     const textarea = document.createElement("textarea");
     textarea.value = text;
     textarea.style.position = "fixed";
