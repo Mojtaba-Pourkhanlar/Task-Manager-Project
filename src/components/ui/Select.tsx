@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { componentsStyles as s } from "./components.styles";
 
 export default function GlassSelect<T extends string>({
+  label,
   options,
   value,
   onChange,
@@ -87,58 +88,77 @@ export default function GlassSelect<T extends string>({
   };
 
   return (
-    <div
-      ref={wrapperRef}
-      className={s.selectWrapper}
-      tabIndex={0}
-      role="combobox"
-      aria-controls={listboxId}
-      aria-expanded={open}
-      aria-haspopup="listbox"
-      onKeyDown={handleKeyDown}
-    >
+    <>
+      {label && (
+        <label
+          htmlFor={listboxId}
+          className="
+              text-sm font-semibold
+              text-gray-700 dark:text-gray-200
+              select-none
+            "
+        >
+          {label}
+        </label>
+      )}
       <div
-        className={s.selectTrigger}
-        onClick={() => (open ? setOpen(false) : openSelect())}
+        ref={wrapperRef}
+        className={s.selectWrapper}
+        tabIndex={0}
+        role="combobox"
+        aria-controls={listboxId}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        onKeyDown={handleKeyDown}
       >
-        <span className="font-semibold">
-          {selected?.label ?? "انتخاب کنید..."}
-        </span>
+        <div
+          className={s.selectTrigger}
+          onClick={() => (open ? setOpen(false) : openSelect())}
+        >
+          <span className="font-semibold">
+            {selected?.label ?? "انتخاب کنید..."}
+          </span>
 
-        <span className={`${s.selectArrow} ${open ? "rotate-180" : ""}`}>
-          ▾
-        </span>
-      </div>
+          <span className={`${s.selectArrow} ${open ? "rotate-180" : ""}`}>
+            ▾
+          </span>
+        </div>
 
-      {open && (
-        <ul ref={listRef} role="listbox" id={listboxId} className={s.dropdown}>
-          {options.map((op, i) => {
-            const isFocused = i === focusedIndex;
-            const isSelected = op.value === value;
+        {open && (
+          <ul
+            ref={listRef}
+            role="listbox"
+            id={listboxId}
+            className={s.dropdown}
+          >
+            {options.map((op, i) => {
+              const isFocused = i === focusedIndex;
+              const isSelected = op.value === value;
 
-            return (
-              <li
-                key={op.value}
-                role="option"
-                aria-selected={isSelected}
-                tabIndex={isFocused ? 0 : -1}
-                className={`
+              return (
+                <li
+                  key={op.value}
+                  role="option"
+                  aria-selected={isSelected}
+                  tabIndex={isFocused ? 0 : -1}
+                  className={`
                   ${s.option}
                   ${isFocused ? s.optionFocused : ""}
                   ${isSelected ? s.optionSelected : ""}
                 `}
-                onMouseEnter={() => setFocusedIndex(i)}
-                onClick={() => {
-                  onChange(op.value);
-                  setOpen(false);
-                }}
-              >
-                {op.label}
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </div>
+                  onMouseEnter={() => setFocusedIndex(i)}
+                  onClick={() => {
+                    onChange(op.value);
+                    setOpen(false);
+                  }}
+                >
+                  {op.label}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </>
   );
 }
