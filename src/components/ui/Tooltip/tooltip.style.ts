@@ -43,7 +43,7 @@ export const tooltipPositionStyles: Record<Position, string> = {
 export const tooltipBaseStyles = cls(
   "absolute z-50 rounded-md px-3 py-1.5 text-sm font-medium",
   "bg-zinc-900 text-white shadow-lg",
-  "dark:bg-zinc-100 dark:text-zinc-900",
+  "dark:bg-zinc-300 dark:text-zinc-900",
   "transition-all duration-150",
   "before:content-[''] before:absolute",
   "max-w-[260px] whitespace-normal break-words",
