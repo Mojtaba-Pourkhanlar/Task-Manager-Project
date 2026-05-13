@@ -12,18 +12,26 @@ import { v4 as uuidv4 } from "uuid";
 interface AddTaskModalProps {
   isOpen: boolean;
   onClose: () => void;
+  mode: "create" | "edit";
+  task?: Task | null;
   onAdd: (task: Task) => void;
+  onUpdate: (task: Task) => void;
 }
 
 export default function AddTaskModal({
   isOpen,
   onClose,
   onAdd,
+  task,
+  mode,
+  onUpdate,
 }: AddTaskModalProps) {
   const t = useTranslations("public");
 
-  const [taskName, setTaskName] = useState("");
-  const [priority, setPriority] = useState<"low" | "medium" | "high">("medium");
+  const [taskName, setTaskName] = useState(task?.title || "");
+  const [priority, setPriority] = useState<"low" | "medium" | "high">(
+    task?.priority || "medium",
+  );
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,32 +43,43 @@ export default function AddTaskModal({
 
   const isDisabled = taskName.trim().length === 0;
 
-  const handleAdd = () => {
+  const handleSubmit = () => {
     if (isDisabled) return;
 
-    const newTask: Task = {
-      id: uuidv4(),
-      title: taskName,
-      priority,
-      done: false,
-    };
+    if (mode === "create") {
+      onAdd({
+        id: uuidv4(),
+        title: taskName,
+        priority,
+        done: false,
+      });
+    }
 
-    onAdd(newTask);
+    if (mode === "edit" && task) {
+      onUpdate({
+        ...task,
+        title: taskName,
+        priority,
+      });
+    }
 
-    setTaskName("");
-    setPriority("medium");
     onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} header={t("creatNewTask")}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      header={mode === "create" ? t("creatNewTask") : t("editTask")}
+    >
       <div className="space-y-4">
         <TextInput
+          label={t("taskNameAria")}
           id="task-title"
           placeholder={t("taskName")}
           value={taskName}
           onChange={e => setTaskName(e.target.value)}
-          onKeyDown={e => e.key === "Enter" && handleAdd()}
+          onKeyDown={e => e.key === "Enter" && handleSubmit()}
           ref={inputRef}
           aria-required="true"
           aria-label={t("taskNameAria")}
@@ -69,6 +88,7 @@ export default function AddTaskModal({
         />
 
         <GlassSelect
+          label={t("tableColumnsPriority")}
           value={priority}
           onChange={setPriority}
           options={[
@@ -88,9 +108,11 @@ export default function AddTaskModal({
           aria-label={t("formBTNAria")}
         />
         <Button
-          className={isDisabled ? "bg-gray-400 dark:bg-gray-600" : "bg-blue-600"}
-          onClick={handleAdd}
-          label={t("formBTNCreat")}
+          className={
+            isDisabled ? "bg-gray-400 dark:bg-gray-600" : "bg-blue-600"
+          }
+          onClick={handleSubmit}
+          label={mode === "create" ? t("formBTNCreat") : t("updateTask")}
           disabled={isDisabled}
           title={isDisabled ? t("formBTNCreatTitle") : t("creatNewTask")}
           aria-label={
