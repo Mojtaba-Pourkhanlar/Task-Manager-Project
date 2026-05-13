@@ -4,7 +4,7 @@ import UndoTimerButton from "@/components/core/UndoTimerButton";
 import { Task, TaskColumn } from "@/types";
 import { Trash2, ListTodo, CheckCircle2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { coreStyles as s } from "./core.styles";
 
 interface Props {
@@ -29,6 +29,34 @@ const CoreTable = ({
   onUndoDelete,
 }: Props) => {
   const t = useTranslations("public");
+  const [now, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(Date.now());
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const viewTasks = useMemo(() => {
+    if (!tasks) return [];
+    const deleting = tasks.filter(
+      t => t.deletingUntil && t.deletingUntil > now,
+    );
+    const normal = tasks.filter(
+      t => !t.deletingUntil || t.deletingUntil <= now,
+    );
+    const sorted = [...normal].sort((a, b) => {
+      if (a.done !== b.done) {
+        return a.done ? 1 : -1;
+      }
+      const pw = priorityWeight[b.priority] - priorityWeight[a.priority];
+      if (pw !== 0) return pw;
+      return a.title.localeCompare(b.title, "fa");
+    });
+    return [...sorted, ...deleting];
+  }, [tasks, now]);
 
   const columns: TaskColumn[] = [
     {
@@ -80,7 +108,10 @@ const CoreTable = ({
       header: t("tableColumnsActions"),
       width: "w-[70px]",
       render: (task: Task) => {
-        if (task.deleting) {
+        const isDeleting =
+          task.deletingUntil && task.deletingUntil > Date.now();
+
+        if (isDeleting) {
           return <UndoTimerButton onUndo={() => onUndoDelete(task.id)} />;
         }
         return (
@@ -102,24 +133,6 @@ const CoreTable = ({
     },
   ];
 
-  const viewTasks = useMemo(() => {
-    if (!tasks) return [];
-
-    const deleting = tasks.filter(t => t.deleting);
-    const normal = tasks.filter(t => !t.deleting);
-
-    const sorted = [...normal].sort((a, b) => {
-      if (a.done !== b.done) {
-        return a.done ? 1 : -1;
-      }
-      const pw = priorityWeight[b.priority] - priorityWeight[a.priority];
-      if (pw !== 0) return pw;
-      return a.title.localeCompare(b.title, "fa");
-    });
-
-    return [...sorted, ...deleting];
-  }, [tasks]);
-
   const isDone = viewTasks?.filter((item: Task) => item.done);
 
   const total = viewTasks.length;
@@ -137,7 +150,8 @@ const CoreTable = ({
         data={viewTasks}
         columns={columns}
         rowClassName={(task: Task) => {
-          if (task.deleting) return "opacity-50 bg-red-500/20 animate-pulse";
+          if (task.deletingUntil && task.deletingUntil > Date.now())
+            return "opacity-50 bg-red-500/20 animate-pulse";
           return task.done ? "bg-green-500/20" : "hover:bg-white/5";
         }}
         emptyText={t("tableEmpty")}
