@@ -45,10 +45,8 @@ export const metadata: Metadata = {
 
 export default function SiteLayout({
   children,
-  modal,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
 }>) {
   return (
     <html
@@ -97,10 +95,7 @@ export default function SiteLayout({
         />
       </head>
       <body>
-        <CustomLayout>
-          {children}
-          {modal}
-        </CustomLayout>
+        <CustomLayout>{children}</CustomLayout>
       </body>
     </html>
   );
