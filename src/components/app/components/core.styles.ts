@@ -83,6 +83,10 @@ export const coreStyles = {
     text-yellow-500
     transition-colors
     `,
+  tableIconDisabled: `
+    text-gray-400
+    transition-colors
+    `,
 
   priorityHigh: `
     px-2 py-1 rounded-md text-xs font-semibold

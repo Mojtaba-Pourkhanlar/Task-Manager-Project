@@ -25,7 +25,7 @@ export default function GlassTable<T>({
           <thead className={s.thead}>
             <tr>
               {columns.map((col, i) => (
-                <th key={i} className={`${s.th} ${col.width || ""}`}>
+                <th key={i} className={`${s.th} ${col.width || ""} ${col.align || "text-start"}`}>
                   {col.header}
                 </th>
               ))}

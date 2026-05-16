@@ -62,11 +62,13 @@ const CoreTable = ({
         />
       ),
       width: "w-[10px]",
+      align: "text-start",
     },
     {
       key: "title",
       header: t("tableColumnsTitle"),
       render: (task: Task) => <Tooltip text={task.title}>{task.title}</Tooltip>,
+      align: "text-start",
     },
     {
       key: "priority",
@@ -85,24 +87,55 @@ const CoreTable = ({
 
         return (
           <span
-            className={`${colorMap[task.priority]} whitespace-nowrap select-none`}
+            className={`${colorMap[task.priority]} whitespace-nowrap select-none `}
           >
             {map[task.priority]}
           </span>
         );
       },
       width: "w-[10px]",
+      align: "text-center",
     },
     {
       key: "deletingUntil",
       header: t("tableColumnsActions"),
       width: "w-[70px]",
+      align: "text-center",
       render: (task: Task) => {
         const isDeleting =
           task.deletingUntil && task.deletingUntil > Date.now();
-
         if (isDeleting) {
-          return <UndoTimerButton onUndo={() => onUndoDelete(task.id)} />;
+          return (
+            <div className="flex items-center gap-2">
+              <button
+                className={s.tableActionButton("info")}
+                title={t("tableColumnsView")}
+                aria-label={`${t("tableColumnsViewDetail")} : ${task.title}`}
+                disabled
+              >
+                <Eye
+                  size={16}
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                  className={s.tableIconDisabled}
+                />
+              </button>
+              <button
+                className={s.tableActionButton("warning")}
+                title={t("tableColumnsEdit")}
+                aria-label={`${t("tableColumnsEditDetail")} : ${task.title}`}
+                disabled
+              >
+                <Pencil
+                  size={16}
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                  className={s.tableIconDisabled}
+                />
+              </button>
+              <UndoTimerButton onUndo={() => onUndoDelete(task.id)} />
+            </div>
+          );
         }
         return (
           <div className="flex items-center gap-2">
