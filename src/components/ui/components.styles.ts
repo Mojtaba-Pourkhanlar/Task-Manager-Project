@@ -59,7 +59,7 @@ export const tableStyles = {
   `,
 
   th: `
-    p-2 text-start font-semibold
+    p-2  font-semibold
     border-b border-[var(--table-row-border)]
   `,
 

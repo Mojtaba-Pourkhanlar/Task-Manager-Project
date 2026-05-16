@@ -41,6 +41,7 @@ export type ColumnTable<T> = {
   header: React.ReactNode;
   render?: (row: T, index: number) => React.ReactNode;
   width?: string;
+  align: "text-start" | "text-center" | "text-end";
 };
 
 export type TableProps<T> = {
