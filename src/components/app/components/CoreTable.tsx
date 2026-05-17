@@ -144,6 +144,7 @@ const CoreTable = ({
               className={s.tableActionButton("info")}
               title={t("tableColumnsView")}
               aria-label={`${t("tableColumnsViewDetail")} : ${task.title}`}
+              aria-haspopup="dialog"
             >
               <Eye
                 size={16}
@@ -158,6 +159,7 @@ const CoreTable = ({
               className={s.tableActionButton("warning")}
               title={t("tableColumnsEdit")}
               aria-label={`${t("tableColumnsEditDetail")} : ${task.title}`}
+              aria-haspopup="dialog"
             >
               <Pencil
                 size={16}
@@ -172,6 +174,7 @@ const CoreTable = ({
               className={s.tableActionButton("danger")}
               title={t("tableColumnsDelete")}
               aria-label={`${t("tableColumnsDeleteDetail")} : ${task.title}`}
+              aria-haspopup="dialog"
             >
               <Trash2
                 size={16}

@@ -13,13 +13,13 @@
     "low": "کم",
 
     "ariaUpload": "بارگذاری فایل",
-    "ariaLableUpload": "آپلود فایل JSON از دستگاه",
+    "ariaLabelUpload": "آپلود فایل JSON از دستگاه",
 
     "ariaHistory": "تاریخچه تسک ها",
-    "ariaLableHistory": "نمایش فایل های تاریخچه تسک ها",
+    "ariaLabelHistory": "نمایش فایل های تاریخچه تسک ها",
 
     "ariaDownload": "دانلود فایل",
-    "ariaLableDownload": "دانلود فایل JSON تسک‌ها",
+    "ariaLabelDownload": "دانلود فایل JSON تسک‌ها",
 
     "modaleConfirmTask": "تأیید آپلود تسک‌ها",
     "modaleConfirmTaskHeader": "تسک از فایل انتخاب شده آماده اضافه شدن به این بخش هستند.",

@@ -105,7 +105,7 @@ export default function ImportExportActions({
           type="button"
           className={s.button}
           title={t("ariaDownload")}
-          aria-label={t("ariaLableDownload")}
+          aria-label={t("ariaLabelDownload")}
           onClick={handleDownload}
         >
           <Download size={18} aria-hidden="true" />
@@ -116,8 +116,7 @@ export default function ImportExportActions({
           type="button"
           className={s.button}
           title={t("ariaUpload")}
-          aria-label={t("ariaLableUpload")}
-          aria-controls="file-upload"
+          aria-label={t("ariaLabelUpload")}
           onClick={handleOpenFilePicker}
         >
           <Upload size={18} aria-hidden="true" />
@@ -128,9 +127,9 @@ export default function ImportExportActions({
           type="button"
           className={s.button}
           title={t("ariaHistory")}
-          aria-label={t("ariaLableHistory")}
-          aria-controls="file-history"
+          aria-label={t("ariaLabelHistory")}
           onClick={onShowHistory}
+          aria-haspopup="dialog"
         >
           <History size={18} aria-hidden="true" />
         </button>

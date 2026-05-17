@@ -25,19 +25,19 @@ const DailyReviewModal = ({ count, onConfirm, onDiscard }: Props) => {
 
         <div className="flex justify-between gap-3 mt-5">
           <Button
-            className="bg-gray-400 dark:bg-gray-600"
             onClick={onDiscard}
-            title={t("reviewDiscardTitle")}
             label={t("reviewDiscard")}
+            title={t("reviewDiscardTitle")}
             aria-label={t("reviewDiscardAria")}
+            className="bg-gray-400 dark:bg-gray-600"
           />
 
           <Button
             onClick={onConfirm}
+            label={t("reviewConfirm")}
             title={t("reviewConfirmTitle")}
             aria-label={t("reviewConfirmAria")}
             className="bg-green-700 hover:bg-green-800"
-            label={t("reviewConfirm")}
           />
         </div>
       </div>

@@ -13,13 +13,13 @@
     "low": "Low",
 
     "ariaUpload": "Upload file",
-    "ariaLableUpload": "Upload JSON file from device",
+    "ariaLabelUpload": "Upload JSON file from device",
 
     "ariaHistory": "History files",
-    "ariaLableHistory": "View task history files",
+    "ariaLabelHistory": "View task history files",
 
     "ariaDownload": "Download file",
-    "ariaLableDownload": "Download Tasks JSON File",
+    "ariaLabelDownload": "Download Tasks JSON File",
 
     "modaleConfirmTask": "Confirm task upload",
     "modaleConfirmTaskHeader": "Tasks from the selected file are ready to be added to this section.",
