@@ -26,6 +26,14 @@ npm start
 
 <!--
 
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+git config --global http.proxy http://127.0.0.1:8085
+git config --global https.proxy http://127.0.0.1:8085
+
+
+
 # قابلیت هایی که در آینده پیاده سازی میشه
 
 ## Reminders / Notifications
