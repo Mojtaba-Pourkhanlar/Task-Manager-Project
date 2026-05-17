@@ -6,6 +6,7 @@
     "uploadErr": "This file does not belong to this section.",
     "uploadErrRead": "An error occurred while reading the file.",
     "deleteTask": "Task successfully deleted",
+    "historyErr": "There is no task available for view",
 
     "high": "High",
     "medium": "Medium",
@@ -13,6 +14,9 @@
 
     "ariaUpload": "Upload file",
     "ariaLableUpload": "Upload JSON file from device",
+
+    "ariaHistory": "History files",
+    "ariaLableHistory": "View task history files",
 
     "ariaDownload": "Download file",
     "ariaLableDownload": "Download Tasks JSON File",
@@ -33,6 +37,10 @@
     "creatNewTask": "Create a new task",
     "editTask": "Edit task",
     "viewTask": "View task Details",
+    "dailyTask": "Reviewing yesterday's tasks",
+    "dailyDesc": "You had",
+    "dailyDescSec": "tasks yesterday that weren't completed.",
+    "dailyDescLast": "Do you want to move them to today?",
 
     "tableColumnsTitle": "Title",
     "tableColumnsPriority": "Priority",
@@ -68,7 +76,22 @@
     "month": "Monthly",
     "year": "Annual",
 
-    "return": "Return"
+    "return": "Return",
+
+    "reviewDiscard": "No, discard",
+    "reviewDiscardTitle": "Remove unfinished tasks from yesterday",
+    "reviewDiscardAria": "Discard unfinished tasks from the previous day",
+
+    "reviewConfirm": "Yes, carry them over",
+    "reviewConfirmTitle": "Move unfinished tasks from yesterday to today",
+    "reviewConfirmAria": "Carry over unfinished tasks from yesterday to today",
+
+    "history": "History of the last 7 days",
+    "emptyHistory": "There is no history available.",
+    "Iunderstand": "I understand",
+    "as": "From ",
+    "isDone": "Done",
+    "ariaLableIunderstand": "Confirm and close the history modal"
   },
   "day": {
     "header": "Daily task list"
