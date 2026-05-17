@@ -1,16 +1,50 @@
 "use client";
 
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { Task } from "@/types";
+import { useTaskReview } from "@/hooks/useTaskReview";
 import { useTranslations } from "next-intl";
+import DailyReviewModal from "../components/DailyReviewModal";
+import HistoryModal from "../components/history/HistoryModal";
 import MainPage from "../components/MainPage";
 
 const MonthTasksClient = () => {
   const td = useTranslations("month");
-  const [tasks, setTasks] = useLocalStorage<Task[]>("month-tasks", []);
+
+  const {
+    tasks,
+    setTasks,
+    history,
+    pendingTasks,
+    isReviewOpen,
+    handleReviewDecision,
+    handleShowHistory,
+    isHistoryOpen,
+    setIsHistoryOpen,
+    validHistory,
+  } = useTaskReview("month");
 
   return (
-    <MainPage header_name={td("header")} tasks={tasks} setTasks={setTasks} />
+    <>
+      <MainPage
+        header_name={td("header")}
+        tasks={tasks}
+        setTasks={setTasks}
+        onShowHistory={handleShowHistory}
+      />
+      {isReviewOpen && (
+        <DailyReviewModal
+          count={pendingTasks.length}
+          onConfirm={() => handleReviewDecision(true)}
+          onDiscard={() => handleReviewDecision(false)}
+        />
+      )}
+
+      {isHistoryOpen && validHistory.length > 0 && (
+        <HistoryModal
+          data={history.filter(h => h.date)}
+          onClose={() => setIsHistoryOpen(false)}
+        />
+      )}
+    </>
   );
 };
 

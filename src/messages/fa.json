@@ -6,6 +6,7 @@
     "uploadErr": "این فایل مربوط به این بخش نیست.",
     "uploadErrRead": "خطا در خواندن فایل رخ داد.",
     "deleteTask": "تسک با موفقیت حذف شد",
+    "historyErr": "تسکی برای نمایش وجود ندارد",
 
     "high": "خیلی مهم",
     "medium": "مهم",
@@ -13,6 +14,9 @@
 
     "ariaUpload": "بارگذاری فایل",
     "ariaLableUpload": "آپلود فایل JSON از دستگاه",
+
+    "ariaHistory": "تاریخچه تسک ها",
+    "ariaLableHistory": "نمایش فایل های تاریخچه تسک ها",
 
     "ariaDownload": "دانلود فایل",
     "ariaLableDownload": "دانلود فایل JSON تسک‌ها",
@@ -33,6 +37,10 @@
     "creatNewTask": "ایجاد تسک جدید",
     "editTask": "ویرایش تسک",
     "viewTask": "نمایش جزئیات تسک",
+    "dailyTask": "بررسی تسک های روز گذشته",
+    "dailyDesc": "دیروز",
+    "dailyDescSec": "تا تسک داشتی که انجام نشدن.",
+    "dailyDescLast": "آیا می‌خواهی آنها را به امروز منتقل کنی؟",
 
     "tableColumnsTitle": "عنوان",
     "tableColumnsPriority": "اولویت",
@@ -68,7 +76,22 @@
     "month": "ماهانه",
     "year": "سالانه",
 
-    "return": "بازگردانی"
+    "return": "بازگردانی",
+
+    "reviewDiscard": "نه، بیخیال!",
+    "reviewDiscardTitle": "حذف تسک‌های باقی‌مانده از روز قبل",
+    "reviewDiscardAria": "عدم انتقال تسک‌های ناتمام دیروز به امروز",
+
+    "reviewConfirm": "آره، بریم واسش",
+    "reviewConfirmTitle": "انتقال تسک‌های ناتمام دیروز به امروز",
+    "reviewConfirmAria": "انتقال تسک‌های باقی‌مانده از روز قبل به امروز",
+
+    "history": "تاریخچه 7 روز گذشته",
+    "emptyHistory": "تاریخچه‌ای وجود ندارد.",
+    "Iunderstand": "متوجه شدم",
+    "as": "از ",
+    "isDone": "انجام شده",
+    "ariaLableIunderstand": "تایید و بستن مودال تاریخچه"
   },
   "day": {
     "header": "لیست تسک های روزانه"
