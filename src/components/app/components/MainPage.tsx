@@ -13,9 +13,10 @@ interface Props {
   tasks: Task[];
   setTasks: SetTasks;
   header_name: string;
+  onShowHistory: () => void;
 }
 
-const MainPage = ({ header_name, setTasks, tasks }: Props) => {
+const MainPage = ({ header_name, setTasks, tasks, onShowHistory }: Props) => {
   const deleteTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>(
     {},
   );
@@ -42,6 +43,7 @@ const MainPage = ({ header_name, setTasks, tasks }: Props) => {
   const handleAddTask = (task: Task) => {
     setTasks(prev => [...prev, task]);
   };
+  
   const toggleDoneById = (id: string, value: boolean) => {
     setTasks(prev => prev.map(t => (t.id === id ? { ...t, done: value } : t)));
   };
@@ -55,6 +57,7 @@ const MainPage = ({ header_name, setTasks, tasks }: Props) => {
       setTasks(prev => prev.filter(t => t.id !== id));
     }, TIMER);
   };
+
   const undoDelete = (id: string) => {
     const timer = deleteTimers.current[id];
     if (timer) {
@@ -92,6 +95,7 @@ const MainPage = ({ header_name, setTasks, tasks }: Props) => {
             section="day"
             tasks={tasks}
             onImportConfirm={handleImportTasks}
+            onShowHistory={onShowHistory}
           />
         }
       />

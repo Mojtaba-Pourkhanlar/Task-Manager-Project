@@ -10,7 +10,7 @@ import {
   normalizeImportedTasks,
   parseTaskImportFile,
 } from "@/utils/taskTransfer";
-import { Download, Upload } from "lucide-react";
+import { Download, Upload, History } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 import { coreStyles as s } from "./core.styles";
@@ -19,12 +19,14 @@ interface Props {
   section: TaskSection;
   tasks: Task[];
   onImportConfirm: (tasks: Task[]) => void;
+  onShowHistory: () => void;
 }
 
 export default function ImportExportActions({
   section,
   tasks,
   onImportConfirm,
+  onShowHistory,
 }: Props) {
   const t = useTranslations("public");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -108,6 +110,7 @@ export default function ImportExportActions({
         >
           <Download size={18} aria-hidden="true" />
         </button>
+
         {/* Upload */}
         <button
           type="button"
@@ -118,6 +121,18 @@ export default function ImportExportActions({
           onClick={handleOpenFilePicker}
         >
           <Upload size={18} aria-hidden="true" />
+        </button>
+
+        {/* Histor */}
+        <button
+          type="button"
+          className={s.button}
+          title={t("ariaHistory")}
+          aria-label={t("ariaLableHistory")}
+          aria-controls="file-history"
+          onClick={onShowHistory}
+        >
+          <History size={18} aria-hidden="true" />
         </button>
       </div>
 
