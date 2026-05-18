@@ -20,7 +20,6 @@ const HistoryModal = ({
   onClose: () => void;
 }) => {
   const t = useTranslations("public");
-
   const [tab, setTab] = useState<"daily" | "monthly" | "yearly">("daily");
 
   const monthlyHistory = useMemo(() => {
@@ -53,6 +52,16 @@ const HistoryModal = ({
     return Object.values(map);
   }, [data]);
 
+  const yearHistory: HistoryItem[] = JSON.parse(
+    localStorage.getItem("year-history") || "[]",
+  );
+  const monthHistory: HistoryItem[] = JSON.parse(
+    localStorage.getItem("month-history") || "[]",
+  );
+  const dayHistory: HistoryItem[] = JSON.parse(
+    localStorage.getItem("day-history") || "[]",
+  );
+
   return (
     <Modal isOpen={true} onClose={onClose} header={t("history")}>
       {/* Tabs */}
@@ -67,6 +76,7 @@ const HistoryModal = ({
           title={t("day")}
           label={t("day")}
           aria-label={t("ariaLableIunderstand")}
+          disabled={dayHistory?.length === 0}
         />
 
         <Button
@@ -79,6 +89,7 @@ const HistoryModal = ({
           title={t("month")}
           label={t("month")}
           aria-label={t("ariaLableIunderstand")}
+          disabled={monthHistory?.length === 0}
         />
 
         <Button
@@ -91,6 +102,7 @@ const HistoryModal = ({
           title={t("year")}
           label={t("year")}
           aria-label={t("ariaLableIunderstand")}
+          disabled={yearHistory?.length === 0}
         />
       </div>
 

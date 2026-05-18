@@ -3,7 +3,7 @@
 import { useTaskReview } from "@/hooks/useTaskReview";
 import { useTranslations } from "next-intl";
 import DailyReviewModal from "../components/DailyReviewModal";
-import HistoryModal from "../components/history/HistoryModal";
+import HistoryModal from "../components/history";
 import MainPage from "../components/MainPage";
 
 const DayTasksClient = () => {

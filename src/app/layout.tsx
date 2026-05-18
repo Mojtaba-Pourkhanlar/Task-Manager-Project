@@ -15,7 +15,7 @@ const yekanBakh = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://task.mojtabapourkhanlar.ir/"),
-  title: "Task Manager",
+  title: "Planico",
   description:
     "A personal task manager built by Mojtaba Pourkhanlar to organize daily tasks, track progress, and stay productive.",
   keywords: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "Mojtaba Pourkhanlar",
   ],
   openGraph: {
-    siteName: "Task Manager",
+    siteName: "Planico",
     type: "website",
   },
   icons: {
@@ -56,9 +56,9 @@ export default function SiteLayout({
       className={yekanBakh.variable}
     >
       <head>
-        <link rel="apple-touch-icon" href="/icons/192.png" />
+        <link rel="apple-touch-icon" href="/icons/favicon.png" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="msapplication-TileImage" content="/icons/192.png" />
+        <meta name="msapplication-TileImage" content="/icons/favicon.png" />
         <meta name="msapplication-TileColor" content="#292B2E" />
         <script
           dangerouslySetInnerHTML={{
@@ -83,7 +83,7 @@ export default function SiteLayout({
               "@type": "Person",
               name: "Mojtaba Pourkhanlar",
               jobTitle: "Frontend Developer",
-              url: "https://task.mojtabapourkhanlar.ir",
+              url: "https://mojtabapourkhanlar.ir",
               image:
                 "https://task.mojtabapourkhanlar.ir/images/mojtaba-pourkhanlar.png",
               sameAs: [

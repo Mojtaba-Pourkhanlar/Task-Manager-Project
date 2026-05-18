@@ -44,7 +44,7 @@ export function createSeo(page: PageKey, path?: string): Metadata {
       title: seo.title,
       description: seo.description,
       url,
-      siteName: "Mojtaba Pourkhanlar",
+      siteName: "Planico",
       locale: locale === "en" ? "en_US" : "fa_IR",
       type: "website",
     },

@@ -1,6 +1,6 @@
 export default function loading() {
   return (
-    <div className="p-5 max-w-150 mx-auto">
+    <div className="p-3 max-w-150 mx-auto">
       <div className="flex items-center justify-between">
         <div className="h-9 w-38 rounded-md skeleton-bg-strong animate-pulse" />
 
@@ -14,6 +14,7 @@ export default function loading() {
 
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
+          <div className="h-9 w-9 rounded-xl skeleton-glass skeleton-border shadow-lg animate-pulse" />
           <div className="h-9 w-9 rounded-xl skeleton-glass skeleton-border shadow-lg animate-pulse" />
           <div className="h-9 w-9 rounded-xl skeleton-glass skeleton-border shadow-lg animate-pulse" />
         </div>
