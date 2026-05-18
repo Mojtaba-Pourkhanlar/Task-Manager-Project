@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 
 type Scope = "day" | "month" | "year";
 
-interface HistoryItem {
+export interface HistoryItem {
   date: string;
   total: number;
   done: number;

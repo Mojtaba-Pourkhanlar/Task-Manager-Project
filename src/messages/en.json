@@ -118,20 +118,26 @@
   },
   "seo": {
     "day": {
-      "title": "Daily | Task Manager",
+      "title": "Daily | Planico",
       "description": "This app created by Mojtaba Pourkhanlar"
     },
     "month": {
-      "title": "Monthly | Task Manager",
+      "title": "Monthly | Planico",
       "description": "This app created by Mojtaba Pourkhanlar"
     },
     "year": {
-      "title": "Annual | Task Manager",
+      "title": "Annual | Planico",
       "description": "This app created by Mojtaba Pourkhanlar"
     },
     "auth": {
       "title": "Login | Register",
       "description": "This app created by Mojtaba Pourkhanlar"
     }
+  },
+  "footer": {
+    "text": "This project with ❤️ and",
+    "coffee": "coffee",
+    "develop": "was developed",
+    "donate": "Donate"
   }
 }

@@ -13,7 +13,7 @@ interface TooltipProps {
   position?: Position;
 }
 
-const MOBILE_TRUNCATE = 10;
+const MOBILE_TRUNCATE = 18;
 const DESKTOP_TRUNCATE = 35;
 
 const Tooltip = ({ text, children, position = "bottom" }: TooltipProps) => {

@@ -17,17 +17,10 @@ export function Navbar() {
   return (
     <nav
       className={cls(
-        "fixed bottom-3 left-4 right-4 mx-auto max-w-lg rounded-3xl",
-
-        // glass
+        "fixed bottom-3 left-1 right-1 mx-auto w-[95%] md:max-w-xl rounded-2xl md:rounded-2xl",
         "backdrop-blur-sm backdrop-saturate-150",
-
-        // light mode
         "bg-white/70 border border-gray-200/80 shadow-xl",
-
-        // dark mode
         "dark:bg-black/10 dark:border-white/20 dark:shadow-2xl",
-
         "z-49 overflow-hidden",
       )}
     >

@@ -19,6 +19,7 @@ const CoreTable = ({
   onEdit,
 }: CoreTableProps) => {
   const t = useTranslations("public");
+  const tf = useTranslations("footer");
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -200,6 +201,11 @@ const CoreTable = ({
     progressColor = "from-green-400 to-emerald-500";
   if (progress === 100) progressColor = "from-lime-300 to-emerald-400";
 
+  const handleDonate = () => {
+    const donationLink = "https://zarinp.al/mojtaba_dev";
+    window.open(donationLink, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <>
       <GlassTable
@@ -254,6 +260,25 @@ const CoreTable = ({
               />
             </div>
           </div>
+
+          <p
+            className="text-sm sm:text-[15px] text-gray-600 dark:text-gray-300 leading-relaxed cursor-pointer"
+            title={tf("donate")}
+            onClick={handleDonate}
+          >
+            {tf("text")}
+            <button
+              type="button"
+              className="inline-flex items-center gap-1 text-[14px]
+             text-blue-500 font-extrabold
+             transition-colors duration-200
+             cursor-pointer px-1"
+            >
+              {tf("coffee")}
+              <span aria-hidden>☕</span>
+            </button>
+            {tf("develop")}
+          </p>
         </div>
       )}
     </>
