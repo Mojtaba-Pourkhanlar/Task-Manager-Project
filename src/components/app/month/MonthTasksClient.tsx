@@ -3,7 +3,6 @@
 import { useTaskReview } from "@/hooks/useTaskReview";
 import { useTranslations } from "next-intl";
 import DailyReviewModal from "../components/DailyReviewModal";
-import HistoryModal from "../components/history";
 import MainPage from "../components/MainPage";
 
 const MonthTasksClient = () => {
@@ -12,14 +11,10 @@ const MonthTasksClient = () => {
   const {
     tasks,
     setTasks,
-    history,
     pendingTasks,
     isReviewOpen,
     handleReviewDecision,
     handleShowHistory,
-    isHistoryOpen,
-    setIsHistoryOpen,
-    validHistory,
   } = useTaskReview("month");
 
   return (
@@ -35,13 +30,6 @@ const MonthTasksClient = () => {
           count={pendingTasks.length}
           onConfirm={() => handleReviewDecision(true)}
           onDiscard={() => handleReviewDecision(false)}
-        />
-      )}
-
-      {isHistoryOpen && validHistory.length > 0 && (
-        <HistoryModal
-          data={history.filter(h => h.date)}
-          onClose={() => setIsHistoryOpen(false)}
         />
       )}
     </>
