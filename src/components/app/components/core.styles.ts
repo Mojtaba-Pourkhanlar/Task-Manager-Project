@@ -108,9 +108,9 @@ export const coreStyles = {
 
   progressCard: `
     mt-2 px-2 py-3 rounded-2xl
-    bg-[var(--card-bg)]
+        border border-[var(--table-border)]
+    bg-[var(--table-bg)]
     backdrop-blur-md
-    border border-[var(--card-border)]
     space-y-3
     `,
 

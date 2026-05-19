@@ -14,6 +14,7 @@ import { Download, Upload, History } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 import { coreStyles as s } from "./core.styles";
+import { usePathname } from "next/navigation";
 
 interface Props {
   section: TaskSection;
@@ -28,6 +29,7 @@ export default function ImportExportActions({
   onImportConfirm,
   onShowHistory,
 }: Props) {
+  const pathName = usePathname();
   const t = useTranslations("public");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { showToast } = useToast();
@@ -123,16 +125,18 @@ export default function ImportExportActions({
         </button>
 
         {/* Histor */}
-        <button
-          type="button"
-          className={s.button}
-          title={t("ariaHistory")}
-          aria-label={t("ariaLabelHistory")}
-          onClick={onShowHistory}
-          aria-haspopup="dialog"
-        >
-          <History size={18} aria-hidden="true" />
-        </button>
+        {pathName === "/day/" && (
+          <button
+            type="button"
+            className={s.button}
+            title={t("ariaHistory")}
+            aria-label={t("ariaLabelHistory")}
+            onClick={onShowHistory}
+            aria-haspopup="dialog"
+          >
+            <History size={18} aria-hidden="true" />
+          </button>
+        )}
       </div>
 
       {preview && (

@@ -1,10 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 import { useTranslations } from "next-intl";
-import { useMemo, useState } from "react";
 import { DailyHistory } from "./DailyHistory";
-import { MonthlyHistory } from "./MonthlyHistory";
-import { YearlyHistory } from "./YearlyHistory";
 
 interface HistoryItem {
   date: string;
@@ -20,96 +17,11 @@ const HistoryModal = ({
   onClose: () => void;
 }) => {
   const t = useTranslations("public");
-  const [tab, setTab] = useState<"daily" | "monthly" | "yearly">("daily");
-
-  const monthlyHistory = useMemo(() => {
-    const map: Record<string, HistoryItem> = {};
-
-    data.forEach(item => {
-      const key = item.date.slice(0, 7);
-
-      if (!map[key]) map[key] = { date: key, total: 0, done: 0 };
-
-      map[key].total += item.total;
-      map[key].done += item.done;
-    });
-
-    return Object.values(map);
-  }, [data]);
-
-  const yearlyHistory = useMemo(() => {
-    const map: Record<string, HistoryItem> = {};
-
-    data.forEach(item => {
-      const key = item.date.slice(0, 4);
-
-      if (!map[key]) map[key] = { date: key, total: 0, done: 0 };
-
-      map[key].total += item.total;
-      map[key].done += item.done;
-    });
-
-    return Object.values(map);
-  }, [data]);
-
-  const yearHistory: HistoryItem[] = JSON.parse(
-    localStorage.getItem("year-history") || "[]",
-  );
-  const monthHistory: HistoryItem[] = JSON.parse(
-    localStorage.getItem("month-history") || "[]",
-  );
-  const dayHistory: HistoryItem[] = JSON.parse(
-    localStorage.getItem("day-history") || "[]",
-  );
 
   return (
     <Modal isOpen={true} onClose={onClose} header={t("history")}>
-      {/* Tabs */}
-      <div className="flex gap-2 mb-6">
-        <Button
-          onClick={() => setTab("daily")}
-          className={` w-full ${
-            tab === "daily"
-              ? "bg-gray-900 text-white dark:bg-gray-600"
-              : "bg-gray-200 dark:bg-gray-800"
-          }`}
-          title={t("day")}
-          label={t("day")}
-          aria-label={t("ariaLableIunderstand")}
-          disabled={dayHistory?.length === 0}
-        />
-
-        <Button
-          onClick={() => setTab("monthly")}
-          className={` w-full ${
-            tab === "monthly"
-              ? "bg-gray-900 text-white dark:bg-gray-600"
-              : "bg-gray-200 dark:bg-gray-800"
-          }`}
-          title={t("month")}
-          label={t("month")}
-          aria-label={t("ariaLableIunderstand")}
-          disabled={monthHistory?.length === 0}
-        />
-
-        <Button
-          onClick={() => setTab("yearly")}
-          className={` w-full ${
-            tab === "yearly"
-              ? "bg-gray-900 text-white dark:bg-gray-600"
-              : "bg-gray-200 dark:bg-gray-800"
-          }`}
-          title={t("year")}
-          label={t("year")}
-          aria-label={t("ariaLableIunderstand")}
-          disabled={yearHistory?.length === 0}
-        />
-      </div>
-
       {/* Render tab content */}
-      {tab === "daily" && <DailyHistory data={data} />}
-      {tab === "monthly" && <MonthlyHistory data={monthlyHistory} />}
-      {tab === "yearly" && <YearlyHistory data={yearlyHistory} />}
+      <DailyHistory data={data} />
 
       <Button
         onClick={onClose}
