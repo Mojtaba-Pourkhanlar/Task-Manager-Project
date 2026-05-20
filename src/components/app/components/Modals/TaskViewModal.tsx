@@ -1,7 +1,7 @@
 import { Modal } from "@/components/ui/Modal";
 import { Task } from "@/types";
 import { useTranslations } from "next-intl";
-import { coreStyles as s } from "./core.styles";
+import { coreStyles as s } from "../core.styles";
 
 interface Props {
   isOpen: boolean;
@@ -30,12 +30,14 @@ const TaskViewModal = ({ isOpen, onClose, task }: Props) => {
     <Modal isOpen={isOpen} onClose={onClose} header={t("viewTask")}>
       <div className="space-y-4">
         <div>
-          <p className="text-sm opacity-70 mb-1">{t("tableColumnsTitle")}</p>
+          <p className="text-md opacity-50 font-bold mb-1">
+            {t("tableColumnsTitle")}
+          </p>
           <h2 className="text-lg font-bold">{task.title}</h2>
         </div>
 
         <div>
-          <p className="text-sm opacity-70 mb-1">{t("status")}</p>
+          <p className="text-md opacity-50 font-bold mb-1">{t("status")}</p>
           <p
             className={`font-bold whitespace-nowrap select-none w-fit ${task.done ? s.priorityLow : s.priorityMedium}`}
           >
@@ -44,7 +46,9 @@ const TaskViewModal = ({ isOpen, onClose, task }: Props) => {
         </div>
 
         <div>
-          <p className="text-sm opacity-70 mb-1">{t("tableColumnsPriority")}</p>
+          <p className="text-md opacity-50 font-bold mb-1">
+            {t("tableColumnsPriority")}
+          </p>
           <p
             className={`${colorMap[task.priority]} whitespace-nowrap select-none w-fit`}
           >

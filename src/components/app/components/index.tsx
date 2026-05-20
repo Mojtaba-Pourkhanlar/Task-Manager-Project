@@ -1,13 +1,13 @@
 "use client";
 
-import AddTask from "@/components/app/components/AddEditTaskModal";
-import CoreTable from "@/components/app/components/CoreTable";
-import Headers from "@/components/app/components/Headers";
-import ImportExportActions from "@/components/app/components/ImportExportActions";
+import AddTask from "@/components/app/components/Modals/AddEditTaskModal";
+import CoreTable from "@/components/app/components/Main/CoreTable";
+import Headers from "@/components/app/components/Header/Headers";
+import ImportExportActions from "@/components/app/components/Header/ImportExportActions";
 import { TIMER } from "@/constants";
 import { SetTasks, Task } from "@/types";
 import { useEffect, useRef, useState } from "react";
-import TaskViewModal from "./TaskViewModal";
+import TaskViewModal from "./Modals/TaskViewModal";
 
 interface Props {
   tasks: Task[];

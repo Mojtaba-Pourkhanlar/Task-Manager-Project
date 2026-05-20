@@ -13,7 +13,7 @@ import {
 import { Download, Upload, History } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
-import { coreStyles as s } from "./core.styles";
+import { ImportExportActionsStyle as s } from "../core.styles";
 import { usePathname } from "next/navigation";
 
 interface Props {
