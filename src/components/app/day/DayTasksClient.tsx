@@ -2,9 +2,9 @@
 
 import { useTaskReview } from "@/hooks/useTaskReview";
 import { useTranslations } from "next-intl";
-import DailyReviewModal from "../components/DailyReviewModal";
+import DailyReviewModal from "../components/Modals/DailyReviewModal";
 import HistoryModal from "../components/history";
-import MainPage from "../components/MainPage";
+import MainPage from "../components";
 
 const DayTasksClient = () => {
   const td = useTranslations("day");

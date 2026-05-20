@@ -2,7 +2,7 @@
 
 import { InputProps } from "@/types";
 import { forwardRef } from "react";
-import { inputStyles as s } from "./components.styles";
+import { inputStyles as s } from "./core.styles";
 
 export const TextInput = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error = false, errorText, className, id, ...rest }, ref) => {

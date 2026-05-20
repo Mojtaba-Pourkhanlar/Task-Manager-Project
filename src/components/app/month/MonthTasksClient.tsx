@@ -2,8 +2,8 @@
 
 import { useTaskReview } from "@/hooks/useTaskReview";
 import { useTranslations } from "next-intl";
-import DailyReviewModal from "../components/DailyReviewModal";
-import MainPage from "../components/MainPage";
+import DailyReviewModal from "../components/Modals/DailyReviewModal";
+import MainPage from "../components";
 
 const MonthTasksClient = () => {
   const td = useTranslations("month");

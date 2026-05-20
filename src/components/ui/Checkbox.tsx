@@ -4,7 +4,7 @@ import { GlassCheckboxProps } from "@/types";
 import {
   checkboxStyles as s,
   checkboxPriorityStyles,
-} from "./components.styles";
+} from "./core.styles";
 
 const GlassCheckbox: React.FC<GlassCheckboxProps> = ({
   id,
