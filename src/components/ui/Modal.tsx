@@ -2,7 +2,7 @@
 
 import { ModalProps } from "@/types";
 import { useEffect, useRef, useState } from "react";
-import { modalStyles as s } from "./components.styles";
+import { modalStyles as s } from "./core.styles";
 
 export const Modal = ({ isOpen, header, children, onClose }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);

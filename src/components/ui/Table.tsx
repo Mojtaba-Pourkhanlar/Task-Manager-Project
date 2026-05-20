@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Inbox } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "./Button";
-import { tableStyles as s } from "./components.styles";
+import { tableStyles as s } from "./core.styles";
 
 export default function GlassTable<T>({
   data,

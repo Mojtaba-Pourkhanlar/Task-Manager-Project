@@ -1,6 +1,6 @@
 import { CheckCircle2, ListTodo } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { CoreTableStyle as s } from "../core.styles";
+import { CoreTableStyle as s } from "../app.styles";
 
 interface Props {
   progress: number;

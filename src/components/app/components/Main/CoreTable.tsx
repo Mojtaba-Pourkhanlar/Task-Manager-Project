@@ -4,7 +4,7 @@ import { priorityWeight } from "@/constants";
 import { ColumnTable, CoreTableProps, Task } from "@/types";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
-import { CoreTableStyle as s } from "../core.styles";
+import { CoreTableStyle as s } from "../app.styles";
 import Progress from "./Progress";
 import TaskActionsCell from "./TaskActionsCell";
 

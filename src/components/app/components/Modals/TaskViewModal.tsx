@@ -1,7 +1,7 @@
 import { Modal } from "@/components/ui/Modal";
 import { Task } from "@/types";
 import { useTranslations } from "next-intl";
-import { coreStyles as s } from "../core.styles";
+import { CoreTableStyle as s } from "../app.styles";
 
 interface Props {
   isOpen: boolean;

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/Button";
 import LanguageSwitcher from "@/utils/LanguageSwitcher";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { HeadersStyle as s } from "../core.styles";
+import { HeadersStyle as s } from "../app.styles";
 
 const ThemeToggle = dynamic(
   () => import("@/utils/ThemeToggle").then(mod => mod.ThemeToggle),

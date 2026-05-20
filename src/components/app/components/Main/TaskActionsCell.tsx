@@ -5,7 +5,7 @@ import { Eye, MoreVertical, Pencil, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import UndoTimerButton from "@/components/ui/UndoTimerButton";
 import { Task } from "@/types";
-import { TaskActionsCellStyles as s } from "../core.styles";
+import { TaskActionsCellStyles as s } from "../app.styles";
 
 type TaskActionsCellProps = {
   task: Task;

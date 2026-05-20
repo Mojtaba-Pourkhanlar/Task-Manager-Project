@@ -7,7 +7,7 @@ import { MoveRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { AuthFormStyle as s } from "../components/core.styles";
+import { AuthFormStyle as s } from "../components/app.styles";
 
 const AuthForm = () => {
   const router = useRouter();

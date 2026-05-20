@@ -3,7 +3,7 @@
 import { GlassSelectProps } from "@/types";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { selectStyles as s } from "./components.styles";
+import { selectStyles as s } from "./core.styles";
 
 export default function GlassSelect<T extends string>({
   label,
