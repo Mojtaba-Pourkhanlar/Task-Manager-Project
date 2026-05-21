@@ -188,19 +188,19 @@ export const TaskActionsCellStyles = {
   taskDelete: `
       flex w-full items-center gap-2 px-3 py-2 text-sm text-red-600
       hover:bg-(--surface-hover)
-      transition-colors
+      transition-colors cursor-pointer
     `,
 
   taskEdit: `
   flex w-full items-center gap-2 px-3 py-2 text-sm text-yellow-600
       hover:bg-(--surface-hover)
-      transition-colors border-t-1 border-b-1 border-(--border)
+      transition-colors border-t-1 border-b-1 border-(--border) cursor-pointer
     `,
 
   taskView: `
   flex w-full items-center gap-2 px-3 py-2 text-sm text-blue-600
       hover:bg-(--surface-hover)
-      transition-colors
+      transition-colors cursor-pointer
     `,
 
   tableActionButton: (color: "danger" | "info" | "warning") => `
