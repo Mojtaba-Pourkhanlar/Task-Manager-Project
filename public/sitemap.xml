@@ -7,19 +7,49 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://task.mojtabapourkhanlar.ir/day/</loc>
+        <loc>https://task.mojtabapourkhanlar.ir/tasks/day/</loc>
         <lastmod>2025-01-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://task.mojtabapourkhanlar.ir/month/</loc>
+        <loc>https://task.mojtabapourkhanlar.ir/tasks/month/</loc>
         <lastmod>2025-01-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://task.mojtabapourkhanlar.ir/year/</loc>
+        <loc>https://task.mojtabapourkhanlar.ir/tasks/year/</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://task.mojtabapourkhanlar.ir/profile/</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://task.mojtabapourkhanlar.ir/history/day</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://task.mojtabapourkhanlar.ir/history/month</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://task.mojtabapourkhanlar.ir/history/year</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://task.mojtabapourkhanlar.ir/auth/</loc>
         <lastmod>2025-01-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
