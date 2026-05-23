@@ -18,7 +18,6 @@ const CoreTable = ({
   onEdit,
 }: CoreTableProps) => {
   const t = useTranslations("public");
-  const tf = useTranslations("footer");
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {

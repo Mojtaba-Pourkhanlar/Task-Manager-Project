@@ -210,9 +210,9 @@ export const inputStyles = {
 /* ---------------- Checkbox ---------------- */
 
 export const checkboxStyles = {
-  wrapper: "flex items-center gap-3 group",
+  wrapper: "relative flex items-center gap-3 group",
 
-  input: "peer absolute w-6 h-6 opacity-0 cursor-pointer z-10",
+  input: "peer w-6 h-6 opacity-0 cursor-pointer absolute z-10",
 
   circle: `
     w-5 h-5 rounded-full border-2
