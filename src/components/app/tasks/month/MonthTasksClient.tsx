@@ -5,26 +5,16 @@ import { useTranslations } from "next-intl";
 import DailyReviewModal from "../components/Modals/DailyReviewModal";
 import MainPage from "../components";
 
-export default function YearTasksClient() {
-  const td = useTranslations("year");
+const MonthTasksClient = () => {
+  const td = useTranslations("month");
 
-  const {
-    tasks,
-    setTasks,
-    pendingTasks,
-    isReviewOpen,
-    handleReviewDecision,
-    handleShowHistory,
-  } = useTaskReview("year");
+  const { tasks, setTasks, pendingTasks, isReviewOpen, handleReviewDecision } =
+    useTaskReview("month");
 
   return (
     <>
-      <MainPage
-        header_name={td("header")}
-        tasks={tasks}
-        setTasks={setTasks}
-        onShowHistory={handleShowHistory}
-      />
+      <MainPage header_name={td("header")} tasks={tasks} setTasks={setTasks} section="month" />
+
       {isReviewOpen && (
         <DailyReviewModal
           count={pendingTasks.length}
@@ -34,4 +24,6 @@ export default function YearTasksClient() {
       )}
     </>
   );
-}
+};
+
+export default MonthTasksClient;
