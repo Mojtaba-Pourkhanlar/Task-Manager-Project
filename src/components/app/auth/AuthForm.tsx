@@ -7,7 +7,13 @@ import { MoveRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { AuthFormStyle as s } from "../components/app.styles";
+import { AuthFormStyle as s } from "../tasks/components/app.styles";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+
+type AuthUser = {
+  userName: string;
+  email: string;
+};
 
 const AuthForm = () => {
   const router = useRouter();
@@ -17,6 +23,11 @@ const AuthForm = () => {
   const [email, setEmail] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isUserNameValid, setIsUserNameValid] = useState(true);
+
+  const [, setAuthUser, isAuthLoaded] = useLocalStorage<AuthUser | null>(
+    "auth_user",
+    null,
+  );
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -45,9 +56,16 @@ const AuthForm = () => {
   };
 
   const handleAdd = () => {
+    if (!isAuthLoaded) return;
+    setAuthUser({
+      userName: userName.trim(),
+      email: email.trim(),
+    });
     handleClose();
   };
 
+  console.log('isUserNameValid', isUserNameValid)
+  
   return (
     <div className={s.page}>
       <div className={s.card}>
@@ -84,6 +102,7 @@ const AuthForm = () => {
             id="email"
             placeholder={t("email")}
             value={email}
+            type="email"
             onChange={e => validateEmail(e.target.value)}
             aria-required="true"
             aria-label={t("emailAria")}
