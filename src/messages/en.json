@@ -56,6 +56,7 @@
     "allTasks": "All Tasks",
     "isDones": "Done",
     "Progress": "Progress",
+    "ProgressBTN": "Close Progress Chart",
 
     "taskName": "Enter the task name.",
     "taskNameAria": "Task name",
@@ -75,6 +76,14 @@
     "day": "Daily",
     "month": "Monthly",
     "year": "Annual",
+
+    "tasks": "Tasks",
+    "tasksStatus": "View Status Tasks",
+    "historys": "Historys",
+    "profile": "Profile",
+    "dayHistorys": "Day History List",
+    "monthHistorys": "Monthly History List",
+    "yearHistorys": "Yearly History List",
 
     "return": "Return",
 
@@ -132,6 +141,22 @@
     "auth": {
       "title": "Login | Register",
       "description": "This app created by Mojtaba Pourkhanlar"
+    },
+    "history-day": {
+      "title": "Day | History | Planico",
+      "description": "This app created by Mojtaba Pourkhanlar"
+    },
+    "history-month": {
+      "title": "Month | History | Planico",
+      "description": "This app created by Mojtaba Pourkhanlar"
+    },
+    "history-year": {
+      "title": "Year | History | Planico",
+      "description": "This app created by Mojtaba Pourkhanlar"
+    },
+    "profile": {
+      "title": "Profile | Planico",
+      "description": "This app created by Mojtaba Pourkhanlar"
     }
   },
   "footer": {
@@ -139,5 +164,19 @@
     "coffee": "coffee",
     "develop": "was developed",
     "donate": "Donate"
+  },
+  "logout": {
+    "modalHeader": "Sign out and clear data",
+    "warningTitle": "Are you sure you want to proceed?",
+    "warningDesc": "By confirming, all your local data will be permanently deleted and you will be signed out. This action cannot be undone.",
+    "cancelBtn": "Cancel",
+    "cancelBtnAria": "Cancel and close the pop-up",
+    "confirmBtn": "Yes, Clear & Exit",
+    "confirmBtnAria": "Confirming and deleting information and logging out of the user account",
+    "logoutBTN": "Log out of account",
+    "logoutBTNAria": "Opening the logout pop-up",
+    "sginIn": "Register",
+    "signInAria": "Go to registration form button",
+    "panel": "User panel"
   }
 }

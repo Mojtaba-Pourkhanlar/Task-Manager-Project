@@ -251,3 +251,27 @@ export const checkboxPriorityStyles: Record<Priority, string> = {
     "border-yellow-400 bg-yellow-400/30 shadow-[0_0_12px_rgba(250,204,21,0.5)]",
   high: "border-red-400 bg-red-400/30 shadow-[0_0_12px_rgba(239,68,68,0.5)]",
 };
+
+/* ---------------- Tabs ---------------- */
+
+export const TabsStyles = {
+  container: `flex overflow-hidden rounded-xl
+    bg-(--surface)
+    border border-(--border)
+    h-9
+  `,
+  href: `hover:bg-(--surface-hover) px-3 pt-1 flex items-center rounded-0 transition`,
+  active: `
+    text-(--navy-900) 
+    bg-(--navy-200) 
+    dark:text-(--navy-900) 
+    dark:bg-(--navy-50) 
+    font-semibold
+  `,
+  inactive: `
+    text-gray-700
+    dark:text-(--navy-700)
+    bg-(--navy-50)
+    dark:bg-[#1F1F1F]
+  `,
+};

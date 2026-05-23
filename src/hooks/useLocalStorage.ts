@@ -22,7 +22,6 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 
   useEffect(() => {
     if (!isLoaded) return;
-
     try {
       localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
