@@ -275,3 +275,30 @@ export const TabsStyles = {
     dark:bg-[#1F1F1F]
   `,
 };
+
+/* ---------------- Accordion ---------------- */
+export const accordionStyles = {
+  container: "flex flex-col gap-2 w-full",
+
+  itemWrapper:
+    "bg-[var(--surface)] rounded-xl px-0 pt-2 select-none transition-all duration-300 my-1",
+
+  headerRow:
+    "relative w-full flex items-center justify-between cursor-pointer pb-1",
+
+  dashedLine:
+    "absolute top-4 lg:top-5 left-8 border-b-2 border-[#ccc] dark:border-gray-600 border-dashed w-[90%]",
+
+  button:
+    "text-[14px] lg:text-[16px] font-bold  bg-[var(--surface)] border border-[#ccc] dark:border-gray-600 text-navy-900 dark:text-gray-100 rounded-xl mx-3 px-2 h-8 lg:h-9 flex items-center z-10",
+
+  icon: "mx-2 transition-all duration-300 dark:text-gray-200",
+
+  contentWrapper: (isOpen: boolean) =>
+    `overflow-hidden transition-all duration-300 border-dashed border-2 w-[96%] border-[#ccc] dark:border-gray-600 rounded-xl lg:mx-3 mx-2 ${
+      isOpen ? "opacity-100 max-h-[500px] my-5" : "opacity-0 max-h-0 border-0"
+    }`,
+
+  contentInner:
+    "p-4.5 lg:text-[16px] text-[12px] text-gray-800 dark:text-gray-300",
+};
