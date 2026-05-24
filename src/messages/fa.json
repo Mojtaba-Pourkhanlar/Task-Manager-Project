@@ -100,7 +100,10 @@
     "Iunderstand": "متوجه شدم",
     "as": "از ",
     "isDone": "انجام شده",
-    "ariaLableIunderstand": "تایید و بستن مودال تاریخچه"
+    "ariaLableIunderstand": "تایید و بستن مودال تاریخچه",
+
+    "unpauseTask": "فعال کردن ",
+    "pauseTask": "غیرفعال کردن"
   },
   "day": {
     "header": "لیست تسک های روزانه"

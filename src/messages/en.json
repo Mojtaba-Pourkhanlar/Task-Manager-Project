@@ -100,7 +100,10 @@
     "Iunderstand": "I understand",
     "as": "From ",
     "isDone": "Done",
-    "ariaLableIunderstand": "Confirm and close the history modal"
+    "ariaLableIunderstand": "Confirm and close the history modal",
+
+    "unpauseTask": "Play",
+    "pauseTask": "Pause"
   },
   "day": {
     "header": "Daily task list"

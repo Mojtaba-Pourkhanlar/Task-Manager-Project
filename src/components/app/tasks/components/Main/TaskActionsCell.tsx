@@ -1,7 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Eye, MoreVertical, Pencil, Trash2 } from "lucide-react";
+import {
+  Eye,
+  MoreVertical,
+  Pencil,
+  Trash2,
+  PauseCircle,
+  PlayCircle,
+  Pause,
+  Play,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import UndoTimerButton from "@/components/ui/UndoTimerButton";
 import { Task } from "@/types";
@@ -13,6 +22,7 @@ type TaskActionsCellProps = {
   onEdit: (task: Task) => void;
   onDelete: (id: string) => void;
   onUndoDelete: (id: string) => void;
+  onTogglePause: (id: string) => void;
 };
 
 const TaskActionsCell = ({
@@ -21,6 +31,7 @@ const TaskActionsCell = ({
   onEdit,
   onDelete,
   onUndoDelete,
+  onTogglePause,
 }: TaskActionsCellProps) => {
   const t = useTranslations("public");
   const [open, setOpen] = useState(false);
@@ -36,6 +47,7 @@ const TaskActionsCell = ({
   }, []);
 
   const isDeleting = !!(task.deletingUntil && task.deletingUntil > now);
+  const isPaused = !!task.isPaused;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -96,6 +108,64 @@ const TaskActionsCell = ({
 
             <UndoTimerButton onUndo={() => onUndoDelete(task.id)} />
           </>
+        ) : isPaused ? (
+          <>
+            <button
+              className={s.tableActionButton("info")}
+              title={t("tableColumnsView")}
+              aria-label={`${t("tableColumnsViewDetail")} : ${task.title}`}
+              disabled
+            >
+              <Eye
+                size={16}
+                strokeWidth={2.5}
+                aria-hidden="true"
+                className={s.tableIconDisabled}
+              />
+            </button>
+
+            <button
+              className={s.tableActionButton("warning")}
+              title={t("tableColumnsEdit")}
+              aria-label={`${t("tableColumnsEditDetail")} : ${task.title}`}
+              disabled
+            >
+              <Pencil
+                size={16}
+                strokeWidth={2.5}
+                aria-hidden="true"
+                className={s.tableIconDisabled}
+              />
+            </button>
+
+            <button
+              onClick={() => onTogglePause(task.id)}
+              className={s.tableActionButton("info")}
+              title={isPaused ? t("unpauseTask") : t("pauseTask")}
+              aria-label={`${isPaused ? "Unpause" : "Pause"} : ${task.title}`}
+            >
+              <Play
+                size={16}
+                strokeWidth={2.5}
+                aria-hidden="true"
+                className="text-sky-400"
+              />
+            </button>
+
+            <button
+              className={s.tableActionButton("danger")}
+              title={t("tableColumnsDelete")}
+              aria-label={`${t("tableColumnsDeleteDetail")} : ${task.title}`}
+              disabled
+            >
+              <Trash2
+                size={16}
+                strokeWidth={2.5}
+                aria-hidden="true"
+                className={s.tableIconDisabled}
+              />
+            </button>
+          </>
         ) : (
           <>
             <button
@@ -129,11 +199,33 @@ const TaskActionsCell = ({
             </button>
 
             <button
+              onClick={() => onTogglePause(task.id)}
+              className={s.tableActionButton("info")}
+              title={isPaused ? t("unpauseTask") : t("pauseTask")}
+              aria-label={`${isPaused ? "Unpause" : "Pause"} : ${task.title}`}
+            >
+              {isPaused ? (
+                <Play
+                  size={16}
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                  className="text-sky-400"
+                />
+              ) : (
+                <Pause
+                  size={16}
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                  className="text-sky-400"
+                />
+              )}
+            </button>
+
+            <button
               onClick={() => onDelete(task.id)}
               className={s.tableActionButton("danger")}
               title={t("tableColumnsDelete")}
               aria-label={`${t("tableColumnsDeleteDetail")} : ${task.title}`}
-              aria-haspopup="dialog"
             >
               <Trash2
                 size={16}
@@ -152,6 +244,20 @@ const TaskActionsCell = ({
           <div className="flex items-center justify-center">
             <UndoTimerButton onUndo={() => onUndoDelete(task.id)} />
           </div>
+        ) : isPaused ? (
+          <button
+            onClick={() => onTogglePause(task.id)}
+            className={s.tableActionButton("info")}
+            title={isPaused ? t("unpauseTask") : t("pauseTask")}
+            aria-label={`${isPaused ? "Unpause" : "Pause"} : ${task.title}`}
+          >
+            <Play
+              size={16}
+              strokeWidth={2.5}
+              aria-hidden="true"
+              className="text-sky-400"
+            />
+          </button>
         ) : (
           <>
             <button
@@ -212,6 +318,33 @@ const TaskActionsCell = ({
                     className="text-yellow-500"
                   />
                   <span className="font-bold">{t("tableColumnsEdit")}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    onTogglePause(task.id);
+                    closeMenu();
+                  }}
+                  className={s.taskPause}
+                  role="menuitem"
+                >
+                  {isPaused ? (
+                    <PlayCircle
+                      size={17}
+                      strokeWidth={2.5}
+                      className="text-sky-400"
+                    />
+                  ) : (
+                    <PauseCircle
+                      size={17}
+                      strokeWidth={2.5}
+                      className="text-sky-400"
+                    />
+                  )}
+                  <span className="font-bold">
+                    {isPaused ? t("unpauseTask") : t("pauseTask")}
+                  </span>
                 </button>
 
                 <button
