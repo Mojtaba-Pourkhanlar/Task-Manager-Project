@@ -9,6 +9,7 @@ const GlassCheckbox: React.FC<GlassCheckboxProps> = ({
   onChange,
   label,
   priority = "low",
+  disabled
 }) => {
   const colorClass = checkboxPriorityStyles[priority];
   const uid = React.useId();
@@ -30,6 +31,7 @@ const GlassCheckbox: React.FC<GlassCheckboxProps> = ({
         className={s.input}
         aria-label={label || "انتخاب آیتم"}
         title="انتخاب"
+        disabled={disabled}
       />
 
       <div

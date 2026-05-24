@@ -17,6 +17,7 @@ const CoreTable = ({
   onUndoDelete,
   onView,
   onEdit,
+  onTogglePause,
 }: CoreTableProps) => {
   const t = useTranslations("public");
   const [now, setNow] = useState(() => Date.now());
@@ -43,18 +44,25 @@ const CoreTable = ({
     const deleting = tasks.filter(
       t => t.deletingUntil && t.deletingUntil > now,
     );
-    const normal = tasks.filter(
+    const notDeleting = tasks.filter(
       t => !t.deletingUntil || t.deletingUntil <= now,
     );
-    const sorted = [...normal].sort((a, b) => {
-      if (a.done !== b.done) {
-        return a.done ? 1 : -1;
-      }
+
+    const activeTasks = notDeleting.filter(t => !t.isPaused && !t.done);
+    const pausedTasks = notDeleting.filter(t => t.isPaused && !t.done);
+    const doneTasks = notDeleting.filter(t => t.done);
+
+    const sortByPriorityThenTitle = (a: Task, b: Task) => {
       const pw = priorityWeight[b.priority] - priorityWeight[a.priority];
       if (pw !== 0) return pw;
       return a.title.localeCompare(b.title, "fa");
-    });
-    return [...sorted, ...deleting];
+    };
+    const sortedActive = [...activeTasks].sort(sortByPriorityThenTitle);
+    const sortedPaused = [...pausedTasks].sort((a, b) =>
+      a.title.localeCompare(b.title, "fa"),
+    );
+    const sortedDone = [...doneTasks].sort(sortByPriorityThenTitle);
+    return [...sortedActive, ...sortedPaused, ...sortedDone, ...deleting];
   }, [tasks, now]);
 
   const columns: ColumnTable<Task>[] = [
@@ -68,6 +76,7 @@ const CoreTable = ({
           onChange={val => onToggleDone(task.id, val)}
           label=""
           priority={task.priority}
+          disabled={task.isPaused}
         />
       ),
       align: "text-start",
@@ -76,7 +85,7 @@ const CoreTable = ({
       key: "title",
       header: t("tableColumnsTitle"),
       render: (task: Task) => (
-        <p className="truncate w-48 md:w-full font-bold" title={task.title}>
+        <p className="truncate w-45 md:w-full font-bold" title={task.title}>
           {task.title}
         </p>
       ),
@@ -118,15 +127,19 @@ const CoreTable = ({
           onEdit={onEdit}
           onDelete={onDelete}
           onUndoDelete={onUndoDelete}
+          onTogglePause={onTogglePause}
         />
       ),
     },
   ];
 
-  const isDone = viewTasks?.filter((item: Task) => item.done);
+  const activeNotPaused = viewTasks.filter(
+    t => !t.isPaused && (!t.deletingUntil || t.deletingUntil <= now),
+  );
+  const isDone = activeNotPaused.filter(t => t.done);
 
-  const total = viewTasks.length;
-  const doneCount = isDone?.length ?? 0;
+  const total = activeNotPaused.length;
+  const doneCount = isDone.length;
   const progress = total > 0 ? Math.round((doneCount / total) * 100) : 0;
 
   let progressColor = "from-yellow-400 to-yellow-500";
@@ -145,8 +158,12 @@ const CoreTable = ({
         data={viewTasks}
         columns={columns}
         rowClassName={(task: Task) => {
-          if (task.deletingUntil && task.deletingUntil > Date.now())
+          if (task.deletingUntil && task.deletingUntil > Date.now()) {
             return "opacity-50 bg-red-500/20 animate-pulse";
+          }
+          if (task.isPaused) {
+            return "opacity-50 bg-gray-500/20";
+          }
           return task.done ? "bg-green-500/20" : "hover:bg-white/5";
         }}
         emptyText={t("tableEmpty")}

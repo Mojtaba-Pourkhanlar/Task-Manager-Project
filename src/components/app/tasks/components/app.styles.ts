@@ -227,6 +227,11 @@ export const TaskActionsCellStyles = {
       transition-colors border-t-1 border-b-1 border-(--border) cursor-pointer
     `,
 
+  taskPause: `
+  flex w-full items-center gap-2 px-3 py-2 text-sm text-sky-400
+      hover:bg-(--surface-hover)
+      transition-colors cursor-pointer border-b-1 border-(--border)
+    `,
   taskView: `
   flex w-full items-center gap-2 px-3 py-2 text-sm text-blue-600
       hover:bg-(--surface-hover)
