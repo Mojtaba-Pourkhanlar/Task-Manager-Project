@@ -76,7 +76,7 @@ const CoreTable = ({
       key: "title",
       header: t("tableColumnsTitle"),
       render: (task: Task) => (
-        <p className="truncate w-42 md:w-full font-bold" title={task.title}>
+        <p className="truncate w-48 md:w-full font-bold" title={task.title}>
           {task.title}
         </p>
       ),
