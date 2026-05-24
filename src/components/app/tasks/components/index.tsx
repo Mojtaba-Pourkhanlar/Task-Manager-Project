@@ -86,6 +86,20 @@ const MainPage = ({ header_name, setTasks, tasks, section }: Props) => {
     setTasks(prev => [...prev, ...importedTasks]);
   };
 
+  const togglePauseById = (id: string) => {
+    setTasks(prev =>
+      prev.map(t =>
+        t.id === id
+          ? {
+              ...t,
+              isPaused: !t.isPaused,
+              ...(t.isPaused === false ? {} : { done: false }),
+            }
+          : t,
+      ),
+    );
+  };
+
   return (
     <div className="p-3 max-w-3xl mx-auto">
       <Headers
@@ -102,6 +116,7 @@ const MainPage = ({ header_name, setTasks, tasks, section }: Props) => {
       <CoreTable
         tasks={tasks}
         onToggleDone={toggleDoneById}
+        onTogglePause={togglePauseById}
         onDelete={deleteById}
         onUndoDelete={undoDelete}
         onClick={createTask}
