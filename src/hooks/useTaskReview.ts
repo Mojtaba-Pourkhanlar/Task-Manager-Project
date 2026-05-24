@@ -73,7 +73,7 @@ export const useTaskReview = (scope: Scope) => {
 
       setHistory(updatedHistory);
 
-      const unfinished = tasks.filter(t => !t.done);
+      const unfinished = tasks.filter(t => !t.done && !t.isPaused);
 
       if (unfinished.length > 0) {
         setTimeout(() => {

@@ -15,6 +15,7 @@ export interface GlassCheckboxProps {
   onChange: (checked: boolean) => void;
   label?: string;
   priority?: Priority;
+  disabled?: boolean;
 }
 // Modal.tsx
 export interface ModalProps {
@@ -84,6 +85,7 @@ export interface Task {
   priority: "low" | "medium" | "high";
   done: boolean;
   deletingUntil?: number;
+  isPaused?: boolean;
 }
 
 export type SetTasks = React.Dispatch<React.SetStateAction<Task[]>>;
@@ -93,6 +95,7 @@ export type SetTasks = React.Dispatch<React.SetStateAction<Task[]>>;
 export interface CoreTableProps {
   tasks: Task[];
   onToggleDone: (id: string, value: boolean) => void;
+  onTogglePause: (id: string) => void;
   onDelete: (id: string) => void;
   onClick: () => void;
   onUndoDelete: (id: string) => void;
