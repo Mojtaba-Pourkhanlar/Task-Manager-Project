@@ -16,7 +16,7 @@ export default function GlassTable<T>({
 }: TableProps<T>) {
   const t = useTranslations("public");
 
-  const containerMaxHeight = maxHeight ?? "calc(100vh - 320px)";
+  const containerMaxHeight = maxHeight ?? "calc(100vh - 230px)";
 
   return (
     <div className={s.wrapper} style={{ height: containerMaxHeight }}>
@@ -25,7 +25,10 @@ export default function GlassTable<T>({
           <thead className={s.thead}>
             <tr>
               {columns.map((col, i) => (
-                <th key={i} className={`${s.th} ${col.width || ""} ${col.align || "text-start"}`}>
+                <th
+                  key={i}
+                  className={`${s.th} ${col.width || ""} ${col.align || "text-start"}`}
+                >
                   {col.header}
                 </th>
               ))}

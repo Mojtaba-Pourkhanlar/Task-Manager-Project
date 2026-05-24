@@ -1,10 +1,7 @@
-import React from "react";
-import { Check } from "lucide-react";
 import { GlassCheckboxProps } from "@/types";
-import {
-  checkboxStyles as s,
-  checkboxPriorityStyles,
-} from "./core.styles";
+import { Check } from "lucide-react";
+import React from "react";
+import { checkboxPriorityStyles, checkboxStyles as s } from "./core.styles";
 
 const GlassCheckbox: React.FC<GlassCheckboxProps> = ({
   id,
@@ -14,11 +11,13 @@ const GlassCheckbox: React.FC<GlassCheckboxProps> = ({
   priority = "low",
 }) => {
   const colorClass = checkboxPriorityStyles[priority];
+  const uid = React.useId();
+  const inputId = `checkbox-${id}-${uid}`;
 
   return (
     <div className={s.wrapper}>
       <input
-        id={id}
+        id={inputId}
         type="checkbox"
         checked={checked}
         onChange={e => onChange(e.target.checked)}

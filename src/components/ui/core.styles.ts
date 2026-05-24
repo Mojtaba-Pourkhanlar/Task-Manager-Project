@@ -210,9 +210,9 @@ export const inputStyles = {
 /* ---------------- Checkbox ---------------- */
 
 export const checkboxStyles = {
-  wrapper: "flex items-center gap-3 group",
+  wrapper: "relative flex items-center gap-3 group",
 
-  input: "peer absolute w-6 h-6 opacity-0 cursor-pointer z-10",
+  input: "peer w-6 h-6 opacity-0 cursor-pointer absolute z-10",
 
   circle: `
     w-5 h-5 rounded-full border-2
@@ -250,4 +250,28 @@ export const checkboxPriorityStyles: Record<Priority, string> = {
   medium:
     "border-yellow-400 bg-yellow-400/30 shadow-[0_0_12px_rgba(250,204,21,0.5)]",
   high: "border-red-400 bg-red-400/30 shadow-[0_0_12px_rgba(239,68,68,0.5)]",
+};
+
+/* ---------------- Tabs ---------------- */
+
+export const TabsStyles = {
+  container: `flex overflow-hidden rounded-xl
+    bg-(--surface)
+    border border-(--border)
+    h-9
+  `,
+  href: `hover:bg-(--surface-hover) px-3 pt-1 flex items-center rounded-0 transition`,
+  active: `
+    text-(--navy-900) 
+    bg-(--navy-200) 
+    dark:text-(--navy-900) 
+    dark:bg-(--navy-50) 
+    font-semibold
+  `,
+  inactive: `
+    text-gray-700
+    dark:text-(--navy-700)
+    bg-(--navy-50)
+    dark:bg-[#1F1F1F]
+  `,
 };
