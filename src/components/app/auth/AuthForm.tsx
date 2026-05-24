@@ -64,8 +64,7 @@ const AuthForm = () => {
     handleClose();
   };
 
-  console.log('isUserNameValid', isUserNameValid)
-  
+
   return (
     <div className={s.page}>
       <div className={s.card}>
