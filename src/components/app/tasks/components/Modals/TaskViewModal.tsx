@@ -29,7 +29,7 @@ const TaskViewModal = ({ isOpen, onClose, task }: Props) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} header={t("viewTask")}>
       <div className="space-y-4">
-        <div>
+        <div className="m-0 p-0">
           <p className="text-md opacity-70 font-bold mb-1">
             {t("tableColumnsTitle")}
           </p>
@@ -39,7 +39,8 @@ const TaskViewModal = ({ isOpen, onClose, task }: Props) => {
         </div>
 
         <hr className="bg-none my-2 border-b-0.5 border-(--navy-300) dark:border-white/20" />
-        <div className="flex items-center justify-between ">
+
+        <div className="flex items-center justify-between m-0 p-0">
           <p className="text-md opacity-70 font-bold">
             {t("tableColumnsPriority")}
           </p>
@@ -52,7 +53,7 @@ const TaskViewModal = ({ isOpen, onClose, task }: Props) => {
 
         <hr className="bg-none my-2 border-b-0.5 border-(--navy-300) dark:border-white/20" />
 
-        <div className="flex items-center justify-between ">
+        <div className="flex items-center justify-between m-0 p-0">
           <p className="text-md opacity-70 font-bold">{t("status")}</p>
           <p
             className={`font-bold whitespace-nowrap select-none  ${task.done ? s.priorityLow : s.priorityMedium}`}
