@@ -60,6 +60,8 @@
 
     "taskName": "Enter the task name.",
     "taskNameAria": "Task name",
+    "taskDesc": "Enter the task description.",
+    "taskDescAria": "Task description",
     "formBTN": "Cancel",
     "formBTNTitle": "Cancel and close the form",
     "formBTNAria": "Cancel creating a new task and closing the modal",
@@ -70,6 +72,7 @@
     "formBTNCreatAriaConfirm": "Confirm and create a new task",
 
     "status": "Status",
+    "description": "Description",
     "done": "Done ✅",
     "inprogress": "Inprogress ⏳",
 
@@ -163,9 +166,8 @@
     }
   },
   "footer": {
-    "text": "This project with ❤️ and",
-    "coffee": "coffee",
-    "develop": "was developed",
+    "text": "Instead of caffeine, give me the gift of awareness;",
+    "coffee": "Buy me a book",
     "donate": "Donate"
   },
   "logout": {

@@ -90,7 +90,7 @@ export const useTaskReview = (scope: Scope) => {
 
   const handleReviewDecision = (keep: boolean) => {
     if (keep) {
-      setTasks(pendingTasks.map(t => ({ ...t, done: false })));
+      setTasks(pendingTasks.map(t => ({ ...t, done: false, isPaused: true })));
     } else {
       setTasks([]);
     }

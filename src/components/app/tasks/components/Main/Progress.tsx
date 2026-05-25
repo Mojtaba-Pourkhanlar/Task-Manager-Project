@@ -87,9 +87,8 @@ const Progress = ({
              cursor-pointer px-1"
         >
           {tf("coffee")}
-          <span aria-hidden>☕</span>
+          <span aria-hidden>📖</span>
         </button>
-        {tf("develop")}
       </p>
     </div>
   );

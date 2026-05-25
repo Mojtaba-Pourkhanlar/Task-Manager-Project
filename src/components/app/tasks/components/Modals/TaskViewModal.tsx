@@ -30,29 +30,45 @@ const TaskViewModal = ({ isOpen, onClose, task }: Props) => {
     <Modal isOpen={isOpen} onClose={onClose} header={t("viewTask")}>
       <div className="space-y-4">
         <div>
-          <p className="text-md opacity-50 font-bold mb-1">
+          <p className="text-md opacity-70 font-bold mb-1">
             {t("tableColumnsTitle")}
           </p>
-          <h2 className="text-lg font-bold">{task.title}</h2>
+          <h2 className="text-lg font-bold text-black dark:text-white">
+            {task.title}
+          </h2>
         </div>
 
-        <div>
-          <p className="text-md opacity-50 font-bold mb-1">{t("status")}</p>
+        <hr className="bg-none my-2 border-b-0.5 border-(--navy-300) dark:border-white/20" />
+        <div className="flex items-center justify-between ">
+          <p className="text-md opacity-70 font-bold">
+            {t("tableColumnsPriority")}
+          </p>
           <p
-            className={`font-bold whitespace-nowrap select-none w-fit ${task.done ? s.priorityLow : s.priorityMedium}`}
+            className={`${colorMap[task.priority]} whitespace-nowrap select-none `}
+          >
+            {map[task.priority]}
+          </p>
+        </div>
+
+        <hr className="bg-none my-2 border-b-0.5 border-(--navy-300) dark:border-white/20" />
+
+        <div className="flex items-center justify-between ">
+          <p className="text-md opacity-70 font-bold">{t("status")}</p>
+          <p
+            className={`font-bold whitespace-nowrap select-none  ${task.done ? s.priorityLow : s.priorityMedium}`}
           >
             {task.done ? t("done") : t("inprogress")}
           </p>
         </div>
 
+        <hr className="bg-none my-2 border-b-0.5 border-(--navy-300) dark:border-white/20" />
+
         <div>
-          <p className="text-md opacity-50 font-bold mb-1">
-            {t("tableColumnsPriority")}
+          <p className="text-md opacity-70 font-bold mb-1">
+            {t("description")}
           </p>
-          <p
-            className={`${colorMap[task.priority]} whitespace-nowrap select-none w-fit`}
-          >
-            {map[task.priority]}
+          <p className="text-md font-bold mb-1 text-black dark:text-white">
+            {task.description ?? "___"}
           </p>
         </div>
       </div>
