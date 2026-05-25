@@ -1,4 +1,5 @@
 import CustomLayout from "@/components/layout";
+import SplashHandler from "@/components/ui/SplashHandler";
 import { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -93,8 +94,31 @@ export default function SiteLayout({
             }),
           }}
         />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+          #planico-splash {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #F3F4F6;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            z-index: 99999;
+            transition: opacity 0.5s ease-in-out;
+          }
+          .loader-logo { width: 80px; height: 80px; margin-bottom: 20px; animation: pulse 1.5s infinite; }
+          @keyframes pulse { 0%, 100% { transform: scale(0.95); } 50% { transform: scale(1.05); } }
+          .loader-bar { width: 120px; height: 4px; background: #ddd; border-radius: 10px; overflow: hidden; }
+          .loader-progress { width: 100%; height: 100%; background: #292B2E; animation: loading 2s infinite ease-in-out; transform-origin: left; }
+          @keyframes loading { 0% { transform: scaleX(0); } 50% { transform: scaleX(1); } 100% { transform: scaleX(0); transform-origin: right; } }
+          .fade-out { opacity: 0 !important; pointer-events: none; }
+        `,
+          }}
+        />
       </head>
       <body>
+        <SplashHandler />
+
         <CustomLayout>{children}</CustomLayout>
       </body>
     </html>
