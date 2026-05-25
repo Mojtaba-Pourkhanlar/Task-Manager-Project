@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 import GlassSelect from "@/components/ui/Select";
+import { TextArea } from "@/components/ui/TextArea";
 import { TextInput } from "@/components/ui/TextInput";
 import { Task } from "@/types";
 import { useTranslations } from "next-intl";
@@ -29,6 +30,7 @@ export default function AddTaskModal({
   const t = useTranslations("public");
 
   const [taskName, setTaskName] = useState(task?.title || "");
+  const [taskDesc, setTaskDesc] = useState(task?.description || "");
   const [priority, setPriority] = useState<"low" | "medium" | "high">(
     task?.priority || "medium",
   );
@@ -50,6 +52,7 @@ export default function AddTaskModal({
       onAdd({
         id: uuidv4(),
         title: taskName,
+        description: taskDesc,
         priority,
         done: false,
       });
@@ -59,6 +62,7 @@ export default function AddTaskModal({
       onUpdate({
         ...task,
         title: taskName,
+        description: taskDesc,
         priority,
       });
     }
@@ -96,6 +100,18 @@ export default function AddTaskModal({
             { label: t("medium"), value: "medium" },
             { label: t("high"), value: "high" },
           ]}
+        />
+
+        <TextArea
+          label={t("taskDescAria")}
+          id="task-desc"
+          placeholder={t("taskDesc")}
+          value={taskDesc}
+          onChange={e => setTaskDesc(e.target.value)}
+          aria-required="true"
+          aria-label={t("taskDescAria")}
+          aria-describedby="task-desc"
+          autoComplete="off"
         />
       </div>
 
