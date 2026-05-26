@@ -30,7 +30,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           rows={rows}
           className={`
             ${s.base} 
-            min-h-20 py-3 resize-y
+            min-h-15 py-3 resize-y
             ${error ? s.error : s.normal}
             ${className ?? ""}
           `}

@@ -24,7 +24,7 @@ export const modalStyles = {
   `,
 
   styleHR: `
-    bg-none mt-2 mb-4
+    bg-none mt-2 mb-3
     border-b-2 border-(--navy-500)/20 dark:border-white/20
   `,
 
@@ -185,7 +185,8 @@ export const inputStyles = {
     placeholder:text-gray-400 dark:placeholder:text-gray-500
     focus:ring-2
     transition-all duration-200
-    font-semibold
+    placeholder:font-medium
+    font-bold
   `,
 
   normal: `

@@ -61,23 +61,15 @@ export const useTaskReview = (scope: Scope) => {
 
     if (lastPeriod && lastPeriod !== currentPeriod) {
       const total = tasks.length;
-      const done = tasks.filter(t => t.done).length;
+      const doneCount = tasks.filter(t => t.done).length;
 
-      const newEntry = {
-        date: lastPeriod,
-        total,
-        done,
-      };
+      const newEntry = { date: lastPeriod, total, done: doneCount };
+      setHistory([...history, newEntry].slice(-365));
+      const tasksToCarryOver = tasks.filter(t => !t.done);
 
-      const updatedHistory = [...history, newEntry].slice(-365);
-
-      setHistory(updatedHistory);
-
-      const unfinished = tasks.filter(t => !t.done && !t.isPaused);
-
-      if (unfinished.length > 0) {
+      if (tasksToCarryOver.length > 0) {
         setTimeout(() => {
-          setPendingTasks(unfinished);
+          setPendingTasks(tasksToCarryOver);
           setIsReviewOpen(true);
         }, 0);
       } else {
@@ -90,7 +82,7 @@ export const useTaskReview = (scope: Scope) => {
 
   const handleReviewDecision = (keep: boolean) => {
     if (keep) {
-      setTasks(pendingTasks.map(t => ({ ...t, done: false, isPaused: true })));
+      setTasks(pendingTasks.map(t => ({ ...t, done: false })));
     } else {
       setTasks([]);
     }
