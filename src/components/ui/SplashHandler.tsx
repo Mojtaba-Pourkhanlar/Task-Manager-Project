@@ -1,33 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+
 import { useEffect, useState } from "react";
 
 export default function SplashHandler() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [shouldRender, setShouldRender] = useState(true);
+  const [, setShow] = useState(false);
 
   useEffect(() => {
-    const fadeTimeout = setTimeout(() => {
-      setIsVisible(false);
-    }, 500);
+    const splash = document.getElementById("planico-splash");
+    if (splash && splash.style.display === "flex") {
+      const timer = setTimeout(() => {
+        splash.classList.add("fade-out");
+        setTimeout(() => {
+          splash.style.display = "none";
+          setShow(false);
+        }, 500);
+      }, 1500);
 
-    const removeTimeout = setTimeout(() => {
-      setShouldRender(false);
-    }, 1000);
-
-    return () => {
-      clearTimeout(fadeTimeout);
-      clearTimeout(removeTimeout);
-    };
+      return () => clearTimeout(timer);
+    }
   }, []);
 
-  if (!shouldRender) return null;
-
   return (
-    <div id="planico-splash" className={!isVisible ? "fade-out" : ""}>
-      <div className="loader-logo">
-        <img src="/icons/favicon.png" alt="Planico" width="80" height="80" />
-      </div>
+    <div id="planico-splash">
+      <img src="/icons/favicon.png" className="loader-logo" alt="Planico" />
       <div className="loader-bar">
         <div className="loader-progress"></div>
       </div>

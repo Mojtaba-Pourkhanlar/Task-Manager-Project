@@ -4,8 +4,8 @@
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#F3F4F6",
-  "theme_color": "#292B2E",
+  "background_color": "#0f0f0f",
+  "theme_color": "#ccc",
   "description": "A personal task manager built by Mojtaba Pourkhanlar to organize daily tasks, track progress, and stay productive.",
   "categories": ["productivity", "utilities", "task-management", "Planico"],
   "lang": "fa",
@@ -15,20 +15,49 @@
     {
       "src": "/icons/favicon.png",
       "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/svg+xml"
     },
     {
       "src": "/icons/favicon.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "/icons/favicon.png",
       "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "افزودن تسک جدید",
+      "short_name": "تسک جدید",
+      "description": "سریعاً یک تسک جدید به لیستت اضافه کن",
+      "url": "/add-task?utm_source=homescreen",
+      "icons": [{ "src": "/icons/favicon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "تسک‌های امروز",
+      "short_name": "امروز",
+      "description": "بررسی کارهایی که باید همین امروز انجام بدی",
+      "url": "/today?utm_source=homescreen",
+      "icons": [{ "src": "/icons/favicon.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/mobile-main.jpg",
+      "sizes": "1080x1920",
       "type": "image/png",
-      "purpose": "any maskable"
+      "form_factor": "narrow",
+      "label": "نمای اصلی اپلیکیشن در موبایل"
+    },
+    {
+      "src": "/screenshots/desktop-main.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "پنل مدیریت تسک‌ها در دسکتاپ"
     }
   ]
 }
