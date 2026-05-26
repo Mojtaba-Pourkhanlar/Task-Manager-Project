@@ -76,7 +76,7 @@ export default function AddTaskModal({
       onClose={onClose}
       header={mode === "create" ? t("creatNewTask") : t("editTask")}
     >
-      <div className="space-y-4">
+      <div className="space-y-2">
         <TextInput
           label={t("taskNameAria")}
           id="task-title"
@@ -89,6 +89,7 @@ export default function AddTaskModal({
           aria-label={t("taskNameAria")}
           aria-describedby="task-title-desc"
           autoComplete="off"
+          maxLength={30}
         />
 
         <GlassSelect
@@ -115,7 +116,7 @@ export default function AddTaskModal({
         />
       </div>
 
-      <div className="flex justify-between gap-3 mt-5">
+      <div className="flex justify-between mt-2">
         <Button
           className="bg-gray-400 dark:bg-gray-600"
           onClick={onClose}

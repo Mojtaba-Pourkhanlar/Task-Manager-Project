@@ -29,13 +29,24 @@ const TaskViewModal = ({ isOpen, onClose, task }: Props) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} header={t("viewTask")}>
       <div className="space-y-4">
-        <div className="m-0 p-0">
-          <p className="text-md opacity-70 font-bold mb-1">
+        <div className="flex items-center justify-between m-0 p-0">
+          <p className="text-md opacity-70 font-bold">
             {t("tableColumnsTitle")}
           </p>
-          <h2 className="text-lg font-bold text-black dark:text-white">
+          <h2 className="text-md font-bold text-black dark:text-white">
             {task.title}
           </h2>
+        </div>
+
+        <hr className="bg-none my-2 border-b-0.5 border-(--navy-300) dark:border-white/20" />
+
+        <div className="flex items-center justify-between m-0 p-0">
+          <p className="text-md opacity-70 font-bold">{t("status")}</p>
+          <p
+            className={`font-bold whitespace-nowrap select-none  ${task.done ? s.priorityLow : s.priorityMedium}`}
+          >
+            {task.done ? t("done") : t("inprogress")}
+          </p>
         </div>
 
         <hr className="bg-none my-2 border-b-0.5 border-(--navy-300) dark:border-white/20" />
@@ -48,17 +59,6 @@ const TaskViewModal = ({ isOpen, onClose, task }: Props) => {
             className={`${colorMap[task.priority]} whitespace-nowrap select-none `}
           >
             {map[task.priority]}
-          </p>
-        </div>
-
-        <hr className="bg-none my-2 border-b-0.5 border-(--navy-300) dark:border-white/20" />
-
-        <div className="flex items-center justify-between m-0 p-0">
-          <p className="text-md opacity-70 font-bold">{t("status")}</p>
-          <p
-            className={`font-bold whitespace-nowrap select-none  ${task.done ? s.priorityLow : s.priorityMedium}`}
-          >
-            {task.done ? t("done") : t("inprogress")}
           </p>
         </div>
 
