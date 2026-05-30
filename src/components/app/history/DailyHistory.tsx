@@ -26,7 +26,10 @@ export const DailyHistory = () => {
       {validHistory.length === 0 ? (
         <Empty />
       ) : (
-        <div className="mt-6">
+        <div
+          className="mt-6 overflow-auto"
+          style={{ height: "calc(100vh - 230px)" }}
+        >
           {history
             .filter(h => h.date)
             .map((item, index) => {
@@ -34,47 +37,51 @@ export const DailyHistory = () => {
                 item.total > 0 ? (item.done / item.total) * 100 : 0;
 
               return (
-                <Accordion
-                  key={index}
-                  activeKeys={activeKeys}
-                  onChange={handleChange}
-                  items={[
-                    {
-                      eventKey: item.date,
-                      header: (
-                        <>
-                          {new Date(item.date).toLocaleDateString(locale, {
-                            month: "short",
-                            day: "numeric",
-                          })}
-                        </>
-                      ),
-                      children: (
-                        <>
-                          <div className="flex justify-between text-xs text-zinc-600 dark:text-zinc-200 mb-1">
-                            <span>
-                              {new Date(item.date).toLocaleDateString(locale, {
-                                month: "short",
-                                day: "numeric",
-                              })}
-                            </span>
+                <div key={index}>
+                  <Accordion
+                    activeKeys={activeKeys}
+                    onChange={handleChange}
+                    items={[
+                      {
+                        eventKey: item.date,
+                        header: (
+                          <>
+                            {new Date(item.date).toLocaleDateString(locale, {
+                              month: "short",
+                              day: "numeric",
+                            })}
+                          </>
+                        ),
+                        children: (
+                          <>
+                            <div className="flex justify-between text-xs text-zinc-600 dark:text-zinc-200 mb-1">
+                              <span>
+                                {new Date(item.date).toLocaleDateString(
+                                  locale,
+                                  {
+                                    month: "short",
+                                    day: "numeric",
+                                  },
+                                )}
+                              </span>
 
-                            <span>
-                              {item.done} {t("as")} {item.total} {t("isDone")}
-                            </span>
-                          </div>
+                              <span>
+                                {item.done} {t("as")} {item.total} {t("isDone")}
+                              </span>
+                            </div>
 
-                          <div className="w-full h-3 bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-green-500 transition-all duration-700"
-                              style={{ width: `${percent}%` }}
-                            />
-                          </div>
-                        </>
-                      ),
-                    },
-                  ]}
-                />
+                            <div className="w-full h-3 bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+                              <div
+                                className="h-full bg-green-500 transition-all duration-700"
+                                style={{ width: `${percent}%` }}
+                              />
+                            </div>
+                          </>
+                        ),
+                      },
+                    ]}
+                  />
+                </div>
               );
             })}
         </div>

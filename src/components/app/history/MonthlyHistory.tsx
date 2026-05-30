@@ -25,7 +25,10 @@ export const MonthlyHistory = () => {
       {validHistory.length === 0 ? (
         <Empty />
       ) : (
-        <div className="mt-6">
+        <div
+          className="mt-6 overflow-auto"
+          style={{ height: "calc(100vh - 230px)" }}
+        >
           {history
             .filter(h => h.date)
             .map((item, index) => {
