@@ -16,7 +16,9 @@ interface AuthUser {
 
 const ProfileClient = () => {
   const t = useTranslations("logout");
-  const [userData] = useLocalStorage<AuthUser | null>("auth_user", null);
+  const [userData] = useLocalStorage<AuthUser | null>("auth_user", null, {
+    secure: true,
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const initials = userData?.userName

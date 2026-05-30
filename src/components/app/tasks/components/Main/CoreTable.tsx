@@ -40,8 +40,8 @@ const CoreTable = ({
   }, [show]);
 
   const viewTasks = useMemo(() => {
-    if (!tasks) return [];
-    const deleting = tasks.filter(
+    if (!tasks || tasks.length === 0) return [];
+    const deleting = tasks?.filter(
       t => t.deletingUntil && t.deletingUntil > now,
     );
     const notDeleting = tasks.filter(
@@ -63,7 +63,7 @@ const CoreTable = ({
     );
     const sortedDone = [...doneTasks].sort(sortByPriorityThenTitle);
     return [...sortedActive, ...sortedPaused, ...sortedDone, ...deleting];
-  }, [tasks, now]);
+  }, [tasks]);
 
   const columns: ColumnTable<Task>[] = [
     {

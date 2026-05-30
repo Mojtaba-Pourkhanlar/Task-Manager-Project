@@ -1,33 +1,75 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from "react";
+import { secureGetItem, secureSetItem } from "@/lib/secure-storage";
 
 type Updater<T> = T | ((prev: T) => T);
 
-export function useLocalStorage<T>(key: string, initialValue: T) {
+type UseLocalStorageOptions = {
+  /**
+   * اگر true باشد داده به صورت encrypted در localStorage ذخیره می‌شود.
+   * توجه: این امنیت واقعی در برابر کاربرِ مصمم نیست؛ فقط برای جلوگیری از خواندن ساده است.
+   */
+  secure?: boolean;
+};
+
+export function useLocalStorage<T>(
+  key: string,
+  initialValue: T,
+  options: UseLocalStorageOptions = {},
+) {
+  const { secure = false } = options;
+
   const [value, setValue] = useState<T>(initialValue);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(key);
-      if (stored !== null) {
-        setValue(JSON.parse(stored) as T);
+    let cancelled = false;
+
+    const load = async () => {
+      try {
+        if (typeof window === "undefined") return;
+
+        if (secure) {
+          const stored = await secureGetItem<T>(key);
+          if (!cancelled && stored !== null) setValue(stored);
+        } else {
+          const stored = localStorage.getItem(key);
+          if (!cancelled && stored !== null) {
+            setValue(JSON.parse(stored) as T);
+          }
+        }
+      } catch (error) {
+        console.error("Error reading from localStorage", error);
+      } finally {
+        if (!cancelled) setIsLoaded(true);
       }
-    } catch (error) {
-      console.error("Error reading from localStorage ", error);
-    } finally {
-      setIsLoaded(true);
-    }
-  }, [key]);
+    };
+
+    load();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [key, secure]);
 
   useEffect(() => {
     if (!isLoaded) return;
-    try {
-      localStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      console.error("Error saving to localStorage", error);
-    }
-  }, [key, value, isLoaded]);
+
+    const save = async () => {
+      try {
+        if (typeof window === "undefined") return;
+
+        if (secure) {
+          await secureSetItem(key, value);
+        } else {
+          localStorage.setItem(key, JSON.stringify(value));
+        }
+      } catch (error) {
+        console.error("Error saving to localStorage", error);
+      }
+    };
+
+    save();
+  }, [key, value, isLoaded, secure]);
 
   const setStoredValue = (update: Updater<T>) => {
     setValue(prev =>
