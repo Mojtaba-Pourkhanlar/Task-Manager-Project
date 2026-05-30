@@ -1,4 +1,3 @@
-// src/hooks/useLocalStorage.ts
 import { useEffect, useState } from "react";
 import { secureGetItem, secureSetItem } from "@/lib/secure-storage";
 
