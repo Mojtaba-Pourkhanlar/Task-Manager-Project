@@ -27,6 +27,7 @@ const AuthForm = () => {
   const [, setAuthUser, isAuthLoaded] = useLocalStorage<AuthUser | null>(
     "auth_user",
     null,
+    { secure: true },
   );
 
   useEffect(() => {
@@ -63,7 +64,6 @@ const AuthForm = () => {
     });
     handleClose();
   };
-
 
   return (
     <div className={s.page}>

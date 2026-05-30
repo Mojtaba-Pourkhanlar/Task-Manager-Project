@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { secureSetItem } from "@/lib/secure-storage";
 
 type Locale = "fa" | "en";
 
@@ -11,7 +12,7 @@ export const useLocaleStore = create<LocaleState>(set => ({
   locale: "fa",
   setLocale: locale => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("locale", locale);
+      void secureSetItem("locale", locale);
     }
     set({ locale });
   },

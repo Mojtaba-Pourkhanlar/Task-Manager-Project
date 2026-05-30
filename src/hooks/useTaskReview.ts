@@ -37,16 +37,19 @@ export const useTaskReview = (scope: Scope) => {
   const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>(
     `${storagePrefix}-tasks`,
     [],
+    { secure: true },
   );
 
   const [history, setHistory] = useLocalStorage<HistoryItem[]>(
     `${storagePrefix}-history`,
     [],
+    { secure: true },
   );
 
   const [lastPeriod, setLastPeriod] = useLocalStorage<string>(
     `${storagePrefix}-last-period`,
     "",
+    { secure: true },
   );
 
   const [pendingTasks, setPendingTasks] = useState<Task[]>([]);
