@@ -106,7 +106,7 @@ export const useTaskReview = (scope: Scope) => {
     setIsHistoryOpen(true);
   };
 
-  const validHistory = history.filter(h => h.date);
+  const validHistory = history.length > 0 ? history?.filter(h => h.date) : [];
 
   return {
     tasks,
