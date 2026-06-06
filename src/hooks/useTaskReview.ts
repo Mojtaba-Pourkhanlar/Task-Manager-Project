@@ -34,19 +34,19 @@ export const useTaskReview = (scope: Scope) => {
 
   const { showToast } = useToast();
 
-  const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>(
+  const [tasks, setTasks, isTasksLoaded] = useLocalStorage<Task[]>(
     `${storagePrefix}-tasks`,
     [],
     { secure: true },
   );
 
-  const [history, setHistory] = useLocalStorage<HistoryItem[]>(
+  const [history, setHistory, isHistoryLoaded] = useLocalStorage<HistoryItem[]>(
     `${storagePrefix}-history`,
     [],
     { secure: true },
   );
 
-  const [lastPeriod, setLastPeriod] = useLocalStorage<string>(
+  const [lastPeriod, setLastPeriod, isPeriodLoaded] = useLocalStorage<string>(
     `${storagePrefix}-last-period`,
     "",
     { secure: true },
@@ -56,6 +56,7 @@ export const useTaskReview = (scope: Scope) => {
   const [isReviewOpen, setIsReviewOpen] = useState(false);
 
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const isLoaded = isTasksLoaded && isHistoryLoaded && isPeriodLoaded;
 
   useEffect(() => {
     if (!isLoaded) return;
