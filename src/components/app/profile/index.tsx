@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import { profileStyles as s } from "./profile.style";
 import { Route } from "next";
 import { redirect } from "next/navigation";
+import { VERSION } from "@/constants";
 
 interface AuthUser {
   userName: string;
@@ -62,6 +63,8 @@ const ProfileClient = () => {
             >
               {t("logoutBTN")}
             </button>
+
+            <p>{VERSION}</p>
           </div>
         </div>
       )}
