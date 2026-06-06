@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
 import { useToast } from "@/context/ToastContext";
@@ -58,19 +58,21 @@ export const useTaskReview = (scope: Scope) => {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const isLoaded = isTasksLoaded && isHistoryLoaded && isPeriodLoaded;
 
+  const hasChecked = useRef(false);
+
   useEffect(() => {
-    if (!isLoaded) return;
-
+    if (!isLoaded || hasChecked.current) return;
+    hasChecked.current = true;
     const currentPeriod = getPeriodKey(scope);
-
     if (lastPeriod && lastPeriod !== currentPeriod) {
       const total = tasks.length;
       const doneCount = tasks.filter(t => t.done).length;
 
-      const newEntry = { date: lastPeriod, total, done: doneCount };
-      setHistory([...history, newEntry].slice(-365));
-      const tasksToCarryOver = tasks.filter(t => !t.done);
+      setHistory(
+        [...history, { date: lastPeriod, total, done: doneCount }].slice(-365),
+      );
 
+      const tasksToCarryOver = tasks.filter(t => !t.done);
       if (tasksToCarryOver.length > 0) {
         setTimeout(() => {
           setPendingTasks(tasksToCarryOver);
@@ -82,7 +84,7 @@ export const useTaskReview = (scope: Scope) => {
     }
 
     setLastPeriod(currentPeriod);
-  }, [isLoaded, lastPeriod]);
+  }, [isLoaded]);
 
   const handleReviewDecision = (keep: boolean) => {
     if (keep) {
