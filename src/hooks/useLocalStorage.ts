@@ -4,10 +4,6 @@ import { secureGetItem, secureSetItem } from "@/lib/secure-storage";
 type Updater<T> = T | ((prev: T) => T);
 
 type UseLocalStorageOptions = {
-  /**
-   * اگر true باشد داده به صورت encrypted در localStorage ذخیره می‌شود.
-   * توجه: این امنیت واقعی در برابر کاربرِ مصمم نیست؛ فقط برای جلوگیری از خواندن ساده است.
-   */
   secure?: boolean;
 };
 
