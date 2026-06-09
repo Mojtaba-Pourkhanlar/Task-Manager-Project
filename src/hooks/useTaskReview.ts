@@ -12,6 +12,7 @@ export interface HistoryItem {
   date: string;
   total: number;
   done: number;
+  tasks: Task[];
 }
 
 const getPeriodKey = (scope: Scope) => {
@@ -69,7 +70,15 @@ export const useTaskReview = (scope: Scope) => {
       const doneCount = tasks.filter(t => t.done).length;
 
       setHistory(
-        [...history, { date: lastPeriod, total, done: doneCount }].slice(-365),
+        [
+          ...history,
+          {
+            date: lastPeriod,
+            total,
+            done: doneCount,
+            tasks,
+          },
+        ].slice(-365),
       );
 
       const tasksToCarryOver = tasks.filter(t => !t.done);
