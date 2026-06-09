@@ -185,5 +185,24 @@
     "sginIn": "Register",
     "signInAria": "Go to registration form button",
     "panel": "User panel"
+  },
+
+  "pwa": {
+    "title": "Upgrade Your Experience",
+    "description": "Install the app for faster access to your tasks and enjoy a smoother.",
+    "benefits": {
+      "fast": {
+        "title": "Faster Access",
+        "desc": "Launch directly from your home screen without opening a browser"
+      }
+    },
+    "actions": {
+      "later": "Maybe Later",
+      "install": "Install App"
+    },
+    "aria": {
+      "later": "Close the app installation suggestion",
+      "install": "Install the application on this device"
+    }
   }
 }
