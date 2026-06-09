@@ -76,6 +76,21 @@ export const DailyHistory = () => {
                                 style={{ width: `${percent}%` }}
                               />
                             </div>
+                            <div className="mt-3 space-y-1">
+                              {item.tasks?.map(task => (
+                                <div
+                                  key={task.id}
+                                  className={`text-xs px-2 py-1 rounded 
+                                    ${
+                                      task.done
+                                        ? "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"
+                                        : "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300"
+                                    }`}
+                                >
+                                  {task.title}
+                                </div>
+                              ))}
+                            </div>
                           </>
                         ),
                       },

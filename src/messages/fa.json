@@ -41,6 +41,8 @@
     "dailyDesc": "دیروز",
     "dailyDescSec": "تا تسک داشتی که انجام نشدن.",
     "dailyDescLast": "آیا می‌خواهی آنها را به امروز منتقل کنی؟",
+    "monthlyDesc": "ماه گذشته",
+    "monthlyDescLast": "آیا می‌خواهی آنها را به این ماه منتقل کنی؟",
 
     "tableColumnsTitle": "عنوان",
     "tableColumnsPriority": "اولویت",

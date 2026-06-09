@@ -41,6 +41,8 @@
     "dailyDesc": "You had",
     "dailyDescSec": "tasks yesterday that weren't completed.",
     "dailyDescLast": "Do you want to move them to today?",
+    "monthlyDesc": "Last month",
+    "monthlyDescLast": "Do you want to move them to this month?",
 
     "tableColumnsTitle": "Title",
     "tableColumnsPriority": "Priority",
