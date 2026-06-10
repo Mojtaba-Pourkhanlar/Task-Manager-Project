@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
+import { clearUserData } from "@/constants";
 import { useTranslations } from "next-intl";
 
 interface Props {
@@ -10,16 +11,7 @@ const WarrningModal = ({ onClose }: Props) => {
   const t = useTranslations("logout");
 
   const handleLogout = () => {
-    localStorage.removeItem("auth_user");
-    localStorage.removeItem("day-history");
-    localStorage.removeItem("day-last-period");
-    localStorage.removeItem("day-tasks");
-    localStorage.removeItem("month-history");
-    localStorage.removeItem("month-last-period");
-    localStorage.removeItem("month-tasks");
-    localStorage.removeItem("year-history");
-    localStorage.removeItem("year-last-period");
-    localStorage.removeItem("year-tasks");
+    clearUserData();
     onClose();
     window.location.reload();
   };
