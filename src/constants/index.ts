@@ -1,6 +1,6 @@
 import { Task } from "@/types";
 
-export const VERSION = "V_0.2.0";
+export const VERSION = "V_0.3.0";
 export const TIMER: number = 3000;
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const USERNAME_REGEX = /^(?=.*[a-zA-Z\u0600-\u06FF]).{5,}$/;

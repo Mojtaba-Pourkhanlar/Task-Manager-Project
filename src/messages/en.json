@@ -53,6 +53,7 @@
     "tableColumnsEditDetail": "Edit Task",
     "tableColumnsDelete": "Delete Task",
     "tableColumnsDeleteDetail": "Delete Task",
+    "tableColumnsFocus": "Focus Mode",
 
     "tableEmpty": "Add a task to make life meaningful 😌",
     "allTasks": "All Tasks",
@@ -203,6 +204,29 @@
     "aria": {
       "later": "Close the app installation suggestion",
       "install": "Install the application on this device"
+    }
+  },
+  "focus": {
+    "FocusMode": {
+      "header": "🎯 Focus Mode",
+      "taskLabel": "Task: {title}",
+      "subTitle": "Set the timer and dive deep into work! 🌊",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "cancel": "Cancel",
+      "start": "Start Focusing"
+    },
+    "FocusTimer": {
+      "statusActive": "Deepening focus...",
+      "statusFinished": "Great job, Champ! 🏆",
+      "taskLabel": "\"{title}\"",
+      "closeFinished": "Close and Continue",
+      "cancelFocus": "End Focus Session",
+      "timerLabel": "Remaining time: {time}"
+    },
+    "Notification": {
+      "title": "⏰ Focus Mode finished!",
+      "body": "The timer for task \"{title}\" has ended. Nice work! 🎉"
     }
   }
 }

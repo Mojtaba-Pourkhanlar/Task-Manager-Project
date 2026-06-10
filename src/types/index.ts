@@ -102,4 +102,30 @@ export interface CoreTableProps {
   onUndoDelete: (id: string) => void;
   onView: (task: Task) => void;
   onEdit: (task: Task) => void;
+  onFocus: (task: Task) => void;
+}
+
+export type TaskActionsCellProps = {
+  task: Task;
+  onView: (task: Task) => void;
+  onEdit: (task: Task) => void;
+  onDelete: (id: string) => void;
+  onUndoDelete: (id: string) => void;
+  onTogglePause: (id: string) => void;
+  onFocus: (task: Task) => void;
+};
+
+// -------------------------------------------- Focus
+export interface FocusModeModalProps {
+  taskTitle: string;
+  onStart: (totalSeconds: number) => void;
+  onClose: () => void;
+}
+export interface TimeFieldProps {
+  id: string;
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  onChange: (v: number) => void;
 }

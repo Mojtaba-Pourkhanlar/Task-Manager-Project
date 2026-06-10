@@ -9,6 +9,11 @@ import CoreTable from "./Main/CoreTable";
 import AddTaskModal from "./Modals/AddEditTaskModal";
 import ImportExportActions from "./Header/ImportExportActions";
 import { TaskSection } from "@/types/task-transfer";
+import { useFocusMode } from "@/hooks/useFocusMode";
+import FocusModeModal from "./Modals/FocusModeModal";
+import FocusTimerOverlay from "./Main/FocusTimerOverlay";
+import ClientOnly from "./Main/ClientOnly";
+import { useTranslations } from "next-intl";
 
 interface Props {
   section: TaskSection;
@@ -18,6 +23,8 @@ interface Props {
 }
 
 const MainPage = ({ header_name, setTasks, tasks, section }: Props) => {
+  const t = useTranslations("focus.Notification");
+
   const deleteTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>(
     {},
   );
@@ -100,6 +107,12 @@ const MainPage = ({ header_name, setTasks, tasks, section }: Props) => {
     );
   };
 
+  const { session, remaining, isFinished, start, reset } = useFocusMode({
+    title: t("title"),
+    body: (taskTitle: string) => t("body", { title: taskTitle }),
+  });
+  const [focusTask, setFocusTask] = useState<Task | null>(null);
+
   return (
     <div className="p-3 max-w-3xl mx-auto">
       <Headers
@@ -130,6 +143,7 @@ const MainPage = ({ header_name, setTasks, tasks, section }: Props) => {
           setSelectedTask(task);
           setIsModalOpen(true);
         }}
+        onFocus={task => setFocusTask(task)}
       />
       {isModalOpen && mode !== "view" && (
         <AddTaskModal
@@ -149,6 +163,29 @@ const MainPage = ({ header_name, setTasks, tasks, section }: Props) => {
           task={selectedTask}
         />
       )}
+
+      {focusTask && !session && (
+        <FocusModeModal
+          taskTitle={focusTask.title}
+          onStart={secs => {
+            start(focusTask.id, focusTask.title, secs);
+            setFocusTask(null);
+          }}
+          onClose={() => setFocusTask(null)}
+        />
+      )}
+
+      <ClientOnly>
+        {session && (
+          <FocusTimerOverlay
+            remaining={remaining}
+            totalSeconds={session.totalSeconds}
+            taskTitle={session.taskTitle}
+            isFinished={isFinished}
+            onReset={reset}
+          />
+        )}
+      </ClientOnly>
     </div>
   );
 };
