@@ -83,10 +83,10 @@ export const useTaskReview = (scope: Scope) => {
 
       const tasksToCarryOver = tasks.filter(t => !t.done);
       if (tasksToCarryOver.length > 0) {
-        setTimeout(() => {
+        queueMicrotask(() => {
           setPendingTasks(tasksToCarryOver);
           setIsReviewOpen(true);
-        }, 0);
+        });
       } else {
         setTasks([]);
       }
