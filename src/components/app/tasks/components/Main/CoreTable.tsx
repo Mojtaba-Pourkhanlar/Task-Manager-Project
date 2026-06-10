@@ -18,6 +18,7 @@ const CoreTable = ({
   onView,
   onEdit,
   onTogglePause,
+  onFocus,
 }: CoreTableProps) => {
   const t = useTranslations("public");
   const [now, setNow] = useState(() => Date.now());
@@ -128,6 +129,7 @@ const CoreTable = ({
           onDelete={onDelete}
           onUndoDelete={onUndoDelete}
           onTogglePause={onTogglePause}
+          onFocus={onFocus}
         />
       ),
     },

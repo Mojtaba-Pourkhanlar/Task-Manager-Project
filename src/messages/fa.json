@@ -53,6 +53,7 @@
     "tableColumnsEditDetail": "ویرایش تسک",
     "tableColumnsDelete": "حذف تسک",
     "tableColumnsDeleteDetail": "پاک کردن تسک",
+    "tableColumnsFocus": "حالت تمرکز",
 
     "tableEmpty": "یه تسک اضافه کن تا زندگی معنی‌دار بشه 😌",
     "allTasks": "تمامی تسک‌ها",
@@ -210,6 +211,29 @@
     "aria": {
       "later": "بستن پنجره پیشنهاد نصب اپلیکیشن",
       "install": "نصب اپلیکیشن روی دستگاه"
+    }
+  },
+  "focus": {
+    "FocusMode": {
+      "header": "🎯 حالت تمرکز",
+      "taskLabel": "تسک: {title}",
+      "subTitle": "زمان رو تنظیم کن و شیرجه بزن تو عمق کار! 🌊",
+      "hours": "ساعت",
+      "minutes": "دقیقه",
+      "cancel": "بی‌خیال",
+      "start": "شروع تمرکز"
+    },
+    "FocusTimer": {
+      "statusActive": "در حال تمرکز...",
+      "statusFinished": "خسته نباشی قهرمان! 🏆",
+      "taskLabel": "«{title}»",
+      "closeFinished": "بستن و ادامه",
+      "cancelFocus": "پایان دادن به تمرکز",
+      "timerLabel": "زمان باقی‌مانده: {time}"
+    },
+    "Notification": {
+      "title": "⏰ حالت تمرکز تموم شد!",
+      "body": "تایمر تسک «{title}» به پایان رسید. آفرین! 🎉"
     }
   }
 }

@@ -1,29 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import UndoTimerButton from "@/components/ui/UndoTimerButton";
+import { TaskActionsCellProps } from "@/types";
 import {
   Eye,
   MoreVertical,
-  Pencil,
-  Trash2,
-  PauseCircle,
-  PlayCircle,
   Pause,
+  PauseCircle,
+  Pencil,
   Play,
+  PlayCircle,
+  Timer,
+  Trash2,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import UndoTimerButton from "@/components/ui/UndoTimerButton";
-import { Task } from "@/types";
+import { useEffect, useRef, useState } from "react";
 import { TaskActionsCellStyles as s } from "../app.styles";
-
-type TaskActionsCellProps = {
-  task: Task;
-  onView: (task: Task) => void;
-  onEdit: (task: Task) => void;
-  onDelete: (id: string) => void;
-  onUndoDelete: (id: string) => void;
-  onTogglePause: (id: string) => void;
-};
 
 const TaskActionsCell = ({
   task,
@@ -32,6 +24,7 @@ const TaskActionsCell = ({
   onDelete,
   onUndoDelete,
   onTogglePause,
+  onFocus,
 }: TaskActionsCellProps) => {
   const t = useTranslations("public");
   const [open, setOpen] = useState(false);
@@ -153,6 +146,20 @@ const TaskActionsCell = ({
             </button>
 
             <button
+              className={s.tableActionButton("info")}
+              title={t("tableColumnsDelete")}
+              aria-label={`${t("tableColumnsDelete")}: ${task.title}`}
+              disabled
+            >
+              <Timer
+                size={16}
+                strokeWidth={2.5}
+                aria-hidden="true"
+                className={s.tableIconDisabled}
+              />
+            </button>
+
+            <button
               className={s.tableActionButton("danger")}
               title={t("tableColumnsDelete")}
               aria-label={`${t("tableColumnsDeleteDetail")} : ${task.title}`}
@@ -219,6 +226,20 @@ const TaskActionsCell = ({
                   className="text-sky-400"
                 />
               )}
+            </button>
+
+            <button
+              onClick={() => onFocus(task)}
+              className={s.tableActionButton("info")}
+              title={t("tableColumnsDelete")}
+              aria-label={`${t("tableColumnsDelete")}: ${task.title}`}
+            >
+              <Timer
+                size={16}
+                strokeWidth={2.5}
+                aria-hidden="true"
+                className="text-violet-400"
+              />
             </button>
 
             <button
@@ -344,6 +365,25 @@ const TaskActionsCell = ({
                   )}
                   <span className="font-bold">
                     {isPaused ? t("unpauseTask") : t("pauseTask")}
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    onFocus(task);
+                    closeMenu();
+                  }}
+                  className={s.taskPause}
+                  role="menuitem"
+                >
+                  <Timer
+                    size={17}
+                    strokeWidth={2.5}
+                    className="text-violet-400"
+                  />
+                  <span className="font-bold text-violet-400">
+                    {t("tableColumnsFocus")}
                   </span>
                 </button>
 
