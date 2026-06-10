@@ -9,3 +9,20 @@ export const priorityWeight: Record<Task["priority"], number> = {
   medium: 2,
   low: 1,
 };
+
+export const clearUserData = () => {
+  const keys = [
+    "auth_user",
+    "day-history",
+    "day-last-period",
+    "day-tasks",
+    "month-history",
+    "month-last-period",
+    "month-tasks",
+    "year-history",
+    "year-last-period",
+    "year-tasks",
+  ];
+
+  keys.forEach(key => localStorage.removeItem(key));
+};
