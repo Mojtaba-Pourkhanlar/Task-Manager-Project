@@ -7,7 +7,7 @@ const STORAGE_KEY = "focus_mode_session";
 interface FocusSession {
   taskId: string;
   taskTitle: string;
-  endsAt: number; // timestamp
+  endsAt: number;
   totalSeconds: number;
 }
 
