@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { isPWA } from "@/lib/isPWA";
 import ShowPWA from "../ui/ShowPWA";
 
+
 export default function CustomLayout({
   children,
 }: {
